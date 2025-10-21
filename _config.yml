@@ -1,0 +1,35 @@
+# _config.yml
+title: aibOS
+description: Notion 블로그
+author: 이비아
+email: lba0507@gmail.com
+
+# GitHub Pages 설정
+baseurl: ""
+url: "https://biainthew.github.io"
+
+# 빌드 설정
+markdown: kramdown
+theme: minima  # GitHub Pages 기본 테마
+
+# 플러그인
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 제외할 파일
+exclude:
+  - node_modules/
+  - scripts/
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+  - .github/
+
+# 퍼머링크 형식
+permalink: /:year/:month/:day/:title/
+
+# 기타 설정
+timezone: Asia/Seoul
+lang: ko
