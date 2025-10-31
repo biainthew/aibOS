@@ -2,8 +2,11 @@
 source "https://rubygems.org"
 
 gem "github-pages", group: :jekyll_plugins
-gem "jekyll-feed"
-gem "jekyll-seo-tag"
+
+group :jekyll_plugins do
+  gem "jekyll-paginate"
+  gem "jekyll-gist"
+end
 
 # Windows 및 JRuby 사용자용
 platforms :mingw, :x64_mingw, :mswin, :jruby do

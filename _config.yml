@@ -1,23 +1,43 @@
 # _config.yml
+# Setup
 title: aibOS
-description: Notion 블로그
-author: 이비아
-email: lba0507@gmail.com
-
-# GitHub Pages 설정
+description: 'Notion 블로그'
+url: https://biainthew.github.io
 baseurl: ""
-url: "https://biainthew.github.io"
 
-# 빌드 설정
-markdown: kramdown
-theme: minima  # GitHub Pages 기본 테마
+# About/contact
+author:
+  name: 이비아
+  url: https://github.com/biainthew
+  email: lba0507@gmail.com
 
-# 플러그인
+# Pagination
+paginate: 5
+paginate_path: '/page:num/'
+
+# Plugins
 plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-gist
 
-# 제외할 파일
+# Markdown
+markdown: kramdown
+highlighter: rouge
+
+# Permalinks
+permalink: pretty
+
+# Hyde specific settings
+sidebar_home_link: true
+sidebar_blog_link: '/archive/'
+
+# Custom vars
+version: 2.1.0
+
+github:
+  repo: https://github.com/biainthew/aibOS.github.io
+
+# Exclude
 exclude:
   - node_modules/
   - scripts/
@@ -26,10 +46,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - .github/
-
-# 퍼머링크 형식
-permalink: /:year/:month/:day/:title/
-
-# 기타 설정
-timezone: Asia/Seoul
-lang: ko
+  - README.md
