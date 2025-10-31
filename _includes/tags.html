@@ -1,0 +1,13 @@
+<div class="tags">
+    <h4 class="tags-tit">태그</h4>
+    <ul class="tag-wrap">
+        <li class="tag-li">
+            <a href="{{ site.baseurl }}/" class="tag-link on">전체</a>
+        </li>
+        {% for tag in site.tags %}
+        <li class="tag-li">
+            <a href="{{ site.baseurl }}/tags/{{ tag[0] | slugify }}" class="tag-link">{{ tag[0] }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

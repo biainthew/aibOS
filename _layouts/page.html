@@ -1,8 +1,25 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en-us">
 
-<div class="page">
-  <h1 class="page-title">{{ page.title }}</h1>
-  {{ content }}
-</div>
+{% include head.html %}
+
+<body>
+<div class="wrap">
+    {% include header.html %}
+
+    <div class="main">
+
+        {% include profile.html %}
+
+        <div class="content">
+
+            {{ content }}
+
+        </div>
+
+        {% include tags.html %}
+
+    </div>
+    <div>
+</body>
+</html>
