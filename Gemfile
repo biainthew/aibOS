@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "jekyll", "~> 3.10.0"
 gem "jekyll-paginate"
 gem "jekyll-gist"
+gem "kramdown-parser-gfm"
 
 # Windows 및 JRuby 사용자용
 platforms :mingw, :x64_mingw, :mswin, :jruby do
