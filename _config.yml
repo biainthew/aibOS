@@ -12,8 +12,8 @@ author:
   email: lba0507@gmail.com
 
 # Pagination
-paginate: 5
-paginate_path: '/page:num/'
+#paginate: 5
+#paginate_path: '/page:num/'
 
 # Plugins
 plugins:
@@ -26,6 +26,11 @@ highlighter: rouge
 
 # Permalinks
 permalink: pretty
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed
 
 # Hyde specific settings
 sidebar_home_link: true
