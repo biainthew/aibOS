@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bundle exec jekyll build:*)",
+      "Bash(bundle exec jekyll serve:*)",
+      "Read(//c/Users/Administrator/IdeaProjects/morethan-log/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

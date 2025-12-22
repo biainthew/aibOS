@@ -1,0 +1,45 @@
+---
+layout: default
+title: Home
+---
+
+<div class="posts">
+    <div class="posts-top">
+        <h4 class="posts-tit">게시글 (<span>100</span>)</h4>
+        <div class="posts-sort">
+            <button class="btn">내림차순</button>
+            <button class="btn" disabled>오름차순</button>
+        </div>
+    </div>
+    {% for post in paginator.posts %}
+    <div class="post">
+        <h1 class="post-tit">
+            <a href="{{ post.url | relative_url }}">
+                {{ post.title }}
+            </a>
+        </h1>
+
+        <span class="post-date">{{ post.date | date_to_string }}</span>
+
+        <div class="post-tags">
+            {% for tag in post.tags %}
+            <span class="post-tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ paginator.next_page_path | relative_url }}">이전</a>
+    {% else %}
+    <span class="pagination-item older">이전</span>
+    {% endif %}
+    {% if paginator.previous_page %}
+    <a class="pagination-item newer" href="{{ paginator.previous_page_path | relative_url }}">다음</a>
+    {% else %}
+    <span class="pagination-item newer">다음</span>
+    {% endif %}
+</div>

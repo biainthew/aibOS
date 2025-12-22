@@ -1,0 +1,39 @@
+/*
+Error: Invalid CSS after "@import "reset"": expected "{", was ";"
+        on line 3 of style.scss
+
+1: ---
+2: ---
+3: @import "reset";
+4: @import "variables";
+5: 
+6: //layout
+7: html {
+8:     @include theme-prop(color, text-color);
+
+Backtrace:
+style.scss:3
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1308:in 'Sass::SCSS::Parser.expected'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1238:in 'Sass::SCSS::Parser#expected'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1233:in 'Sass::SCSS::Parser#tok!'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:688:in 'Sass::SCSS::Parser#block'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:681:in 'Sass::SCSS::Parser#ruleset'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:707:in 'Sass::SCSS::Parser#block_child'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:697:in 'Sass::SCSS::Parser#block_contents'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:137:in 'Sass::SCSS::Parser#stylesheet'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:41:in 'Sass::SCSS::Parser#parse'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/engine.rb:414:in 'Sass::Engine#_to_tree'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/engine.rb:389:in 'Sass::Engine#_render_with_sourcemap'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/engine.rb:307:in 'Sass::Engine#render_with_sourcemap'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:387:in 'Sass::Exec::SassScss#run'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:63:in 'Sass::Exec::SassScss#process_result'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in 'Sass::Exec::Base#parse'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in 'Sass::Exec::Base#parse!'
+C:/Users/Administrator/.local/share/gem/ruby/3.4.0/gems/sass-3.7.4/bin/sass:13:in '<top (required)>'
+C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/sass:25:in 'Kernel#load'
+C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/sass:25:in '<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"@import \"reset\"\": expected \"{\", was \";\"\A         on line 3 of style.scss\A \A 1: ---\A 2: ---\A 3: @import \"reset\";\A 4: @import \"variables\";\A 5: \A 6: //layout\A 7: html {\A 8:     @include theme-prop(color, text-color);"; }

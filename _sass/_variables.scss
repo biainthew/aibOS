@@ -1,0 +1,46 @@
+:root {
+    --text-color: #444444;
+    --bg-color: #F7F7F7;
+    --bg-point-color: #FFFFFF;
+    --disabled-color: #A7A7A7;
+    --chip-color: #EDEDED;
+}
+
+[data-theme='dark'] {
+    --text-color: #F7F7F7;
+    --bg-color: #2B2B2B;
+    --bg-point-color: #3F3F3F;
+    --disabled-color: #A7A7A7;
+    --chip-color: #515151;
+}
+
+@mixin theme-prop($property, $variable) {
+    #{$property}: var(--#{$variable});
+}
+
+@mixin title-text {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+@mixin flex-title-gap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@mixin flex-paragraph-gap {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+@mixin on-off {
+    display: flex;
+    gap: 8px;
+    @include theme-prop(color, text-color);
+    .btn:disabled {
+        @include theme-prop(color, disabled-color);
+        cursor: auto;
+    }
+}
