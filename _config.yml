@@ -3,7 +3,7 @@
 title: aibOS
 description: 'Notion 블로그'
 url: https://biainthew.github.io
-baseurl: ""
+baseurl: "/aibOS"
 
 # About/contact
 author:
