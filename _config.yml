@@ -28,9 +28,9 @@ highlighter: rouge
 permalink: pretty
 
 # Sass/SCSS
-sass:
-  sass_dir: _sass
-  style: compressed
+#sass:
+#  sass_dir: _sass
+#  style: compressed
 
 # Hyde specific settings
 sidebar_home_link: true
