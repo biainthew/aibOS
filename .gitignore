@@ -41,3 +41,5 @@ desktop.ini
 *.tmp
 *.bak
 *.cache
+
+_sass/**
