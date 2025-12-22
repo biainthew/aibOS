@@ -1,0 +1,26 @@
+---
+layout: post
+title: "Javascript css 속성값 가져오기"
+date: 2023-07-04
+categories: [general]
+tags: [Javascript/Jquery]
+---
+
+
+### 1) JS style 로 속성값 가져오기
+
+
+: inline 으로 정의된 style 속성만 가져온다
+
+
+![Untitled.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/17e4cc87-e18d-4010-b513-c024f44d7cd5/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4666NPQ4QJO%2F20251222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251222T083229Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECgaCXVzLXdlc3QtMiJHMEUCIQDh30dYYhlu2snxlRqt3%2BRT49XH7E8VKZF6vBZqVwBP4gIgBi%2FM8VMKNZe%2FIQ7VI9a6TFVIUHYnJ8CjNAcZzjOoNMAqiAQI8f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDMdGBoEpBGwmeFSEDyrcAx%2BUOzjwyaj2fxscWMWZuY7l0l%2FkNxytr7ZHdt2p0lBLybReLtZZXnjhSI1sX8b54jFBr7GGsoHLKtohnT17kto%2FR9%2FetJeWK4nbLBUe%2B5UjOoisexVFM2F30FPgHthUSMZEsJfPTrkfmGNUNTyk%2FJT1c%2B4iEOTHpNOWmoZLHjhtN0fBLlPaTq%2BQqdRohENrZVEwVvQX9qwCTtL40BD32hR3H9dzqDZDj1VK%2BNM4pPOIGi%2BmdXDWJtdnXjRVJrh0izAb1vz4fEG5imjrngfSDUwcKk7H99WCp4g8vjzWgwWQg1sIZ8Bkuf3hoK3tbpgiLcA7kCaWcfYkYP%2F8Z3pRJIoGBHaYDr9MxrspYCmqbeRlco1mBEyaINqqPBfTORPZoQecvzA27iuXhQcBvP%2Bq84f%2FSLf9kfhXRyzOQX%2FENKo9ylkvDc3YS8EvBClw8Fit0A9DFuBej2PnTtyICpteAjaJc%2B%2FMFJSfzvr7up2lUSWXLo%2Fl3idPO7WcdgpP4I%2BsDzaBpYgD1l%2BY%2BfzVyqnpsoEq2F9Mpyyrn7V4c9dbtWbwEqupAYaBWsAWsa%2Fglo6Rk%2BWzFc68%2B5Mr2gFa0YwGV%2BHfl6Eq8u1Jvfv5fi5m29X8OPzSeHMPulhh8juQMMv5o8oGOqUB2RBNki8lh94yHEqwB3E4SNoQrzXoKeSSncbuOmqf4a9KBEHpSRZB3%2BLL%2BFBIDkAJFRJA5qTiXkcdvaiXDozZL1bbQTAmPIzSDb6dFXwww7jh4dqls8%2BoeCwIw2enPTglweGdAQ3fYh3DfEkBmLOmy0Yi3YYzDiINaAiVNkUvBgZwDH1LjAGS8aywJfx6wuW6OuoVAKhxafTLxRoHSt9eCU3ZAVjU&X-Amz-Signature=9dede1b8d64d87e69bdb6efaee4a50d3eff78c16b13d55c3d975ee5ef408524e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+
+
+### 2) JS getComputedStyle 로 속성값 가져오기
+
+
+: inline 으로 정의된 style 속성 뿐 아니라 CSS 파일 내 style 속성도 함께 가져온다
+
+
+![Untitled.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/12715230-c58d-4c7f-b3a0-6c68b1393918/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4666NPQ4QJO%2F20251222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251222T083229Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECgaCXVzLXdlc3QtMiJHMEUCIQDh30dYYhlu2snxlRqt3%2BRT49XH7E8VKZF6vBZqVwBP4gIgBi%2FM8VMKNZe%2FIQ7VI9a6TFVIUHYnJ8CjNAcZzjOoNMAqiAQI8f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDMdGBoEpBGwmeFSEDyrcAx%2BUOzjwyaj2fxscWMWZuY7l0l%2FkNxytr7ZHdt2p0lBLybReLtZZXnjhSI1sX8b54jFBr7GGsoHLKtohnT17kto%2FR9%2FetJeWK4nbLBUe%2B5UjOoisexVFM2F30FPgHthUSMZEsJfPTrkfmGNUNTyk%2FJT1c%2B4iEOTHpNOWmoZLHjhtN0fBLlPaTq%2BQqdRohENrZVEwVvQX9qwCTtL40BD32hR3H9dzqDZDj1VK%2BNM4pPOIGi%2BmdXDWJtdnXjRVJrh0izAb1vz4fEG5imjrngfSDUwcKk7H99WCp4g8vjzWgwWQg1sIZ8Bkuf3hoK3tbpgiLcA7kCaWcfYkYP%2F8Z3pRJIoGBHaYDr9MxrspYCmqbeRlco1mBEyaINqqPBfTORPZoQecvzA27iuXhQcBvP%2Bq84f%2FSLf9kfhXRyzOQX%2FENKo9ylkvDc3YS8EvBClw8Fit0A9DFuBej2PnTtyICpteAjaJc%2B%2FMFJSfzvr7up2lUSWXLo%2Fl3idPO7WcdgpP4I%2BsDzaBpYgD1l%2BY%2BfzVyqnpsoEq2F9Mpyyrn7V4c9dbtWbwEqupAYaBWsAWsa%2Fglo6Rk%2BWzFc68%2B5Mr2gFa0YwGV%2BHfl6Eq8u1Jvfv5fi5m29X8OPzSeHMPulhh8juQMMv5o8oGOqUB2RBNki8lh94yHEqwB3E4SNoQrzXoKeSSncbuOmqf4a9KBEHpSRZB3%2BLL%2BFBIDkAJFRJA5qTiXkcdvaiXDozZL1bbQTAmPIzSDb6dFXwww7jh4dqls8%2BoeCwIw2enPTglweGdAQ3fYh3DfEkBmLOmy0Yi3YYzDiINaAiVNkUvBgZwDH1LjAGS8aywJfx6wuW6OuoVAKhxafTLxRoHSt9eCU3ZAVjU&X-Amz-Signature=764791a67c5cfdde702fa4cf3d71cac81236c03d93dbaedf66d43bf1bb94065d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+
