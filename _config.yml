@@ -12,8 +12,8 @@ author:
   email: lba0507@gmail.com
 
 # Pagination
-#paginate: 5
-#paginate_path: '/page:num/'
+paginate: 10
+paginate_path: '/page:num/'
 
 # Plugins
 plugins:
@@ -44,6 +44,7 @@ github:
 
 # Exclude
 exclude:
+  - vendor
   - node_modules/
   - scripts/
   - package.json
