@@ -1,46 +1,144 @@
+// ============================================
+// CSS Variables
+// ============================================
+
 :root {
-    --text-color: #444444;
-    --bg-color: #F7F7F7;
-    --bg-point-color: #FFFFFF;
-    --disabled-color: #A7A7A7;
-    --chip-color: #EDEDED;
+    // Light Mode
+    --background: #f7f7fb;
+    --foreground: #2a241f;
+    --card: #ffffff;
+    --card-foreground: #2a241f;
+    --primary: #0f13e3;
+    --primary-foreground: #ffffff;
+    --secondary: #eef0f7;
+    --secondary-foreground: #2c3559;
+    --muted: #e9ebf2;
+    --muted-foreground: #6b7391;
+    --border: #dde1ec;
+    --ring: #e1e3ff;
+
+    // Shadow system
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+
+    // Layout
+    --radius: 0.75rem;
+    --container-max: 1080px;
+    --header-height: 64px;
+
+    // Legacy compatibility
+    --text-color: var(--foreground);
+    --bg-color: var(--background);
+    --bg-point-color: var(--card);
+    --disabled-color: var(--muted-foreground);
+    --chip-color: var(--secondary);
 }
 
 [data-theme='dark'] {
-    --text-color: #F7F7F7;
-    --bg-color: #2B2B2B;
-    --bg-point-color: #3F3F3F;
-    --disabled-color: #A7A7A7;
-    --chip-color: #515151;
+    // Dark Mode - charcoal theme
+    --background: #161922;
+    --foreground: #f2f4f7;
+    --card: #1c1f29;
+    --card-foreground: #f2f4f7;
+    --primary: #5f7bff;
+    --primary-foreground: #ffffff;
+    --secondary: #262a36;
+    --secondary-foreground: #d6dae3;
+    --muted: #2b2f3d;
+    --muted-foreground: #7f8596;
+    --border: #2a2f3d;
+    --ring: #5f7bff;
+
+    // Darker shadows for dark mode
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+
+    // Legacy compatibility
+    --text-color: var(--foreground);
+    --bg-color: var(--background);
+    --bg-point-color: var(--card);
+    --disabled-color: var(--muted-foreground);
+    --chip-color: var(--secondary);
 }
+
+// ============================================
+// Mixins
+// ============================================
 
 @mixin theme-prop($property, $variable) {
     #{$property}: var(--#{$variable});
 }
 
+@mixin container {
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+@mixin card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+}
+
+@mixin tag-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 9999px;
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background: var(--muted);
+    }
+
+    &.on,
+    &.active {
+        background: var(--primary);
+        color: var(--primary-foreground);
+    }
+}
+
+@mixin section-spacing {
+    margin-bottom: 2.5rem;
+}
+
 @mixin title-text {
-    font-size: 17px;
+    font-size: 1.125rem;
     font-weight: 700;
+    color: var(--foreground);
 }
 
 @mixin flex-title-gap {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0.75rem;
 }
 
 @mixin flex-paragraph-gap {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 1.75rem;
 }
 
 @mixin on-off {
     display: flex;
-    gap: 8px;
-    @include theme-prop(color, text-color);
+    gap: 0.5rem;
+    color: var(--foreground);
+
     .btn:disabled {
-        @include theme-prop(color, disabled-color);
+        color: var(--muted-foreground);
         cursor: auto;
     }
 }

@@ -1,28 +1,64 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ko">
 
 {% include head.html %}
 
 <body>
+
+{% include header.html %}
+
 <div class="wrap">
 
-    {% include header.html %}
-
-    <div class="main">
+    <main class="main">
 
         {% include profile.html %}
 
-        <div class="content">
-
-            {% include search.html %}
-
-            {{ content }}
-
-        </div>
+        {% include search.html %}
 
         {% include tags.html %}
 
-    </div>
-<div>
+        <div class="content">
+            {{ content }}
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name | default: site.title }}. All rights reserved.</p>
+    </footer>
+
+</div>
+
+<script>
+(function() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.mode .btn');
+
+        buttons.forEach(function(btn, index) {
+            const isLightBtn = index === 0;
+            const isDarkBtn = index === 1;
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+
+            if ((isLightBtn && currentTheme === 'light') || (isDarkBtn && currentTheme === 'dark')) {
+                btn.disabled = true;
+            }
+
+            btn.addEventListener('click', function() {
+                const newTheme = isLightBtn ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+
+                buttons.forEach(function(b, i) {
+                    b.disabled = (i === 0 && newTheme === 'light') || (i === 1 && newTheme === 'dark');
+                });
+            });
+        });
+    });
+})();
+</script>
+
 </body>
 </html>

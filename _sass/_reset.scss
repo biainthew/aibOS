@@ -63,13 +63,19 @@ table {
 }
 html {
     font-family: 'Pretendard', 'Wanted Sans', sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 body {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    line-height: 1.6;
+    min-height: 100vh;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
+    font-weight: 600;
+    line-height: 1.3;
 }
 code {
     line-height: 160%;
@@ -77,6 +83,7 @@ code {
 a {
     color: inherit;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 button {
     border: none;
@@ -84,10 +91,29 @@ button {
     outline: none;
     color: inherit;
     cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 input {
     border: none;
     outline: none;
     background: none;
     font: inherit;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+// Screen reader only
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

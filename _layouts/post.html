@@ -2,25 +2,44 @@
 layout: page
 ---
 
-<div class="post">
-    <h4 class="post-title">{{ page.title }}</h4>
-    <span class="post-date">{{ page.date | date_to_string }}</span>
-    <div class="line"></div>
-    {{ content }}
-</div>
+<article class="post">
+    <header class="post-header">
+        {% if page.tags.size > 0 %}
+        <div class="post-tags">
+            {% for tag in page.tags %}
+            <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
 
-<div class="related">
-    <h2>Related Posts</h2>
-    <ul class="related-posts">
+        <h1 class="post-title">{{ page.title }}</h1>
+
+        <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">
+            {{ page.date | date: "%Y년 %m월 %d일" }}
+        </time>
+    </header>
+
+    <div class="line"></div>
+
+    <div class="post-content">
+        {{ content }}
+    </div>
+</article>
+
+{% if site.related_posts.size > 0 %}
+<section class="related">
+    <h2 class="related-tit">관련 게시글</h2>
+    <div class="posts-grid">
         {% for post in site.related_posts limit:3 %}
-        <li>
-            <h3>
-                <a href="{{ post.url }}">
-                    {{ post.title }}
-                    <small>{{ post.date | date_to_string }}</small>
-                </a>
+        <article class="post">
+            <h3 class="post-tit">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
             </h3>
-        </li>
+            <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+                {{ post.date | date: "%Y년 %m월 %d일" }}
+            </time>
+        </article>
         {% endfor %}
-    </ul>
-</div>
+    </div>
+</section>
+{% endif %}

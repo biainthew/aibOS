@@ -3,43 +3,199 @@ layout: default
 title: Home
 ---
 
-<div class="posts">
+<section class="posts">
     <div class="posts-top">
-        <h4 class="posts-tit">게시글 (<span>100</span>)</h4>
+        <h4 class="posts-tit">게시글 (<span id="post-count">{{ site.posts.size }}</span>)</h4>
         <div class="posts-sort">
-            <button class="btn">내림차순</button>
-            <button class="btn" disabled>오름차순</button>
+            <button class="btn sort-btn" data-sort="newest" disabled>최신순</button>
+            <button class="btn sort-btn" data-sort="oldest">오래된순</button>
         </div>
     </div>
-    {% for post in paginator.posts %}
-    <div class="post">
-        <h1 class="post-tit">
-            <a href="{{ post.url | relative_url }}">
-                {{ post.title }}
-            </a>
-        </h1>
 
-        <span class="post-date">{{ post.date | date_to_string }}</span>
+    <div class="posts-grid" id="posts-grid">
+        {% for post in site.posts %}
+        <article class="post"
+                 data-title="{{ post.title }}"
+                 data-date="{{ post.date | date: '%Y-%m-%d' }}"
+                 data-tags="{{ post.tags | join: ',' | downcase }}"
+                 data-excerpt="{{ post.excerpt | strip_html | truncate: 200 }}">
+            {% if post.tags.size > 0 %}
+            <div class="post-tags">
+                {% for tag in post.tags limit:2 %}
+                <span class="post-tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
 
-        <div class="post-tags">
-            {% for tag in post.tags %}
-            <span class="post-tag">{{ tag }}</span>
-            {% endfor %}
-        </div>
+            <h2 class="post-tit">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
 
+            {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+            {% endif %}
+
+            <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+                {{ post.date | date: "%Y년 %m월 %d일" }}
+            </time>
+        </article>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
+</section>
 
-<div class="pagination">
-    {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ paginator.next_page_path | relative_url }}">이전</a>
-    {% else %}
-    <span class="pagination-item older">이전</span>
-    {% endif %}
-    {% if paginator.previous_page %}
-    <a class="pagination-item newer" href="{{ paginator.previous_page_path | relative_url }}">다음</a>
-    {% else %}
-    <span class="pagination-item newer">다음</span>
-    {% endif %}
-</div>
+<script>
+(function() {
+    const postsGrid = document.getElementById('posts-grid');
+    const postCountEl = document.getElementById('post-count');
+    const sortButtons = document.querySelectorAll('.sort-btn');
+    const searchInput = document.querySelector('.search-input input');
+    const tagLinks = document.querySelectorAll('.tag-link');
+    const allTagLink = document.querySelector('.tag-link[href$="/"]');
+
+    let allPosts = Array.from(postsGrid.querySelectorAll('.post'));
+    let currentSort = 'newest';
+    let selectedTags = []; // 다중 선택을 위한 배열
+    let currentSearch = '';
+
+    // Sort posts
+    function sortPosts(posts, order) {
+        return [...posts].sort((a, b) => {
+            const dateA = new Date(a.dataset.date);
+            const dateB = new Date(b.dataset.date);
+            return order === 'newest' ? dateB - dateA : dateA - dateB;
+        });
+    }
+
+    // Filter posts
+    function filterPosts() {
+        let filtered = allPosts;
+
+        // Tag filter (다중 선택 - OR 조건: 선택된 태그 중 하나라도 포함되면 표시)
+        if (selectedTags.length > 0) {
+            filtered = filtered.filter(post => {
+                const postTags = post.dataset.tags.toLowerCase();
+                return selectedTags.some(tag => postTags.includes(tag.toLowerCase()));
+            });
+        }
+
+        // Search filter
+        if (currentSearch) {
+            const searchLower = currentSearch.toLowerCase();
+            filtered = filtered.filter(post => {
+                const title = post.dataset.title.toLowerCase();
+                const excerpt = post.dataset.excerpt.toLowerCase();
+                const tags = post.dataset.tags.toLowerCase();
+                return title.includes(searchLower) ||
+                       excerpt.includes(searchLower) ||
+                       tags.includes(searchLower);
+            });
+        }
+
+        return filtered;
+    }
+
+    // Update "전체" tag state
+    function updateAllTagState() {
+        if (allTagLink) {
+            if (selectedTags.length === 0) {
+                allTagLink.classList.add('on');
+            } else {
+                allTagLink.classList.remove('on');
+            }
+        }
+    }
+
+    // Render posts
+    function renderPosts() {
+        let filtered = filterPosts();
+        filtered = sortPosts(filtered, currentSort);
+
+        // Update count
+        postCountEl.textContent = filtered.length;
+
+        // Clear and re-render
+        postsGrid.innerHTML = '';
+
+        if (filtered.length === 0) {
+            postsGrid.innerHTML = '<p class="no-posts">검색 결과가 없습니다.</p>';
+            return;
+        }
+
+        filtered.forEach(post => {
+            postsGrid.appendChild(post.cloneNode(true));
+        });
+    }
+
+    // Sort button click
+    sortButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.disabled) return;
+
+            currentSort = this.dataset.sort;
+
+            sortButtons.forEach(b => b.disabled = false);
+            this.disabled = true;
+
+            renderPosts();
+        });
+    });
+
+    // Tag click (다중 선택)
+    tagLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const tagText = this.textContent.trim();
+
+            // "전체" 클릭 시 모든 선택 해제
+            if (tagText === '전체') {
+                selectedTags = [];
+                tagLinks.forEach(l => l.classList.remove('on'));
+                this.classList.add('on');
+            } else {
+                // 이미 선택된 태그면 제거, 아니면 추가
+                const tagIndex = selectedTags.indexOf(tagText);
+                if (tagIndex > -1) {
+                    selectedTags.splice(tagIndex, 1);
+                    this.classList.remove('on');
+                } else {
+                    selectedTags.push(tagText);
+                    this.classList.add('on');
+                }
+                updateAllTagState();
+            }
+
+            renderPosts();
+        });
+    });
+
+    // Search input
+    if (searchInput) {
+        let debounceTimer;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                currentSearch = this.value.trim();
+                renderPosts();
+            }, 300);
+        });
+
+        // Enter key
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                currentSearch = this.value.trim();
+                renderPosts();
+            }
+        });
+    }
+})();
+</script>
+
+<style>
+.no-posts {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted-foreground);
+}
+</style>
