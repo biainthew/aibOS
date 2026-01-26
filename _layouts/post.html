@@ -12,7 +12,7 @@ layout: page
         </div>
         {% endif %}
 
-        <h1 class="post-title">{{ page.title }}</h1>
+        <h1 class="post-title">{{ page.title | escape }}</h1>
 
         <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">
             {{ page.date | date: "%Y년 %m월 %d일" }}
@@ -44,7 +44,7 @@ layout: page
         {% if sameTagCount >= minCommonTags %}
         <article class="post">
             <h3 class="post-tit">
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
             </h3>
             <time class="post-date">{{ post.date | date: "%Y년 %m월 %d일" }}</time>
         </article>

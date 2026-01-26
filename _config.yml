@@ -12,8 +12,8 @@ author:
   email: lba0507@gmail.com
 
 # Pagination
-paginate: 10
-paginate_path: '/page:num/'
+#paginate: 10
+#paginate_path: '/page:num/'
 
 # Plugins
 plugins:

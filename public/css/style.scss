@@ -638,3 +638,10 @@ code.highlighter-rouge {
 .content {
     width: 100%;
 }
+
+.no-posts {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted-foreground);
+}
