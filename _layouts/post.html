@@ -26,20 +26,32 @@ layout: page
     </div>
 </article>
 
-{% if site.related_posts.size > 0 %}
+{% assign maxRelated = 3 %}
+{% assign minCommonTags = 1 %}
+{% assign relatedCount = 0 %}
+
 <section class="related">
     <h2 class="related-tit">관련 게시글</h2>
     <div class="posts-grid">
-        {% for post in site.related_posts limit:3 %}
+        {% for post in site.posts %}
+        {% if post.url != page.url %} {% assign sameTagCount = 0 %}
+        {% for tag in post.tags %}
+        {% if page.tags contains tag %}
+        {% assign sameTagCount = sameTagCount | plus: 1 %}
+        {% endif %}
+        {% endfor %}
+
+        {% if sameTagCount >= minCommonTags %}
         <article class="post">
             <h3 class="post-tit">
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
             </h3>
-            <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
-                {{ post.date | date: "%Y년 %m월 %d일" }}
-            </time>
+            <time class="post-date">{{ post.date | date: "%Y년 %m월 %d일" }}</time>
         </article>
+        {% assign relatedCount = relatedCount | plus: 1 %}
+        {% if relatedCount >= maxRelated %}{% break %}{% endif %}
+        {% endif %}
+        {% endif %}
         {% endfor %}
     </div>
 </section>
-{% endif %}

@@ -55,6 +55,7 @@ title: "${title}"
 date: ${formatDate(date)}
 categories: [${category}]
 tags: [${tags.join(", ")}]
+excerpt_separator: ""
 ---
 
 `;
@@ -143,16 +144,21 @@ async function syncNotionToGitHub() {
             const mdString = n2m.toMarkdownString(mdblocks);
 
             // 본문의 {{ }} 가 Liquid 문법으로 오해받지 않도록 escape 처리
-            let bodyContent = mdString.parent;
+            let bodyContent = "";
+            if (mdString && typeof mdString === 'string') {
+                bodyContent = mdString;
+            } else if (mdString && mdString.parent) {
+                bodyContent = mdString.parent;
+            }
 
             // 예제 코드 블록 내외의 {{ }} 를 감싸기 위해 본문 전체 혹은 {{ }} 가 나타나는 구간을 {% raw %}로 감쌈
-            if (bodyContent.includes('{{')) {
-                bodyContent = "{% raw %}\n" + bodyContent + "\n{% endraw %}";
+            if (bodyContent && bodyContent.includes('{{')) {
+                bodyContent = "\n{% raw %}\n" + bodyContent + "\n{% endraw %}\n";
             }
 
             // Front Matter + 본문 결합
             const frontMatter = createFrontMatter(page);
-            const fullContent = frontMatter + bodyContent;
+            const fullContent = frontMatter + "\n" + bodyContent;
 
             // 파일 저장
             const fileName = createFileName(title, date);
