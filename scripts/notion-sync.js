@@ -81,7 +81,7 @@ async function getDataSourceId(databaseId) {
 }
 
 // 모든 페이지를 가져오는 재귀 함수
-async function getAllPages(dataSourceId) {
+async function getAllPages(dataSourceId, isFullSync) {
     let pages = [];
     let cursor = undefined;
 
@@ -127,7 +127,7 @@ async function syncNotionToGitHub() {
         console.log(`데이터 소스 ID: ${dataSourceId}`);
 
         // 1. 모든 페이지 가져오기
-        const allPages = await getAllPages(dataSourceId);
+        const allPages = await getAllPages(dataSourceId, isFullSync);
         console.log(`총 ${allPages.length}개의 글을 찾았습니다.`);
 
         const postsDir = path.join(process.cwd(), "_posts");
