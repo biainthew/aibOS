@@ -43,19 +43,25 @@ title: Home
     </div>
 </section>
 
+<nav class="pagination" id="pagination" aria-label="페이지 네비게이션"></nav>
+
 <script>
 (function() {
     const postsGrid = document.getElementById('posts-grid');
     const postCountEl = document.getElementById('post-count');
+    const paginationEl = document.getElementById('pagination');
     const sortButtons = document.querySelectorAll('.sort-btn');
     const searchInput = document.querySelector('.search-input input');
     const tagLinks = document.querySelectorAll('.tag-link');
     const allTagLink = document.querySelector('.tag-link[href$="/"]');
 
+    const POSTS_PER_PAGE = 9; // 페이지당 포스트 수
+
     let allPosts = Array.from(postsGrid.querySelectorAll('.post'));
     let currentSort = 'newest';
-    let selectedTags = []; // 다중 선택을 위한 배열
+    let selectedTags = [];
     let currentSearch = '';
+    let currentPage = 1;
 
     // Sort posts
     function sortPosts(posts, order) {
@@ -70,7 +76,7 @@ title: Home
     function filterPosts() {
         let filtered = allPosts;
 
-        // Tag filter (다중 선택 - OR 조건: 선택된 태그 중 하나라도 포함되면 표시)
+        // Tag filter
         if (selectedTags.length > 0) {
             filtered = filtered.filter(post => {
                 const postTags = post.dataset.tags.toLowerCase();
@@ -105,25 +111,88 @@ title: Home
         }
     }
 
+    // Render pagination
+    function renderPagination(totalPosts) {
+        const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+
+        if (totalPages <= 1) {
+            paginationEl.innerHTML = '';
+            return;
+        }
+
+        let html = '';
+
+        // 이전 버튼
+        if (currentPage > 1) {
+            html += `<a class="pagination-item" href="#" data-page="${currentPage - 1}" aria-label="이전 페이지">&laquo;</a>`;
+        } else {
+            html += `<span class="pagination-item disabled">&laquo;</span>`;
+        }
+
+        // 페이지 번호
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === currentPage) {
+                html += `<span class="pagination-item active" aria-current="page">${i}</span>`;
+            } else {
+                html += `<a class="pagination-item" href="#" data-page="${i}">${i}</a>`;
+            }
+        }
+
+        // 다음 버튼
+        if (currentPage < totalPages) {
+            html += `<a class="pagination-item" href="#" data-page="${currentPage + 1}" aria-label="다음 페이지">&raquo;</a>`;
+        } else {
+            html += `<span class="pagination-item disabled">&raquo;</span>`;
+        }
+
+        paginationEl.innerHTML = html;
+
+        // 페이지 클릭 이벤트
+        paginationEl.querySelectorAll('a[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentPage = parseInt(this.dataset.page);
+                renderPosts();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    }
+
     // Render posts
     function renderPosts() {
         let filtered = filterPosts();
         filtered = sortPosts(filtered, currentSort);
 
+        const totalPosts = filtered.length;
+
         // Update count
-        postCountEl.textContent = filtered.length;
+        postCountEl.textContent = totalPosts;
+
+        // Pagination
+        const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+        const endIndex = startIndex + POSTS_PER_PAGE;
+        const paginatedPosts = filtered.slice(startIndex, endIndex);
 
         // Clear and re-render
         postsGrid.innerHTML = '';
 
-        if (filtered.length === 0) {
+        if (paginatedPosts.length === 0) {
             postsGrid.innerHTML = '<p class="no-posts">검색 결과가 없습니다.</p>';
+            paginationEl.innerHTML = '';
             return;
         }
 
-        filtered.forEach(post => {
+        paginatedPosts.forEach(post => {
             postsGrid.appendChild(post.cloneNode(true));
         });
+
+        renderPagination(totalPosts);
+    }
+
+    // Reset to page 1 when filter changes
+    function resetAndRender() {
+        currentPage = 1;
+        renderPosts();
     }
 
     // Sort button click
@@ -136,24 +205,22 @@ title: Home
             sortButtons.forEach(b => b.disabled = false);
             this.disabled = true;
 
-            renderPosts();
+            resetAndRender();
         });
     });
 
-    // Tag click (다중 선택)
+    // Tag click
     tagLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
 
             const tagText = this.textContent.trim();
 
-            // "전체" 클릭 시 모든 선택 해제
             if (tagText === '전체') {
                 selectedTags = [];
                 tagLinks.forEach(l => l.classList.remove('on'));
                 this.classList.add('on');
             } else {
-                // 이미 선택된 태그면 제거, 아니면 추가
                 const tagIndex = selectedTags.indexOf(tagText);
                 if (tagIndex > -1) {
                     selectedTags.splice(tagIndex, 1);
@@ -165,7 +232,7 @@ title: Home
                 updateAllTagState();
             }
 
-            renderPosts();
+            resetAndRender();
         });
     });
 
@@ -176,18 +243,20 @@ title: Home
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => {
                 currentSearch = this.value.trim();
-                renderPosts();
+                resetAndRender();
             }, 300);
         });
 
-        // Enter key
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 currentSearch = this.value.trim();
-                renderPosts();
+                resetAndRender();
             }
         });
     }
+
+    // Initial render
+    renderPosts();
 })();
 </script>
 
