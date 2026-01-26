@@ -73,7 +73,6 @@
 
 @mixin container {
     margin: 0 auto;
-    padding: 0 1.5rem;
 }
 
 @mixin card {
@@ -112,6 +111,10 @@
 
 @mixin section-spacing {
     margin-bottom: 2.5rem;
+
+    @media (max-width: 768px) {
+        margin-bottom: 1.5rem;
+    }
 }
 
 @mixin title-text {

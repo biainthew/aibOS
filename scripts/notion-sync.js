@@ -142,9 +142,17 @@ async function syncNotionToGitHub() {
             const mdblocks = await n2m.pageToMarkdown(page.id);
             const mdString = n2m.toMarkdownString(mdblocks);
 
+            // 본문의 {{ }} 가 Liquid 문법으로 오해받지 않도록 escape 처리
+            let bodyContent = mdString.parent;
+
+            // 예제 코드 블록 내외의 {{ }} 를 감싸기 위해 본문 전체 혹은 {{ }} 가 나타나는 구간을 {% raw %}로 감쌈
+            if (bodyContent.includes('{{')) {
+                bodyContent = "{% raw %}\n" + bodyContent + "\n{% endraw %}";
+            }
+
             // Front Matter + 본문 결합
             const frontMatter = createFrontMatter(page);
-            const fullContent = frontMatter + mdString.parent;
+            const fullContent = frontMatter + bodyContent;
 
             // 파일 저장
             const fileName = createFileName(title, date);

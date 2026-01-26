@@ -112,9 +112,8 @@ title: Home
     }
 
     // Render pagination
-    function renderPagination(totalPosts) {
-        const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
-
+    function renderPagination(totalPosts, postsPerPage) {
+        const totalPages = Math.ceil(totalPosts / postsPerPage);
         if (totalPages <= 1) {
             paginationEl.innerHTML = '';
             return;
@@ -122,32 +121,44 @@ title: Home
 
         let html = '';
 
-        // 이전 버튼
+        // 1. 화면 너비에 따라 한 번에 보여줄 숫자 개수 결정
+        const blockSize = window.innerWidth < 768 ? 5 : 10;
+
+        // 2. 현재 페이지가 속한 숫자 묶음의 시작/끝 계산
+        const currentBlock = Math.ceil(currentPage / blockSize);
+        const startPage = (currentBlock - 1) * blockSize + 1;
+        const endPage = Math.min(startPage + blockSize - 1, totalPages);
+
+        // [맨 처음 «] [이전 페이지 ‹]
         if (currentPage > 1) {
-            html += `<a class="pagination-item" href="#" data-page="${currentPage - 1}" aria-label="이전 페이지">&laquo;</a>`;
+            html += `<a class="pagination-item" href="#" data-page="1" title="맨 처음">«</a>`;
+            html += `<a class="pagination-item" href="#" data-page="${currentPage - 1}" title="이전 페이지">‹</a>`;
         } else {
-            html += `<span class="pagination-item disabled">&laquo;</span>`;
+            html += `<span class="pagination-item disabled">«</span>`;
+            html += `<span class="pagination-item disabled">‹</span>`;
         }
 
-        // 페이지 번호
-        for (let i = 1; i <= totalPages; i++) {
+        // 3. 숫자 페이지 번호들
+        for (let i = startPage; i <= endPage; i++) {
             if (i === currentPage) {
-                html += `<span class="pagination-item active" aria-current="page">${i}</span>`;
+                html += `<span class="pagination-item active">${i}</span>`;
             } else {
                 html += `<a class="pagination-item" href="#" data-page="${i}">${i}</a>`;
             }
         }
 
-        // 다음 버튼
+        // [다음 페이지 ›] [맨 끝 »]
         if (currentPage < totalPages) {
-            html += `<a class="pagination-item" href="#" data-page="${currentPage + 1}" aria-label="다음 페이지">&raquo;</a>`;
+            html += `<a class="pagination-item" href="#" data-page="${currentPage + 1}" title="다음 페이지">›</a>`;
+            html += `<a class="pagination-item" href="#" data-page="${totalPages}" title="맨 끝">»</a>`;
         } else {
-            html += `<span class="pagination-item disabled">&raquo;</span>`;
+            html += `<span class="pagination-item disabled">›</span>`;
+            html += `<span class="pagination-item disabled">»</span>`;
         }
 
         paginationEl.innerHTML = html;
 
-        // 페이지 클릭 이벤트
+        // 클릭 이벤트 바인딩
         paginationEl.querySelectorAll('a[data-page]').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -158,19 +169,32 @@ title: Home
         });
     }
 
+    // 화면 너비에 따라 개수를 반환하는 함수
+    function getPostsPerPage() {
+        const width = window.innerWidth;
+        if (width < 768) { // 모바일
+            return 5;
+        } else if (width < 1024) { // 태블릿
+            return 6;
+        } else { // 데스크탑
+            return 9;
+        }
+    }
+
     // Render posts
     function renderPosts() {
         let filtered = filterPosts();
         filtered = sortPosts(filtered, currentSort);
 
         const totalPosts = filtered.length;
+        const postsPerPage = getPostsPerPage();
 
         // Update count
         postCountEl.textContent = totalPosts;
 
         // Pagination
-        const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-        const endIndex = startIndex + POSTS_PER_PAGE;
+        const startIndex = (currentPage - 1) * postsPerPage;
+        const endIndex = startIndex + postsPerPage;
         const paginatedPosts = filtered.slice(startIndex, endIndex);
 
         // Clear and re-render
@@ -186,7 +210,7 @@ title: Home
             postsGrid.appendChild(post.cloneNode(true));
         });
 
-        renderPagination(totalPosts);
+        renderPagination(totalPosts, postsPerPage);
     }
 
     // Reset to page 1 when filter changes
@@ -254,6 +278,11 @@ title: Home
             }
         });
     }
+
+    window.addEventListener('resize', () => {
+        currentPage = 1; // 개수가 바뀌면 페이지 번호가 꼬일 수 있으므로 1페이지로 리셋
+        renderPosts();
+    });
 
     // Initial render
     renderPosts();
