@@ -85,19 +85,25 @@ async function getAllPages(dataSourceId) {
     let pages = [];
     let cursor = undefined;
 
+    // 업데이트 모드일 경우 필터 설정 (최근 24시간 내 수정된 것만)
+    const filter = isFullSync ? undefined : {
+        timestamp: "last_edited_time",
+        last_edited_time: {
+            on_or_after: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+        }
+    };
+
     while (true) {
+        const body = {
+            start_cursor: cursor,
+            sorts: [{ timestamp: "last_edited_time", direction: "descending" }]
+        };
+        if (filter) body.filter = filter; // 필터가 있을 때만 추가
+
         const response = await notion.request({
             path: `data_sources/${dataSourceId}/query`,
             method: "POST",
-            body: {
-                start_cursor: cursor,
-                sorts: [
-                    {
-                        timestamp: "created_time",
-                        direction: "descending"
-                    }
-                ]
-            }
+            body: body
         });
 
         pages.push(...response.results);
@@ -111,6 +117,9 @@ async function getAllPages(dataSourceId) {
 
 async function syncNotionToGitHub() {
     try {
+        // 인자값 확인: --full 이 있으면 전체 삭제 후 동기화
+        const isFullSync = process.argv.includes('--full');
+
         const databaseId = process.env.NOTION_DATABASE_ID;
         console.log("모든 데이터를 불러오는 중...");
 
@@ -123,11 +132,14 @@ async function syncNotionToGitHub() {
 
         const postsDir = path.join(process.cwd(), "_posts");
 
-        // 2. 폴더 초기화 (필요 시)
-        if (fs.existsSync(postsDir)) {
+        // 2. 전체 동기화 모드일 때만 폴더를 삭제
+        if (isFullSync && fs.existsSync(postsDir)) {
+            console.log("전체 동기화 모드: 기존 파일을 삭제합니다.");
             fs.rmSync(postsDir, { recursive: true, force: true });
+            fs.mkdirSync(postsDir, { recursive: true });
+        } else if (!fs.existsSync(postsDir)) {
+            fs.mkdirSync(postsDir, { recursive: true });
         }
-        fs.mkdirSync(postsDir, { recursive: true });
 
         // 3. 각 페이지를 마크다운으로 변환
         for (const page of allPages) {

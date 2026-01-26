@@ -32,7 +32,13 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-        run: node scripts/notion-sync.js
+        run: |
+          # 오늘이 일요일(0)이면 전체 동기화, 아니면 부분 동기화
+          if [ $(date +%u) -eq 7 ]; then
+            node scripts/notion-sync.js --full
+          else
+            node scripts/notion-sync.js
+          fi
 
       - name: Commit and push changes
         run: |
