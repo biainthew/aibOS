@@ -62,7 +62,7 @@ tags: [${tags.join(", ")}]
 
 async function getDataSourceId(databaseId) {
     try {
-        // Step 1: 데이터베이스에서 data_source 목록 가져오기
+        // 데이터베이스에서 data_source 목록 가져오기
         const database = await notion.databases.retrieve({
             database_id: databaseId,
         });
@@ -79,36 +79,57 @@ async function getDataSourceId(databaseId) {
     }
 }
 
-async function syncNotionToGitHub() {
-    try {
-        console.log("Notion 데이터베이스에서 데이터 소스 가져오는 중...");
+// 모든 페이지를 가져오는 재귀 함수
+async function getAllPages(dataSourceId) {
+    let pages = [];
+    let cursor = undefined;
 
-        const databaseId = process.env.NOTION_DATABASE_ID;
-
-        // Step 1: data_source_id 가져오기
-        const dataSourceId = await getDataSourceId(databaseId);
-        console.log(`데이터 소스 ID: ${dataSourceId}`);
-
-        // Step 2: 데이터 소스에서 모든 글 가져오기
-        // 주의: query는 이제 dataSources.query를 사용
+    while (true) {
         const response = await notion.request({
             path: `data_sources/${dataSourceId}/query`,
             method: "POST",
             body: {
-                // 필터와 정렬 제거 - 모든 페이지 가져오기
+                start_cursor: cursor,
+                sorts: [
+                    {
+                        timestamp: "created_time",
+                        direction: "descending"
+                    }
+                ]
             }
         });
 
-        console.log(`${response.results.length}개의 글을 찾았습니다.`);
+        pages.push(...response.results);
 
-        // _posts 디렉토리 생성
+        // 다음 페이지가 없으면 반복 종료
+        if (!response.has_more) break;
+        cursor = response.next_cursor;
+    }
+    return pages;
+}
+
+async function syncNotionToGitHub() {
+    try {
+        const databaseId = process.env.NOTION_DATABASE_ID;
+        console.log("모든 데이터를 불러오는 중...");
+
+        const dataSourceId = await getDataSourceId(databaseId);
+        console.log(`데이터 소스 ID: ${dataSourceId}`);
+
+        // 1. 모든 페이지 가져오기
+        const allPages = await getAllPages(dataSourceId);
+        console.log(`총 ${allPages.length}개의 글을 찾았습니다.`);
+
         const postsDir = path.join(process.cwd(), "_posts");
-        if (!fs.existsSync(postsDir)) {
-            fs.mkdirSync(postsDir, { recursive: true });
-        }
 
-        // 각 페이지를 마크다운으로 변환
-        for (const page of response.results) {
+        // 2. 폴더 초기화 (필요 시)
+        if (fs.existsSync(postsDir)) {
+            fs.rmSync(postsDir, { recursive: true, force: true });
+        }
+        fs.mkdirSync(postsDir, { recursive: true });
+
+        // 3. 각 페이지를 마크다운으로 변환
+        for (const page of allPages) {
             const title = getTitleFromPage(page);
             const date = page.properties.Date?.date?.start ||
                 page.properties.date?.date?.start ||
