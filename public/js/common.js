@@ -19,6 +19,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSearch = '';
     let currentPage = 1;
 
+    // URL에서 초기 페이지 번호 읽기
+    function getPageFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const page = parseInt(params.get('page'));
+        return page > 0 ? page : 1;
+    }
+
+    // URL 업데이트 (히스토리에 추가)
+    function updateURL(page) {
+        const url = new URL(window.location);
+        if (page === 1) {
+            url.searchParams.delete('page');
+        } else {
+            url.searchParams.set('page', page);
+        }
+        history.pushState({ page: page }, '', url);
+    }
+
     // Sort posts
     function sortPosts(posts, order) {
         return [...posts].sort((a, b) => {
@@ -119,13 +137,12 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 currentPage = parseInt(this.dataset.page);
-                renderPosts();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                updateURL(currentPage); // URL 업데이트 추가
+                renderPosts(false); // 스크롤 이동 제거
             });
         });
     }
 
-    // 화면 너비에 따라 개수를 반환하는 함수
     function getPostsPerPage() {
         const width = window.innerWidth;
         if (width < 768) { // 모바일
@@ -138,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Render posts
-    function renderPosts() {
+    function renderPosts(scrollToTop = false) {
         let filtered = filterPosts();
         filtered = sortPosts(filtered, currentSort);
 
@@ -167,12 +184,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         renderPagination(totalPosts, postsPerPage);
+
+        // 필요한 경우만 스크롤 이동
+        if (scrollToTop) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }
 
     // Reset to page 1 when filter changes
     function resetAndRender() {
         currentPage = 1;
-        renderPosts();
+        updateURL(1);
+        renderPosts(true);
     }
 
     // Sort button click
@@ -235,11 +258,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // 브라우저 뒤로가기/앞으로가기 처리
+    window.addEventListener('popstate', function(e) {
+        currentPage = e.state?.page || getPageFromURL();
+        renderPosts(false);
+    });
+
+    let resizeTimer;
     window.addEventListener('resize', () => {
-        currentPage = 1; // 개수가 바뀌면 페이지 번호가 꼬일 수 있으므로 1페이지로 리셋
-        renderPosts();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            renderPosts(false);
+        }, 200);
     });
 
     // Initial render
-    renderPosts();
+    currentPage = getPageFromURL(); // URL에서 페이지 번호 읽기
+    history.replaceState({ page: currentPage }, '', window.location.href); // 초기 state 설정
+    renderPosts(false);
 });
