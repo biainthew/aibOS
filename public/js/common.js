@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Tag filter
         if (selectedTags.length > 0) {
             filtered = filtered.filter(post => {
-                const postTags = post.dataset.tags.toLowerCase();
+                const postTags = post.dataset.tags.toLowerCase().split(',').map(t => t.trim());
                 return selectedTags.some(tag => postTags.includes(tag.toLowerCase()));
             });
         }
