@@ -153,7 +153,9 @@ async function syncNotionToGitHub() {
 
             // 예제 코드 블록 내외의 {{ }} 를 감싸기 위해 본문 전체 혹은 {{ }} 가 나타나는 구간을 {% raw %}로 감쌈
             if (bodyContent && bodyContent.includes('{{')) {
-                bodyContent = "\n{% raw %}\n" + bodyContent + "\n{% endraw %}\n";
+                bodyContent = bodyContent
+                    .replace(/\{\{/g, "{% raw %}{{{% endraw %}")
+                    .replace(/\}\}/g, "{% raw %}}}{% endraw %}");
             }
 
             // Front Matter + 본문 결합

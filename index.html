@@ -46,7 +46,7 @@ title: Home
 <nav class="pagination" id="pagination" aria-label="페이지 네비게이션"></nav>
 
 <script>
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     const postsGrid = document.getElementById('posts-grid');
     const postCountEl = document.getElementById('post-count');
     const paginationEl = document.getElementById('pagination');
@@ -55,9 +55,13 @@ title: Home
     const tagLinks = document.querySelectorAll('.tag-link');
     const allTagLink = document.querySelector('.tag-link[href$="/"]');
 
-    const POSTS_PER_PAGE = 9; // 페이지당 포스트 수
+    if (!postsGrid) {
+        console.error('posts-grid not found');
+        return;
+    }
 
     let allPosts = Array.from(postsGrid.querySelectorAll('.post'));
+    console.log('Total posts found:', allPosts.length);
     let currentSort = 'newest';
     let selectedTags = [];
     let currentSearch = '';
@@ -286,7 +290,7 @@ title: Home
 
     // Initial render
     renderPosts();
-})();
+});
 </script>
 
 <style>
