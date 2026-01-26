@@ -4,7 +4,9 @@ title: "trigger & off"
 date: 2022-12-09
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 # _trigger( )_

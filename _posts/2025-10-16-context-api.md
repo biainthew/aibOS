@@ -4,8 +4,12 @@ title: "Context API"
 date: 2023-02-03
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
 
+
+
+{% raw %}
 
 : 사용자 로그인 정보, 어플리케이션 환경설정, 테마 등 리액트 프로젝트에서 전역적으로 사용할 데이터가 있을 때 유용한 기능 / 리덕스, 리액트 라우터, styled-components 등의 라이브러리는 이것을 기반으로 구현되어있음
 
@@ -358,3 +362,5 @@ export default ColorBox;
 
 ❗기존에는 부모 → 자식 흐름으로 props 를 통해 상태를 교류했지만 Context 를 통해 쉽게 가능 / 전역적으로 여기저기서 사용되는 상태가 있고 컴포넌트 개수가 많은 상황이라면 Context API 를 사용하는 것을 권장
 
+
+{% endraw %}

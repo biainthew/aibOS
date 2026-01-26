@@ -4,7 +4,9 @@ title: "filter / findIndex / some"
 date: 2025-03-04
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 ### `filter((value, index, self))`

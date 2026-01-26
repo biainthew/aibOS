@@ -4,7 +4,9 @@ title: "data & prop & attr"
 date: 2025-04-09
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 ### data 속성

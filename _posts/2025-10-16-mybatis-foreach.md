@@ -4,7 +4,9 @@ title: "MyBatis foreach"
 date: 2025-05-19
 categories: [general]
 tags: [Sql]
+excerpt_separator: ""
 ---
+
 
 
 ```xml

@@ -4,7 +4,9 @@ title: "One method"
 date: 2023-01-05
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 # _one_

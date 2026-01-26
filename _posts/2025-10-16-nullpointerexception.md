@@ -4,7 +4,9 @@ title: "NullPointerException"
 date: 2025-01-14
 categories: [general]
 tags: [Java]
+excerpt_separator: ""
 ---
+
 
 
 null 값을 참조하려 할 때 발생하는 런타임 에러

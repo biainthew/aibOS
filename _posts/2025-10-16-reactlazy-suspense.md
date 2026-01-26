@@ -4,7 +4,9 @@ title: "React.lazy & Suspense"
 date: 2023-02-08
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
+
 
 
 ### 🫐 state 를 사용한 코드 스플리팅 🫐

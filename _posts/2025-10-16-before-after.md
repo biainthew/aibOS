@@ -4,7 +4,9 @@ title: "Before & After"
 date: 2022-12-01
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 # _After( )_

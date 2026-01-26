@@ -4,7 +4,9 @@ title: "findIndex"
 date: 2023-02-01
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 # _findIndex( )_

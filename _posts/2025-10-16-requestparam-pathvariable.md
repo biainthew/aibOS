@@ -4,7 +4,9 @@ title: "RequestParam & PathVariable"
 date: 2025-03-21
 categories: [general]
 tags: [Java]
+excerpt_separator: ""
 ---
+
 
 
 | RequestParam                                        | PathVariable                              |

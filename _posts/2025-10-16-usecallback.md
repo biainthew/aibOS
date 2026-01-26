@@ -4,7 +4,9 @@ title: "useCallback"
 date: 2023-01-27
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
+
 
 
 : useMemo 와 비슷 / 렌더링 성능을 최적화해야 하는 상황에서 사용 / 만들어 놨던 함수를 재사용할 수 있음

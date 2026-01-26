@@ -4,8 +4,12 @@ title: "Vuedongsan"
 date: 2023-03-20
 categories: [general]
 tags: [Vue]
+excerpt_separator: ""
 ---
 
+
+
+{% raw %}
 
 ## props
 
@@ -222,3 +226,5 @@ create → mount → 컴포넌트 생성 → update → unmount
 
 라이프사이클 훅을 쓰려고 배우는 것
 
+
+{% endraw %}

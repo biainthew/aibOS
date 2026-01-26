@@ -4,8 +4,12 @@ title: "Insta Project"
 date: 2023-03-22
 categories: [general]
 tags: [Vue]
+excerpt_separator: ""
 ---
 
+
+
+{% raw %}
 
 ### 스타일 속성에 데이터 바인딩 하기
 
@@ -346,3 +350,5 @@ mutations: {
 @click="$store.commit('이름변경')"
 ```
 
+
+{% endraw %}

@@ -4,7 +4,9 @@ title: "Server side rendering "
 date: 2023-02-09
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
+
 
 
 ### 🎂 웹팩 설정 커스터마이징 🎂
@@ -513,7 +515,7 @@ app.listen(5000, () => {
 ◽ `StaticRouter` 안에 `context` 라는 props 도 넣어줌 → 이 값을 사용하여 나중에 렌더링한 컴포넌트에 따라 HTTP 상태코드를 설정해 줄 수 있음
 
 
-![Untitled.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/aec35c1f-b070-4e9e-89e5-aada64ed7e78/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466SWEPU27L%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T094729Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHEaCXVzLXdlc3QtMiJIMEYCIQCnVFosldVTOPhQ6y6aBL3CnVh%2BkwMGc2gQRTc7XpyvWQIhAML4jTlbDaURBeQGRI32jfaAehYJZ5om%2FGQBww2MpfQ3Kv8DCDoQABoMNjM3NDIzMTgzODA1Igz4kX0exjV6EjQC%2B0Yq3AOZ%2F%2BBrnRlw8QdpomxkI%2BCiUZ7yy3jcRq1Ryi2GDg2%2Fh4tfmLxqCpJorvBRJTtpRzWAlOV7LRolGlLw9Fs4ayPsdpO9DCB5M50cKWfdsPgFhDTuw2HDJCBgsH%2B35njqJtmaUrJPp6Sm6ha7F7OPN8amhz0vLPAbu1wB7YmR%2FBN2T0OkmYvvMJD%2BQuN6T88QMSUMr%2BGLQWm6Aer85uK6p3%2B93YbGMO01op4YginvvWbL1%2FgvhmWc1bgtq2Uv7QAkLCvelJOdYx851Bd%2BsG1j%2B%2F1A5ZY4HHZNzMoDI5XcPOddZZy9pFBPcVH9J0WyigmHoWALvZJj2r94w7w1hJY%2F1xir%2B6MfE5fvjQLJrNQWLl2gN9eo7oeBE8yyI2IX%2Fl3zjgGVYtWiHgpRkUpfXkbdmCf%2Fa%2BC%2FKVy1YI%2FnTaQgDATmOVc6T8f7h%2BhDTD%2FyCMqd%2BHrOFPssEvkUYnThwCzyMXbusnTEUI7aFBWNc2YkBunvjK%2FR1nW0usMX9XO71Unj%2BV6siGj9BuYJZaWWjh4GHlqzD1NFJ%2FTQq2XQDbAt9x54SEaDAnPcD6ZFu%2Bf4yHUAPKSTpdiao%2FsAyVd5QiN4CIX2HVB3jzW6cbn0WUJFAp82IwCUAA04gLB8FyZDgTCN2NzLBjqkAR5IVGkIeunnwjOAFym3GsKzDqTFtFVm9cPW3yaTt1rMj4k3KUG4UcmycaFjX1I%2FGaclqgRlalZAZ3xdLclEDCLv%2FCcHVO5PDKMYdKKKm5Sg%2BXn44KqxTfU%2BIibCw52Vjc0lFyQceIy%2B61untE3%2FdTCddovdKP%2FQXmVh49gd8xJ8eAEEVIDJ93RhMcQhlBMV%2FoEekVOKIQd%2Ba0DCz7g3VsJEPfbB&X-Amz-Signature=6094bfa9296722846383388f4c4613e16c04c4214ced1e056a0bdf54544a5a3f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![Untitled.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/aec35c1f-b070-4e9e-89e5-aada64ed7e78/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466TJ3A57XU%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T105443Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHIaCXVzLXdlc3QtMiJHMEUCIB%2FHUxLgjvX3SxdGmoXAhN21S3uiPT13E9C0kNdLTtvSAiEAwYBkvr1kxmtb9U4kxV%2B4C3kCgFEjV%2FLzYbuyGbb2f4cq%2FwMIOxAAGgw2Mzc0MjMxODM4MDUiDGIzd%2FdrvMJoJ%2BkkeCrcA5Wm6o8EBp3nXXiBxUwMCaAQA5Kt%2BZeJHWSKSMEnN8ARhNG95XAzEGBP3Wkn0OSOK8aN3sn4nvMVnavJmLrXsXDSL9Fh1AKmTvP2y7s4lzkmpELYOu1GXMpQ4mqCUMFatxCBzS2z0JM07xVPrVhlzcsvhTagg%2F30nF3ROgDcTrvJRuqprESsGR%2BEnoVC6NP3Z5J5KmZCGZJzqnBWWopzrrj0aupxH7r3QQ4Zg4WATWBEPbMtXbWJIT8fRVaTcYi4pqYNspyNIMDOAL%2FXAaFHwx3xc1R%2BvaWxqaZy4k6Lio%2FAezgVx17bVBiToiUhv%2F63vqCpsOUALxQ4f0qZ21CAROB%2FhTJzJlXtx4AIOYTA3D9yQFS21GRotD512xqE%2BMEXl2xm9rsJUek6JvqAb3kZVhYjjOJcrHGsymFf5Zmk7%2BOaTxqlaSkSCACnKzFZHdErxpqSxySAk8jvOHbhwnPCyyWJ3qk3eBeGKtOZENQnZ%2F31YcziGZtHHX3eTGyynXpcMWii5kSt45UhrT11ujK8CICG0D787g7bF8ma5U4wIZ%2F7S2uZOhS6xHY%2Fmdqj%2F0DV%2FVceI4dNjcvk5EDt0AgaD6I%2BV8H2w4fv4KIzskQo2YgrOrSlNJN1ZTY9NBTCMMf73MsGOqUBb%2Br6Y%2F3J7mmqlJSkq7FNmGUSosgDKlwj1c%2B0v4pRG9xA6PEeww1KvJu5shYUC8xGeA0jBJUpvT%2BkAzllXXmmr0iFINU7wP%2BkAmFboaQfbiaI0nZVy%2BfbpAQG0yywEnZm0fl71sZOg0C11qqIb2Fz77PO5iFRn0gT%2F7%2F40oXslU5ajNoJRrI2lI0XS0WG9ZSMcYEcAGy1sszqxx%2FB3Qwh6gafYQTt&X-Amz-Signature=15dc695183872791f0471a7af29e3e2c8b4199080d565a153b5a94ed49cee874&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 
 ### 🎂 정적 파일 제공하기 🎂

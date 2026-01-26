@@ -4,7 +4,9 @@ title: "Mouse wheel"
 date: 2022-12-29
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 ```html

@@ -4,7 +4,9 @@ title: "Node.js script basic"
 date: 2023-02-06
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 [: 참고 문서](https://araikuma.tistory.com/453)

@@ -4,7 +4,9 @@ title: "TypeReference"
 date: 2025-02-11
 categories: [general]
 tags: [Java]
+excerpt_separator: ""
 ---
+
 
 
 ### 제네릭(Generic)

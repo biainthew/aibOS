@@ -4,7 +4,9 @@ title: "코딩애플JS Part1-25 getter setter"
 date: 2023-07-11
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 ### 쓰는 이유

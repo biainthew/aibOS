@@ -4,7 +4,9 @@ title: "Event handling"
 date: 2023-01-19
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
+
 
 
 ```javascript

@@ -4,7 +4,9 @@ title: "Timeleaf request"
 date: 2024-10-29
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 타임리프에서 request 는 웹 요청과 관련된 정보를 가져오는 데 사용된다

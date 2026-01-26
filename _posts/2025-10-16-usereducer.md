@@ -4,7 +4,9 @@ title: "useReducer"
 date: 2023-01-26
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
+
 
 
 : 현재 상태, 업데이트를 위해 필요한 정보를 담은 액션 값을 전달받아 새로운 상태를 반환하는 함수 / 반드시 불변성을 지켜주어야 함

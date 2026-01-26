@@ -4,7 +4,9 @@ title: "Supplier<Object>"
 date: 2025-01-17
 categories: [general]
 tags: [Java]
+excerpt_separator: ""
 ---
+
 
 
 ### Object

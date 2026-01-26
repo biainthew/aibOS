@@ -4,7 +4,9 @@ title: "input file"
 date: 2025-04-02
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 `<input type="file" accept="image/*;capture=camera"/>`

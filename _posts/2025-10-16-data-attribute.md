@@ -4,7 +4,9 @@ title: "Data attribute"
 date: 2023-01-05
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 # _data-_

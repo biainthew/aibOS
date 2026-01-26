@@ -4,7 +4,9 @@ title: "Text Reader"
 date: 2023-01-06
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 ```html

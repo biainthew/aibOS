@@ -4,8 +4,12 @@ title: "Class Component / state"
 date: 2023-01-18
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
 
+
+
+{% raw %}
 
 # _state_
 
@@ -244,3 +248,5 @@ export default Say;
 > nextArray.filter(item => item.id !== 2); //id가 2인 항목 제거  
 > nextArray.map(item => {item.id === 1 ? {...item, value: false} : item}) //id가 1인 항목의 value 를 false 로 설정`
 
+
+{% endraw %}

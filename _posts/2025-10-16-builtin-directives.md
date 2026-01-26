@@ -4,8 +4,12 @@ title: "Built-in Directives"
 date: 2023-03-16
 categories: [general]
 tags: [Vue]
+excerpt_separator: ""
 ---
 
+
+
+{% raw %}
 
 ## v-text
 
@@ -63,3 +67,5 @@ tags: [Vue]
     ```
 
     - **See also** : [**Template Syntax - Text Interpolation**](https://vuejs.org/guide/essentials/template-syntax.html#text-interpolation)
+
+{% endraw %}

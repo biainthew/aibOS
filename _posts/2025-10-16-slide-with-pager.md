@@ -4,7 +4,9 @@ title: "Slide with pager"
 date: 2022-12-20
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 ```javascript

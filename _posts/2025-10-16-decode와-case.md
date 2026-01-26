@@ -4,7 +4,9 @@ title: "DECODE와 CASE"
 date: 2025-01-16
 categories: [general]
 tags: [Sql]
+excerpt_separator: ""
 ---
+
 
 
 ORACLE SQL에서 제공하는 함수로 IF-THEN-ELSE 구문과 비슷한 역할을 함

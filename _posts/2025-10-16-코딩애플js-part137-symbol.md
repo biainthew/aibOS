@@ -4,7 +4,9 @@ title: "코딩애플JS Part1-37 Symbol"
 date: 2023-11-16
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 ### Symbol 자료형 만드는 방법

@@ -4,8 +4,12 @@ title: "React inline style variables"
 date: 2023-02-06
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
 
+
+
+{% raw %}
 
 * [참고 문서](https://takeknowledge.tistory.com/37)
 
@@ -39,3 +43,5 @@ return (
 인라인 스타일로 {{}} 안에 백틱 넣고 바로 변수를 넣으니까 안 돼서 검색해보니 따로 하래서 스타일 만들어주고 넣었더니 성공
 
 
+
+{% endraw %}

@@ -4,7 +4,9 @@ title: "Application API"
 date: 2023-03-15
 categories: [general]
 tags: [Vue]
+excerpt_separator: ""
 ---
+
 
 
 ## **createApp()**

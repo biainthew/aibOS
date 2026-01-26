@@ -4,7 +4,9 @@ title: "MultipartFile"
 date: 2025-03-06
 categories: [general]
 tags: [Java]
+excerpt_separator: ""
 ---
+
 
 
 스프링 프레임워크에서 제공하는 인터페이스로 클라이언트로부터 전송된 파일 데이터를 처리하는 데 사용됨

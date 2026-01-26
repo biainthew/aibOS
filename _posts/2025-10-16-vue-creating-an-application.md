@@ -4,8 +4,12 @@ title: "Vue : Creating an Application"
 date: 2023-03-13
 categories: [general]
 tags: [Vue]
+excerpt_separator: ""
 ---
 
+
+
+{% raw %}
 
 ### The application instance / 어플리케이션 인스턴스(사례)
 
@@ -207,3 +211,5 @@ If you are using Vue to enhance server-rendered HTML and only need Vue to contro
 
 만약 당신이 서버-렌더링된 HTML 을 향상시키기 위해서 뷰를 사용하거나, 뷰가 큰 페이지 내의 특정 부분만 제어하기를 원한다면 전체 페이지에 싱글 어플리케이션을 마운트 하지 마세요. 대신 여러개의 작은 어플리케이션 인스턴스들을 생성하고 그것을 담당하는 요소에 마운트하세요
 
+
+{% endraw %}

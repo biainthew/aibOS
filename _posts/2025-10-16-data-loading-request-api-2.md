@@ -4,7 +4,9 @@ title: "Data loading (request API) 2"
 date: 2023-02-16
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
+
 
 
 ### 🫐 서버에서 리덕스 설정 및 PreloadContext 사용하기 🫐
@@ -322,7 +324,7 @@ reportWebVitals();
 💎 스토어의 상태를 브라우저에서 재사용 할 때는 스토어 생성 과정에서 window.__PRELOADED_STATE__ 를 초깃값으로 사용하면 됨
 
 
-![Untitled.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/a1717020-31e4-4ea2-a2df-e992cadd33a1/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466XSIYG5TD%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T093931Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHEaCXVzLXdlc3QtMiJIMEYCIQDTRJLFpPx1bTFu%2BjoPiHWSbtMqjpmNTPn9xZVwHHJAqwIhAPNkvM2N9gcsIr5Ca8PHd7iItbLcgcvuLB0fsdnqfz%2BVKv8DCDoQABoMNjM3NDIzMTgzODA1IgxbgF7paHmPB8ryHxAq3AOv6%2B9Qo8iQ%2FkxUQCCJWmnKDbsaYejKlIEabQrKKHqjUtIPwVuOzL4auPyUY4ej9Z08cVEGUqulyFVEjx0fD0YxVeTjty2pa5%2B9vOQB%2FLRYGmf8aYQyYN%2FKmnGsMCTMZtqEJuI6gwp1NOZmbcUVO2k%2FlhgngJlPg3nl82jma%2FjW4KNeDY5WrpDVJPof6FIfeWBBrQ%2BwcjpxwI2xJN%2FHXg8pHosUe%2BL1DXGQFiurjufUgt0NQFlATNeCpx%2B6vjJ0SjJOVKw48ErV%2FfADqs6n4u0MznmiRIjLfTsef9Ia4UBRjitFhhYBGC6X%2Bi3MvFAsqaDI%2Fj%2FABTFT5FJA%2FQWD8Iok8CGp8WOomFNsLjdHifubpSbxwc5uJDoSs1MXC%2F3%2B2y7%2BOZFqm47A1KNO4xkZWWaUo2EljqtbPgGeROi%2B0aI0jUz6GzXozzgC5l5OfR%2FtfdtDW58u7eA%2FESabmfSF8Wl46XAtV%2FYE9rWHQNzbSb9uCHZB7qXthpnHeMvj70WXD2fV%2BV5E81O5p8PguNw%2BTQ94xefBL2%2BYPG5Ksedt9tPOUZoWRkW8icw8sbPFWlFP%2FVVQUOmsMRlnojnhc%2BWTLjJei7vsGzJtsiQ9H%2BoMHjgq9KVA2uq47PVJqSNESDCq2NzLBjqkAcxjXVFjh1fV6TImj5j8Yp0AuQKq8An14CEI3i5awZtFv%2BWmkrsPWdJ1SomjsPqxR9JosUagLxWUfQrep9fjDYgOnUToD8XXvV8nlKYL2WHDaLgwExFGpZSsvVEKBQ%2BUX0ODCVj0%2FyF%2FO9Yif71XKbUdf%2B%2BX6rWzepFPMpEF4kskb%2BVmjiKDdkndziZzS6Niz8tSmCUIQ%2Bkb%2FSEfCv6i0JBy86Ln&X-Amz-Signature=ea966a1bb099dc1df900433accd3a8ee76039817cada3500b059ba8af49fe04e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![Untitled.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/a1717020-31e4-4ea2-a2df-e992cadd33a1/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466U3YDGEHT%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T104801Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHIaCXVzLXdlc3QtMiJHMEUCIQDfkJoNjA85Rhf5pp%2FWuI4aQ1YBWWpp0BE3DdaauKEuxgIgcCZGkjV5AMG5FzgYbC%2FRcupnPiUBhRUuIklubOpbmKwq%2FwMIOxAAGgw2Mzc0MjMxODM4MDUiDKf%2FMQT1K0RYZfnC%2BCrcA0ggzG5Q1DnT0ZZz4%2BQnwJE6%2B1%2B4GlyIqMowex2rVW%2BLaGqmygftXLgcxgzfGqk5u5QJQd5UyScwatR%2F6ZGFiH8LkqfD6D4gh5ANbiL66FmtcjGY4ba9ReNohp9oD2ak0YJ3bOL7MfJq1QxPSDY8yZKiogjWER3tJtPpvEB9ek9OXjcEqkeyCB7EnqXBexfWEr4Bll2OsMU2PaSJvQrGX6oPDCSc01KcQT%2BMg6JBysZd4k6iOHdt7VsVXh4STLqJVMgIDnWtB808VDrC2EzJULxdlJxX56Qhystwn0rBrBD%2FWGDHwj50bp0MUePRqdXSw18PleI6CQjL6P5fXuP7FEBD4YiAMhjahvLd0RX03vb5pJJgC%2FspiqlIXLMfFdLs0if2HIEXwg0jBq51sSXO8BYr8mUkXGtd8pGrenr9vEJp3aO9AnuNnvzHk5KtzIX7n2MNKM94a6d3ntWVqg5L14vRaY86T5%2FgTeSXIjG4AUQpknH5iqtr1dn653u41vYxlPrh7UH4YqDB1cMsdvDe1yo5oQpiNOJQMfo7K%2FULuRCJl3Mx17%2BPIFvWExADHAVB7UfSjbocapCwrloiNDOt4o9PkhpnenvOol7cij9OTsV%2FCQM5kAVq05WG9kb2MKb73MsGOqUBMdbY01sm6UpQF3xi9wn2ToO5Wg9vBY4xR5ROOuvtvqGlpet752giAyRCN0c5FWZG2oLFDy95plZwGdKPn1%2Bm9ZmrBwZMP%2FHtdaER2VJEk46lKlVmaS5rRxieLSpqKN5H0R31WBZG5Bc9e8ulDLP6coxhMAI6B4zL7xOLQx400lUAIYOdeOn923o9rpphxkPILfIfbvDXom33fNJ3xBtXN%2B2fET4n&X-Amz-Signature=fcef34bb6ebe0238140d5741c5dbf5e71449dcf4685a7f5bd6ac1734faf155ef&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 
 ### 🫐 redux-saga 코드 준비하기 🫐

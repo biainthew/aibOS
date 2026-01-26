@@ -4,7 +4,9 @@ title: "DI(Dependency Injection, 의존성 주입)"
 date: 2024-10-04
 categories: [general]
 tags: [Java]
+excerpt_separator: ""
 ---
+
 
 
 객체 간의 의존 관계를 외부에서 설정하고 주입하는 방식

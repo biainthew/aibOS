@@ -4,7 +4,9 @@ title: "component repeat"
 date: 2023-01-23
 categories: [general]
 tags: [React]
+excerpt_separator: ""
 ---
+
 
 
 ```javascript

@@ -4,7 +4,9 @@ title: "코딩애플JS Part1-33 ES6 Promise"
 date: 2023-07-17
 categories: [general]
 tags: [Javascript/Jquery]
+excerpt_separator: ""
 ---
+
 
 
 ### Promise 는 디자인 패턴, 새로운 기능은 아님 비동기도 아님
