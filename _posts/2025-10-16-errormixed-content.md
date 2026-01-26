@@ -1,0 +1,38 @@
+---
+layout: post
+title: "[Error]Mixed Content"
+date: 2025-02-03
+categories: [general]
+tags: [Css]
+---
+
+
+**에러**
+
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/dc528906-c395-428b-9520-a17a21075ef0/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZFU5IORP%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T094702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHEaCXVzLXdlc3QtMiJGMEQCIBeb0L8noG0xjIf1GVz9XxK5eqIbG8tSRs2ldft25NYgAiB5yyjE%2BscPluOLT7nztHYdgHOCnSgekY%2Bz7ogcUDgsiir%2FAwg6EAAaDDYzNzQyMzE4MzgwNSIMxDW405kZCbz9JrAnKtwDXio9khvRNU1P6ssT9Sai3i3DWaGAMwX0IAbHL2jElb2EY8WN5u3QArsVakEeLq%2B3c8%2BR3LkdLqtuLRE7EYW2r8ba6Je4FLDBaw8rOrPiz3sF%2Fw2Pu5K4f8o6fL0HykNeQpReH7aIckXYYyCyMQ7L8pAdsY4zNUOvYZsfoDi7N5Cl90K6DZBXsFd39U%2FrqC57GhObVae62HsuDXHwCHPP9ae%2BZgLHniBf8YjW5ZWov0cx256Q2TyePtrqObsUxNotZfCNVkMl5ba8jGsBj2fa%2FEXn0D4oF%2F8R%2FKKrdAXqwWAAxtISD8lBLVx%2BZQeoAbs1TSpYiQgkQrLuyj6qVXKZrZoiXa2hG%2FVz0UjYex1BtCkA3C8wNTYWv%2FwJ4ywYz5jV8QFx1bhL%2FneVDeYzBz%2BHzsfoUeI1sp8ZKnvwiu1jZAob12VdPi%2FFSvP4%2FFUFknGdFKYobR4JJ7F0APw%2BB2kpFOxUShMhyft%2FfAo8QAseCGHeX3RPJ0%2FR7fkIN2zrMvrUaapvH0c%2BLek%2F2vSAawvHr65YMPFNN0swZYq5BnAE7Uuzphx2NFT9JjnVNaZLHgesOsH8aTQVHvtch9HqCBXXTchEqpD%2FAZrwZZ%2Bw1Z1YTPaTPM7%2FHg2037PeJQgwp9ncywY6pgFiFmxLuMOR%2BQZx1e%2BZuE%2BrmVIBVBWJ0fdX%2FjxR%2BPnU20aQLU9GSadIDHOjy7JzrGFmlB98fm0%2F4lRp8vJ7rX5OzmVhsmhwpqlJyTkNI7OSp8zkb28JKlmljCMKMW8cyLJfl9MFTsr%2FtS0ZEnUJiWRSPlsY7u8xYRo4DyH84nsO9yh0y%2B9sw4F%2B5eX9jxXcvUxpYrSl9DmYMCfs23V8ddcH46nt8Oxb&X-Amz-Signature=672ed101a7b06655d2dd90b3e0c2e0031be4e2969b153c91721026eeb5660234&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+
+
+**왜 났는지 ?**
+
+- 결론적으로는 `${csPath}` 를 안 쓰고 style 태그 안 import문에 `/static` 이런 식으로 경로를 써서 그게 `http://scrm.hdel.co.kr/pc` 로 리다이렉트 됨(302)
+- 근데 https로 로드된 페이지에서 http로 css를 요청했다고 에러 발생
+- 그럼 리다이렉트 경로가 잘못된 거 아닌지 ??? 약간 의문
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/2fa3ad9e-0ca8-478b-9af0-940bac7fa7bb/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZFU5IORP%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T094702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHEaCXVzLXdlc3QtMiJGMEQCIBeb0L8noG0xjIf1GVz9XxK5eqIbG8tSRs2ldft25NYgAiB5yyjE%2BscPluOLT7nztHYdgHOCnSgekY%2Bz7ogcUDgsiir%2FAwg6EAAaDDYzNzQyMzE4MzgwNSIMxDW405kZCbz9JrAnKtwDXio9khvRNU1P6ssT9Sai3i3DWaGAMwX0IAbHL2jElb2EY8WN5u3QArsVakEeLq%2B3c8%2BR3LkdLqtuLRE7EYW2r8ba6Je4FLDBaw8rOrPiz3sF%2Fw2Pu5K4f8o6fL0HykNeQpReH7aIckXYYyCyMQ7L8pAdsY4zNUOvYZsfoDi7N5Cl90K6DZBXsFd39U%2FrqC57GhObVae62HsuDXHwCHPP9ae%2BZgLHniBf8YjW5ZWov0cx256Q2TyePtrqObsUxNotZfCNVkMl5ba8jGsBj2fa%2FEXn0D4oF%2F8R%2FKKrdAXqwWAAxtISD8lBLVx%2BZQeoAbs1TSpYiQgkQrLuyj6qVXKZrZoiXa2hG%2FVz0UjYex1BtCkA3C8wNTYWv%2FwJ4ywYz5jV8QFx1bhL%2FneVDeYzBz%2BHzsfoUeI1sp8ZKnvwiu1jZAob12VdPi%2FFSvP4%2FFUFknGdFKYobR4JJ7F0APw%2BB2kpFOxUShMhyft%2FfAo8QAseCGHeX3RPJ0%2FR7fkIN2zrMvrUaapvH0c%2BLek%2F2vSAawvHr65YMPFNN0swZYq5BnAE7Uuzphx2NFT9JjnVNaZLHgesOsH8aTQVHvtch9HqCBXXTchEqpD%2FAZrwZZ%2Bw1Z1YTPaTPM7%2FHg2037PeJQgwp9ncywY6pgFiFmxLuMOR%2BQZx1e%2BZuE%2BrmVIBVBWJ0fdX%2FjxR%2BPnU20aQLU9GSadIDHOjy7JzrGFmlB98fm0%2F4lRp8vJ7rX5OzmVhsmhwpqlJyTkNI7OSp8zkb28JKlmljCMKMW8cyLJfl9MFTsr%2FtS0ZEnUJiWRSPlsY7u8xYRo4DyH84nsO9yh0y%2B9sw4F%2B5eX9jxXcvUxpYrSl9DmYMCfs23V8ddcH46nt8Oxb&X-Amz-Signature=0c50b3038c4fd009ad472b106236eec2df7457e108a0835923228ea8259ac143&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+
+
+**해결**
+
+
+`${csPath}` 를 넣어줌
+
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/7a0203c5-7f9a-4ca9-8142-2b57d5aafbd7/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZFU5IORP%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T094702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHEaCXVzLXdlc3QtMiJGMEQCIBeb0L8noG0xjIf1GVz9XxK5eqIbG8tSRs2ldft25NYgAiB5yyjE%2BscPluOLT7nztHYdgHOCnSgekY%2Bz7ogcUDgsiir%2FAwg6EAAaDDYzNzQyMzE4MzgwNSIMxDW405kZCbz9JrAnKtwDXio9khvRNU1P6ssT9Sai3i3DWaGAMwX0IAbHL2jElb2EY8WN5u3QArsVakEeLq%2B3c8%2BR3LkdLqtuLRE7EYW2r8ba6Je4FLDBaw8rOrPiz3sF%2Fw2Pu5K4f8o6fL0HykNeQpReH7aIckXYYyCyMQ7L8pAdsY4zNUOvYZsfoDi7N5Cl90K6DZBXsFd39U%2FrqC57GhObVae62HsuDXHwCHPP9ae%2BZgLHniBf8YjW5ZWov0cx256Q2TyePtrqObsUxNotZfCNVkMl5ba8jGsBj2fa%2FEXn0D4oF%2F8R%2FKKrdAXqwWAAxtISD8lBLVx%2BZQeoAbs1TSpYiQgkQrLuyj6qVXKZrZoiXa2hG%2FVz0UjYex1BtCkA3C8wNTYWv%2FwJ4ywYz5jV8QFx1bhL%2FneVDeYzBz%2BHzsfoUeI1sp8ZKnvwiu1jZAob12VdPi%2FFSvP4%2FFUFknGdFKYobR4JJ7F0APw%2BB2kpFOxUShMhyft%2FfAo8QAseCGHeX3RPJ0%2FR7fkIN2zrMvrUaapvH0c%2BLek%2F2vSAawvHr65YMPFNN0swZYq5BnAE7Uuzphx2NFT9JjnVNaZLHgesOsH8aTQVHvtch9HqCBXXTchEqpD%2FAZrwZZ%2Bw1Z1YTPaTPM7%2FHg2037PeJQgwp9ncywY6pgFiFmxLuMOR%2BQZx1e%2BZuE%2BrmVIBVBWJ0fdX%2FjxR%2BPnU20aQLU9GSadIDHOjy7JzrGFmlB98fm0%2F4lRp8vJ7rX5OzmVhsmhwpqlJyTkNI7OSp8zkb28JKlmljCMKMW8cyLJfl9MFTsr%2FtS0ZEnUJiWRSPlsY7u8xYRo4DyH84nsO9yh0y%2B9sw4F%2B5eX9jxXcvUxpYrSl9DmYMCfs23V8ddcH46nt8Oxb&X-Amz-Signature=438049fb17f0ca8777f94447a0e8709a5fdfe7d2338421e61b93f5f5d7642a21&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+
+
+**결론**
+
+
+import문을 쓸 때는 안전하게 `${csPath}` 를 넣자
+
