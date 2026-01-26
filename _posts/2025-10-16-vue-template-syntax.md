@@ -9,8 +9,6 @@ excerpt_separator: ""
 
 
 
-{% raw %}
-
 Vue uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying component instance’s data. All Vue templates are syntactically valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
 
 
@@ -39,7 +37,7 @@ The most basic form of data binding is text interpolation using the “Mustache�
 
 
 ```javascript
-<span>Message: {{ message }}</span>
+<span>Message: {% raw %}{{{% endraw %} message {% raw %}}}{% endraw %}</span>
 ```
 
 
@@ -59,7 +57,7 @@ The double mustaches interpret the data as plain text, not HTML. In order to out
 
 
 ```javascript
-<p>Using text interpolation: {{ rawHTML }}</p>
+<p>Using text interpolation: {% raw %}{{{% endraw %} rawHTML {% raw %}}}{% endraw %}</p>
 <p>Using v-html directive: <span v-html="rawHTML"></span></p>
 
 Using text interpolation: <span style="color: red">This should be red.</span>
@@ -197,9 +195,9 @@ So far we’ve only been binding to simple property keys in our templates. But V
 
 
 ```javascript
-{{ number + 1 }}
-{{ ok ? 'YES' : 'NO' }}
-{{ message.split('').reverse().join('') }}
+{% raw %}{{{% endraw %} number + 1 {% raw %}}}{% endraw %}
+{% raw %}{{{% endraw %} ok ? 'YES' : 'NO' {% raw %}}}{% endraw %}
+{% raw %}{{{% endraw %} message.split('').reverse().join('') {% raw %}}}{% endraw %}
 <div :id="`list-${id}`"></div>
 ```
 
@@ -234,10 +232,10 @@ Therefore, the following will NOT work
 
 ```javascript
 // this is a statement not an expression
-{{ const a = 1 }}
+{% raw %}{{{% endraw %} const a = 1 {% raw %}}}{% endraw %}
 
 // flow control won't work either, use ternary expressions | 삼항조건연산자 사용해라
-{{ if (ok) { return message } }}
+{% raw %}{{{% endraw %} if (ok) { return message } {% raw %}}}{% endraw %}
 ```
 
 
@@ -252,7 +250,7 @@ It is possible to call a component-exposed method inside a binding expression
 
 ```javascript
 <span :title="toTitleDate(date)">
-	{{ formatDate(date) }}
+	{% raw %}{{{% endraw %} formatDate(date) {% raw %}}}{% endraw %}
 </span>
 ```
 
@@ -453,7 +451,5 @@ And finally, here’s the full directive syntax visualized
 마지막으로 전체 디렉티브 문법 정리 입니다
 
 
-![Untitled.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/80ba2121-9aee-444a-bbf8-e96d62e0f7e0/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667NF3EQZ2%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T105353Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHIaCXVzLXdlc3QtMiJIMEYCIQD2fQGJEJuv7yXZSsTdZ0LTOuoJ2eRcrKJfnmJyHae%2FpgIhAOx6QQw%2Fq6Biinql9PjpeqjoyWNkX5km0rFXRaOFKiKmKv8DCDsQABoMNjM3NDIzMTgzODA1Igwu2KtFJgb2kgP79l4q3AMVkRHrZPOHz9BqBvLd%2BkJeVVU2FtwS9fz6v0d9iw11c7gJwMEqh%2FrTL83ANoPCCPei10Liw76glJ5zfY%2FDaqm9T%2BovxpntK7wXfNPVvm058%2F9%2B4LlvpMsFV2gy6bx7n41%2FmCw3CMQ2Lbz8Sl9pbvk0D3q7ldt%2BtYa4k%2FlZJJslMG2%2BMFaosSB%2FOCxokoQFpQLSZqgktkEKWEiEXoYuvW7E73WKhNlwmNcogdh%2F7zLCsTzlAUEPcttHoJT9Bz0vhVjY0li57eilDPSzqNYxVZRa%2FiQxjmVRF7SewVcc%2FA5rklw%2BzLBKTXAGMuPlPZ5Hvkxnhwko2yvstX%2BYXJHwczSThC6HgbJ%2BqRItum%2FsKA1dtKrP%2B6Z2Yz2xNmmCIdk%2FWpW2UUKQ3U9xXY%2F81RhY4TGKqzbtGkrGm018ClWEZFtdUzNY6iRtYo3pAszx2eVWfRKw6R85nq4me9vT6N3UjT69MPgg5irtBasyCjeTkKN9lzgE%2FTlQzbHlYqmdwqghnabkQT8HOz1afAsUELw%2FCcJv3TG7Jr5MuTJt5MwmG4sTRu8V2bPpTFwlFUuWxtJisVQ6G%2FK8OMCo6i0n4Qu7SHL9futROFGxGKmNJ9EbC2crcxaQLaBkNM9112vOszCw%2B9zLBjqkAVeCYMP9jvCsaiMy1dEBcm0IpkXZXd7Y7yMZ9gK2T1s0AjyczDfQOBqfHwgOOkSeObsEGE%2F%2F5d%2BKLFdaej4DNaG%2BVhSKStWbkXmYJdb3tVJfqDWfJNbWAcZUbylp5bWS09gUT1CJM5R9o44NZn99mIJ%2BTBt7JE0QOWobWT%2BpMmEAfIgxmuYPoOyAzqp1zm3I1C2NxCAKQJS7stURFXXleg4R5tdg&X-Amz-Signature=4c157744f32bbebfd4d31936955545464f00fe3d4d69b0dd2df8a0bb5391c7a5&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![Untitled.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8fe0a7f9-120c-81d3-b4d8-0003f7c0f162/80ba2121-9aee-444a-bbf8-e96d62e0f7e0/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667DOBVTO6%2F20260126%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260126T112335Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHQaCXVzLXdlc3QtMiJHMEUCIHgclXuGCySy66fmA11WUvfmIkcRac7rP%2FWQkdJPnSm9AiEAnjcrASFSqa3oeUSmEk%2BMbYe5jkQWPbo5Z0VP11i9R3wq%2FwMIPBAAGgw2Mzc0MjMxODM4MDUiDKppMwFh2u%2FELXxZbyrcA5IVKBEOUZN1V17FzHyMg%2FA9a95WPqJrNYpEM7ole%2BgYMNICQ3IpLtfd7YlePQOcu7IXlNWBvLcVdUQhDHcV25prBJ1cYYsiXEi5Dxuyl%2B6HpM8DTKdg8jGmPkBIyXfHH5bN6wgWCz6tkxMEy8UgpW8gmqWVvlKGlGQ7gvuQ7bT8dcodfUzRzbRzGfyVa2bPpE4jrxDBrad0SdybYptcf13TxYDuBdixEn%2ByPe6x21Src9VtUsRdULb5dCPpP%2B7LiNq2qoJPtt35cBX06flJCvhYxWjAfnQatxG%2FEZ3tHKnZzmU%2BuChKTXvQ2S8tMpmdnVdyGrTDjnKrXe%2B2P5mhiv6pnXRA324MkQ2SeH5WvV%2BQPQuW2tYtvhdVfKt0%2FVd4MMUSgnX%2FMNM0s%2BZpTr%2B8Va17NroYuKDH4juPeTwdvV6eHnY3jx7JijccxyiZvJb9QLdgC%2BKqMj4yCLiuoEEiyv3Kzr6RZc%2FujelfwFhNsvT6oUJn8AutfvCcIFfP9iJOoaoZ9eXG%2BRd8h4iRoEANfHN8YuAlSnW4T5OwRcRCGAT0ymepEsLajs9D7RrQR2k%2BtJ%2F7gDqzZPqA5p%2BVmVLJ32fjfemp%2BpG2hb3LJjP88KkeGR9Y2HxDDTwrVD%2BEMO%2Ba3csGOqUBmH2ProlYD8ncxS%2FHrnAM22Fi4h2QI01xJkx%2BjsuaAe41eRaGXFZfw6IpyY15X%2BBFvD46tIWEutOySO42u4UUh3NchFMl7Jdqw0t%2FHBHE0Gm4BocycBRbJiw%2F6kU3EWPlAy%2F4n6ePBhIk12MERM%2BOmXMCzMCr1ibFnFOh9NBBZrdbLQO7ms%2FjbO9DQNwbHox6ogI%2BuGOdmN7YBbXWjFfINwGtOGtD&X-Amz-Signature=d4163aa9a4b00957ec9972c1ff79aba0e18ba0027714cd1ec4036e6f3a4f6374&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
-
-{% endraw %}

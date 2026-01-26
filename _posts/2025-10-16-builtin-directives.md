@@ -9,8 +9,6 @@ excerpt_separator: ""
 
 
 
-{% raw %}
-
 ## v-text
 
 
@@ -29,7 +27,7 @@ excerpt_separator: ""
     ```javascript
     <span v-text="msg"></span>
     //same as
-    <span>{{ msg }}</span>
+    <span>{% raw %}{{{% endraw %} msg {% raw %}}}{% endraw %}</span>
     ```
 
     - **See also** : [**Template Syntax - Text Interpolation**](https://vuejs.org/guide/essentials/template-syntax.html#text-interpolation)
@@ -63,9 +61,7 @@ excerpt_separator: ""
     ```javascript
     <span v-text="msg"></span>
     //same as
-    <span>{{ msg }}</span>
+    <span>{% raw %}{{{% endraw %} msg {% raw %}}}{% endraw %}</span>
     ```
 
     - **See also** : [**Template Syntax - Text Interpolation**](https://vuejs.org/guide/essentials/template-syntax.html#text-interpolation)
-
-{% endraw %}

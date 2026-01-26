@@ -9,8 +9,6 @@ excerpt_separator: ""
 
 
 
-{% raw %}
-
 : 사용자 로그인 정보, 어플리케이션 환경설정, 테마 등 리액트 프로젝트에서 전역적으로 사용할 데이터가 있을 때 유용한 기능 / 리덕스, 리액트 라우터, styled-components 등의 라이브러리는 이것을 기반으로 구현되어있음
 
 
@@ -45,11 +43,11 @@ const ColorBox = () => {
         <ColorContext.Consumer>
             {(value) => (
                 <div
-                    style={{
+                    style={% raw %}{{{% endraw %}
                         width: '64px',
                         height: '64px',
                         background: value.color,
-                    }}
+                    {% raw %}}}{% endraw %}
                 ></div>
             )}
         </ColorContext.Consumer>
@@ -88,7 +86,7 @@ import ColorBox from './components/ColorBlack';
 import ColorContext from './contexts/color';
 const App = () => {
     return (
-        <ColorContext.Provider value={{ color: 'red' }}>
+        <ColorContext.Provider value={% raw %}{{{% endraw %} color: 'red' {% raw %}}}{% endraw %}>
             <div>
                 <ColorBox />
             </div>
@@ -179,21 +177,21 @@ const ColorBox = () => {
             {(value) => (
                 <>
                     <div
-                        style={{
+                        style={% raw %}{{{% endraw %}
                             width: '64px',
                             height: '64px',
                             
 background: value.state.color
 ,
-                        }}
+                        {% raw %}}}{% endraw %}
                     ></div>
                     
 <div
-                        style={{
+                        style={% raw %}{{{% endraw %}
                             width: '32px',
                             height: '32px',
                             background: value.state.subcolor,
-                        }}
+                        {% raw %}}}{% endraw %}
                     ></div>
 
                 </>
@@ -217,18 +215,18 @@ export default ColorBox;
 {({state}) => (
                 <>
                     <div
-                        style={{
+                        style={% raw %}{{{% endraw %}
                             width: '64px',
                             height: '64px',
                             background: state.color,
-                        }}
+                        {% raw %}}}{% endraw %}
                     ></div>
                     <div
-                        style={{
+                        style={% raw %}{{{% endraw %}
                             width: '32px',
                             height: '32px',
                             background: state.subcolor,
-                        }}
+                        {% raw %}}}{% endraw %}
                     ></div>
                 </>
             )}
@@ -245,16 +243,16 @@ const SelectColors = () => {
     return (
         <div>
             <h2>색상을 선택하세요.</h2>
-            <div style={{ display: 'flex' }}>
+            <div style={% raw %}{{{% endraw %} display: 'flex' {% raw %}}}{% endraw %}>
                 {colors.map((color) => (
                     <div
                         key={color}
-                        style={{
+                        style={% raw %}{{{% endraw %}
                             background: color,
                             width: '24px',
                             height: '24px',
                             cursor: 'pointer',
-                        }}
+                        {% raw %}}}{% endraw %}
                     ></div>
                 ))}
             </div>
@@ -280,21 +278,21 @@ const SelectColors = () => {
             <h2>색상을 선택하세요.</h2>
             <ColorConsumer>
                 {({ actions }) => (
-                    <div style={{ display: 'flex' }}>
+                    <div style={% raw %}{{{% endraw %} display: 'flex' {% raw %}}}{% endraw %}>
                         {colors.map((color) => (
                             <div
                                 key={color}
-                                style={{
+                                style={% raw %}{{{% endraw %}
                                     background: color,
                                     width: '24px',
                                     height: '24px',
                                     cursor: 'pointer',
-                                }}
+                                {% raw %}}}{% endraw %}
                                 onClick={() => actions.setColor(color)}
                                 onContextMenu={(e) => {
                                     e.preventDefault();
                                     actions.setSubcolor(color);
-                                }}
+                                {% raw %}}}{% endraw %}
                             ></div>
                         ))}
                     </div>
@@ -333,18 +331,18 @@ const ColorBox = () => {
     return (
         <>
             <div
-                style={{
+                style={% raw %}{{{% endraw %}
                     width: '64px',
                     height: '64px',
                     background: state.color,
-                }}
+                {% raw %}}}{% endraw %}
             />
             <div
-                style={{
+                style={% raw %}{{{% endraw %}
                     width: '32px',
                     height: '32px',
                     background: state.subcolor,
-                }}
+                {% raw %}}}{% endraw %}
             />
         </>
     );
@@ -362,5 +360,3 @@ export default ColorBox;
 
 ❗기존에는 부모 → 자식 흐름으로 props 를 통해 상태를 교류했지만 Context 를 통해 쉽게 가능 / 전역적으로 여기저기서 사용되는 상태가 있고 컴포넌트 개수가 많은 상황이라면 Context API 를 사용하는 것을 권장
 
-
-{% endraw %}

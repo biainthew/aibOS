@@ -9,8 +9,6 @@ excerpt_separator: ""
 
 
 
-{% raw %}
-
 # _state_
 
 
@@ -51,7 +49,7 @@ class Counter extends Component {
                 <button
                     onClick={() => {
                         this.setState({ number: number + 1 });
-                    }}
+                    {% raw %}}}{% endraw %}
                 >
                     +1
                 </button>
@@ -84,7 +82,7 @@ class Counter extends Component {
                 <button
                     onClick={() => {
                         this.setState({ number: number + 1 });
-                    }}
+                    {% raw %}}}{% endraw %}
                 >
                     +1
                 </button>
@@ -104,7 +102,7 @@ export default Counter;
 onClick={() => {
                         this.setState({ number: number + 1 });
                         this.setState({ number: this.state.number + 1 });
-                    }}
+                    {% raw %}}}{% endraw %}
 ```
 
 
@@ -117,7 +115,7 @@ onClick={() => {
                         this.setState((prevState) => {
                             return { number: prevState.number + 1 };
                         });
-                    }}
+                    {% raw %}}}{% endraw %}
 ```
 
 
@@ -138,7 +136,7 @@ onClick={() => {
                         this.setState({ number: number + 1 }, () => {
                             console.log('setState 가 호출되었습니다');
                         });
-                    }}
+                    {% raw %}}}{% endraw %}
 ```
 
 
@@ -191,28 +189,28 @@ const Say = () => {
         <div>
             <button onClick={onClickEnter}>입장</button>
             <button onClick={onClickLeave}>퇴장</button>
-            <h1 style={{ color }}>{message}</h1>
+            <h1 style={% raw %}{{{% endraw %} color {% raw %}}}{% endraw %}>{message}</h1>
             <button
-                style={{ color: 'red' }}
+                style={% raw %}{{{% endraw %} color: 'red' {% raw %}}}{% endraw %}
                 onClick={() => {
                     setColor('red');
-                }}
+                {% raw %}}}{% endraw %}
             >
                 빨간색
             </button>
             <button
-                style={{ color: 'green' }}
+                style={% raw %}{{{% endraw %} color: 'green' {% raw %}}}{% endraw %}
                 onClick={() => {
                     setColor('green');
-                }}
+                {% raw %}}}{% endraw %}
             >
                 초록색
             </button>
             <button
-                style={{ color: 'blue' }}
+                style={% raw %}{{{% endraw %} color: 'blue' {% raw %}}}{% endraw %}
                 onClick={() => {
                     setColor('blue');
-                }}
+                {% raw %}}}{% endraw %}
             >
                 파란색
             </button>
@@ -248,5 +246,3 @@ export default Say;
 > nextArray.filter(item => item.id !== 2); //id가 2인 항목 제거  
 > nextArray.map(item => {item.id === 1 ? {...item, value: false} : item}) //id가 1인 항목의 value 를 false 로 설정`
 
-
-{% endraw %}

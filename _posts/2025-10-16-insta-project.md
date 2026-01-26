@@ -9,8 +9,6 @@ excerpt_separator: ""
 
 
 
-{% raw %}
-
 ### 스타일 속성에 데이터 바인딩 하기
 
 1. 인라인 스타일 주기 - 따옴표
@@ -200,7 +198,7 @@ methods: {
     v-for="filter in filters"
     :key="filter"
     :class="filter"
->{{filter}}</FilterBox>
+>{% raw %}{{{% endraw %}filter{% raw %}}}{% endraw %}</FilterBox>
 ```
 
 
@@ -236,7 +234,7 @@ methods: {
 
 
 ```javascript
-<template v-slot:default="작명"><span>{{작명.msg}}</span></template>
+<template v-slot:default="작명"><span>{% raw %}{{{% endraw %}작명.msg{% raw %}}}{% endraw %}</span></template>
 ```
 
 
@@ -319,7 +317,7 @@ app.use(store).mount('#app')
 
 
 ```javascript
-{{ $store.state.name }}
+{% raw %}{{{% endraw %} $store.state.name {% raw %}}}{% endraw %}
 ```
 
 
@@ -350,5 +348,3 @@ mutations: {
 @click="$store.commit('이름변경')"
 ```
 
-
-{% endraw %}

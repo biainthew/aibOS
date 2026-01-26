@@ -3,7 +3,7 @@ layout: post
 title: "AOP(Aspect-Oriented Programming)"
 date: 2026-01-19
 categories: [general]
-tags: []
+tags: [Java]
 excerpt_separator: ""
 ---
 

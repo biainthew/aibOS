@@ -9,8 +9,6 @@ excerpt_separator: ""
 
 
 
-{% raw %}
-
 ## props
 
 
@@ -67,7 +65,7 @@ name: 'MyCard',
 
 
 ```javascript
-<h4 @click="$emit('openModal')">{{ oneroom.title }}</h4>
+<h4 @click="$emit('openModal')">{% raw %}{{{% endraw %} oneroom.title {% raw %}}}{% endraw %}</h4>
 //$emit('작명',데이터)
 ```
 
@@ -95,7 +93,7 @@ emits: [
 
 
 ```javascript
-<h4 @click="$emit('openModal',oneroom.id)">{{ oneroom.title }}</h4>
+<h4 @click="$emit('openModal',oneroom.id)">{% raw %}{{{% endraw %} oneroom.title {% raw %}}}{% endraw %}</h4>
 ```
 
 
@@ -226,5 +224,3 @@ create → mount → 컴포넌트 생성 → update → unmount
 
 라이프사이클 훅을 쓰려고 배우는 것
 
-
-{% endraw %}
