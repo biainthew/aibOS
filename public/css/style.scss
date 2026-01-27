@@ -296,6 +296,10 @@ body {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 1.5rem;
+
+        @media (max-width: 768px) {
+            margin-bottom: 0.8rem;
+        }
     }
 
     &-tit {
@@ -327,6 +331,15 @@ body {
             }
         }
     }
+
+    @media (max-width: 768px) {
+        &-sort {
+            gap: 0;
+            .btn {
+                padding: 0.25rem;
+            }
+        }
+    }
 }
 
 // ============================================
@@ -344,6 +357,10 @@ body {
 
     @media (min-width: 1024px) {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        gap: 1rem;
     }
 }
 

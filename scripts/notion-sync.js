@@ -4,6 +4,9 @@ const { Client } = require("@notionhq/client");
 const { NotionToMarkdown } = require("notion-to-md");
 const fs = require("fs");
 const path = require("path");
+const https = require("https");
+const http = require("http");
+const crypto = require("crypto");
 
 // Notion 클라이언트 초기화 (API 버전 2025-09-03)
 const notion = new Client({
@@ -30,6 +33,131 @@ function createFileName(title, date) {
         .replace(/[^a-z0-9가-힣\s]/g, "")
         .replace(/\s+/g, "-");
     return `${formattedDate}-${slug}.md`;
+}
+
+// 이미지 디렉토리 경로
+const IMAGES_DIR = path.join(process.cwd(), "public", "images", "posts");
+
+// 이미지 다운로드 함수
+function downloadImage(url, filePath) {
+    return new Promise((resolve, reject) => {
+        const protocol = url.startsWith("https") ? https : http;
+
+        const request = protocol.get(url, (response) => {
+            // 리다이렉트 처리
+            if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
+                downloadImage(response.headers.location, filePath)
+                    .then(resolve)
+                    .catch(reject);
+                return;
+            }
+
+            if (response.statusCode !== 200) {
+                reject(new Error(`이미지 다운로드 실패: ${response.statusCode}`));
+                return;
+            }
+
+            const fileStream = fs.createWriteStream(filePath);
+            response.pipe(fileStream);
+
+            fileStream.on("finish", () => {
+                fileStream.close();
+                resolve(true);
+            });
+
+            fileStream.on("error", (err) => {
+                fs.unlink(filePath, () => {}); // 실패 시 파일 삭제
+                reject(err);
+            });
+        });
+
+        request.on("error", reject);
+        request.setTimeout(30000, () => {
+            request.destroy();
+            reject(new Error("이미지 다운로드 타임아웃"));
+        });
+    });
+}
+
+// URL에서 확장자 추출
+function getExtensionFromUrl(url) {
+    const urlWithoutQuery = url.split("?")[0];
+    const match = urlWithoutQuery.match(/\.([a-zA-Z0-9]+)$/);
+    if (match) {
+        const ext = match[1].toLowerCase();
+        if (["png", "jpg", "jpeg", "gif", "webp", "svg", "bmp"].includes(ext)) {
+            return `.${ext}`;
+        }
+    }
+    return ".png"; // 기본값
+}
+
+// Notion S3 이미지 URL인지 확인
+function isNotionS3Url(url) {
+    return url.includes("prod-files-secure.s3") ||
+           url.includes("s3.us-west-2.amazonaws.com") ||
+           url.includes("notion.so/image");
+}
+
+// 마크다운 내 이미지 URL을 로컬 경로로 교체
+async function processImages(markdown, pageId) {
+    // 이미지 디렉토리 생성
+    if (!fs.existsSync(IMAGES_DIR)) {
+        fs.mkdirSync(IMAGES_DIR, { recursive: true });
+    }
+
+    // 마크다운 이미지 패턴: ![alt](url)
+    const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+    let match;
+    const replacements = [];
+
+    while ((match = imageRegex.exec(markdown)) !== null) {
+        const [fullMatch, altText, imageUrl] = match;
+
+        // Notion S3 URL인 경우에만 처리
+        if (isNotionS3Url(imageUrl)) {
+            // 파일명 생성 (URL 해시 기반)
+            const urlHash = crypto.createHash("md5").update(imageUrl.split("?")[0]).digest("hex").substring(0, 12);
+            const ext = getExtensionFromUrl(imageUrl);
+            const fileName = `${pageId.replace(/-/g, "").substring(0, 8)}-${urlHash}${ext}`;
+            const localPath = path.join(IMAGES_DIR, fileName);
+
+            // baseurl을 포함한 웹 경로
+            const webPath = `/aibOS/public/images/posts/${fileName}`;
+
+            replacements.push({
+                original: fullMatch,
+                altText,
+                imageUrl,
+                fileName,
+                localPath,
+                webPath
+            });
+        }
+    }
+
+    // 이미지 다운로드 및 교체
+    let processedMarkdown = markdown;
+    for (const item of replacements) {
+        try {
+            // 이미 다운로드된 파일이 있으면 스킵
+            if (!fs.existsSync(item.localPath)) {
+                console.log(`  ↓ 이미지 다운로드: ${item.fileName}`);
+                await downloadImage(item.imageUrl, item.localPath);
+            } else {
+                console.log(`  ✓ 이미지 캐시 사용: ${item.fileName}`);
+            }
+
+            // URL 교체
+            const newImageTag = `![${item.altText}](${item.webPath})`;
+            processedMarkdown = processedMarkdown.replace(item.original, newImageTag);
+        } catch (error) {
+            console.error(`  ✗ 이미지 다운로드 실패: ${error.message}`);
+            // 실패 시 원본 URL 유지
+        }
+    }
+
+    return processedMarkdown;
 }
 
 // 제목 속성 찾기
@@ -169,6 +297,9 @@ async function syncNotionToGitHub() {
                     .replace(/\{\{/g, "{% raw %}{{{% endraw %}")
                     .replace(/\}\}/g, "{% raw %}}}{% endraw %}");
             }
+
+            // 이미지 다운로드 및 경로 교체
+            bodyContent = await processImages(bodyContent, page.id);
 
             // Front Matter + 본문 결합
             const frontMatter = createFrontMatter(page);
