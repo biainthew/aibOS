@@ -584,6 +584,61 @@ body {
             color: var(--muted-foreground);
             font-style: italic;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--secondary);
+            margin: 1.5rem 0;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            display: block;
+
+            @media (min-width: 769px) {
+                display: table;
+            }
+
+            thead {
+                background: var(--secondary);
+
+                th {
+                    padding: 0.75rem 1rem;
+                    text-align: left;
+                    font-weight: 600;
+                    color: var(--foreground);
+                    border-bottom: 2px solid var(--border);
+                }
+            }
+
+            tbody {
+                tr {
+                    transition: background-color 0.2s ease;
+
+                    &:hover {
+                        background: var(--secondary);
+                    }
+
+                    &:not(:last-child) {
+                        border-bottom: 1px solid var(--border);
+                    }
+                }
+
+                td {
+                    padding: 0.75rem 1rem;
+                    color: var(--foreground);
+                    vertical-align: top;
+                }
+            }
+
+            @media (max-width: 768px) {
+                font-size: 0.813rem;
+
+                thead th,
+                tbody td {
+                    padding: 0.5rem 0.75rem;
+                }
+            }
+        }
     }
 }
 
