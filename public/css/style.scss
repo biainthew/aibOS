@@ -578,8 +578,9 @@ body {
         }
 
         blockquote {
+            background: var(--background);
             border-left: 4px solid var(--primary);
-            padding-left: 1rem;
+            padding: 0.5rem 1rem 0.2rem;
             margin: 1.5rem 0;
             color: var(--muted-foreground);
             font-style: italic;

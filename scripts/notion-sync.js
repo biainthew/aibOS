@@ -291,11 +291,31 @@ async function syncNotionToGitHub() {
                 bodyContent = mdString.parent;
             }
 
-            // 예제 코드 블록 내외의 {{ }} 를 감싸기 위해 본문 전체 혹은 {{ }} 가 나타나는 구간을 {% raw %}로 감쌈
-            if (bodyContent && bodyContent.includes('{{')) {
+            // Liquid 문법 오해 방지: 코드블록은 전체를 {% raw %}로 감싸고, 그 외 {{ }}는 개별 처리
+            if (bodyContent) {
+                // 1. 코드블록(```)을 찾아서 전체를 {% raw %}...{% endraw %}로 감싸기
+                bodyContent = bodyContent.replace(
+                    /(```[\s\S]*?```)/g,
+                    '{% raw %}\n$1\n{% endraw %}'
+                );
+
+                // 2. 코드블록 밖의 {{ }}는 개별 처리 (이미 {% raw %} 안에 있는 것은 제외)
+                // {% raw %}...{% endraw %} 블록을 임시로 플레이스홀더로 대체
+                const rawBlocks = [];
+                bodyContent = bodyContent.replace(/\{% raw %\}[\s\S]*?\{% endraw %\}/g, (match) => {
+                    rawBlocks.push(match);
+                    return `__RAW_BLOCK_${rawBlocks.length - 1}__`;
+                });
+
+                // 코드블록 밖의 {{ }}를 처리
                 bodyContent = bodyContent
                     .replace(/\{\{/g, "{% raw %}{{{% endraw %}")
                     .replace(/\}\}/g, "{% raw %}}}{% endraw %}");
+
+                // 플레이스홀더를 원래 코드블록으로 복원
+                bodyContent = bodyContent.replace(/__RAW_BLOCK_(\d+)__/g, (_, index) => {
+                    return rawBlocks[parseInt(index)];
+                });
             }
 
             // 이미지 다운로드 및 경로 교체
