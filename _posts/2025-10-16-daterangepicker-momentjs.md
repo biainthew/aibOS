@@ -19,21 +19,26 @@ excerpt_separator: ""
 
 1. 라이브러리 추가
 
+{% raw %}
 ```javascript
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 ```
+{% endraw %}
 
 1. 스크립트 추가
 
+{% raw %}
 ```javascript
 $('input').daterangepicker();
 ```
+{% endraw %}
 
 1. 옵션 추가
 
+{% raw %}
 ```javascript
 $('#currentDate').daterangepicker({
         "locale" : {
@@ -79,6 +84,7 @@ $('#currentDate').daterangepicker({
         "maxDate" : moment()
     });
 ```
+{% endraw %}
 
 
 > 💡 **moment.js ?  

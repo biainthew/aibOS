@@ -27,6 +27,7 @@ excerpt_separator: ""
 ### 3. __**proto**__ 를 직접 등록하면 object 끼리 상속기능을 구현 가능
 
 
+{% raw %}
 ```javascript
 let 부모 = { name : 'Kim' };
 let 자식 = {};
@@ -34,6 +35,7 @@ let 자식 = {};
 자식.__proto__ = 부모;
 console.log(자식.name); // Kim
 ```
+{% endraw %}
 
 
 ### 4. 사실 console 창에 prototype 정보들이 항상 출력됨

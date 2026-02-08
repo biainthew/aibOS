@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -61,4 +62,5 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 

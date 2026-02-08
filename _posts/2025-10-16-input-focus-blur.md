@@ -12,6 +12,7 @@ excerpt_separator: ""
 ### ✨ 예제
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -44,8 +45,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 <script>
         function onFocus(){
@@ -70,6 +73,7 @@ excerpt_separator: ""
         }
     </script>
 ```
+{% endraw %}
 
 
 ### ✔️ 문법

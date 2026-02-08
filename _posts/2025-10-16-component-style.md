@@ -27,6 +27,7 @@ excerpt_separator: ""
 # _SCSS_
 
 
+{% raw %}
 ```scss
 @mixin square ($size) {
     $calculated : 32px * $size;
@@ -34,19 +35,23 @@ excerpt_separator: ""
     height: $calculated;
 }
 ```
+{% endraw %}
 
 
 🌀 mixin 안에서 변수 또 사용하기
 
 
+{% raw %}
 ```javascript
 @import '~library/styles';
 ```
+{% endraw %}
 
 
 🌀 물결 ~ 을 사용하면 자동으로 node_modules 에서 라이브러리 디렉토리를 탐지하여 스타일 불러오기 가능
 
 
+{% raw %}
 ```scss
 .SassComponent{
     display: flex;
@@ -56,6 +61,7 @@ excerpt_separator: ""
     }
 }
 ```
+{% endraw %}
 
 
 🌀 include-media , open-color 설치 후 사용 / 반응형 디자인 ,  컬러팔레트
@@ -70,6 +76,7 @@ excerpt_separator: ""
 : .module.css 확장자로 저장하면 자동으로 적용됨 / scss는 .module.scss
 
 
+{% raw %}
 ```css
 .wrapper{
     background: black;
@@ -82,6 +89,7 @@ excerpt_separator: ""
     color: aqua;
  }
 ```
+{% endraw %}
 
 
 🌀 고유성에 대해 고민하지 않아도 됨 / 해당 클래스는 스타일을 직접 불러온 컴포넌트 내부에서만 작동하기 때문 / 웹페이지에서 전역적으로 사용되는 경우에는 :global 을 앞에 입력
@@ -96,6 +104,7 @@ excerpt_separator: ""
 🌀 사용하려면 엘리먼트에 className={styles.[클래스 이름]}
 
 
+{% raw %}
 ```javascript
 import styles from "./CSSModule.module.css";
 const CSSModule = () => {
@@ -108,6 +117,7 @@ const CSSModule = () => {
 };
 export default CSSModule;
 ```
+{% endraw %}
 
 
 🌀 두 개 이상 사용할 때는 템플릿 리터럴로
@@ -122,6 +132,7 @@ export default CSSModule;
 : 내장된 bind 클래스를 넣어 줄 때마다 styles.[클래스이름] 형태를 사용할 필요가 없음
 
 
+{% raw %}
 ```javascript
 import classNames from "classnames";
 
@@ -133,21 +144,25 @@ classNames("one", ["two", "three"]); //one two three
 const myClass = "hello";
 classNames("one", myClass, { myCondition: true }); //one hello myCondition
 ```
+{% endraw %}
 
 
 🌀 다양하게 조합 가능 / ex) props 값에 따라 다른 스타일을 주기 쉬워짐
 
 
+{% raw %}
 ```javascript
 const MyComponent = ({highlighted, theme}) => (
     <div className={classNames('MyComponent',{highlighted},theme}>Hello</div>
 )
 ```
+{% endraw %}
 
 
 🌀 클래스에 highlighted 값이 true 면 적용되고 false 면 적용되지 않음 / theme 으로 전달받는 문자열은 내용 그대로 클래스에 적용됨 / 예시 down here 👇🏻
 
 
+{% raw %}
 ```javascript
 import classNames from "classnames";
 
@@ -160,6 +175,7 @@ const CSSModule = () => {
   );
 };
 ```
+{% endraw %}
 
 
 # _styled-component_
@@ -168,6 +184,7 @@ const CSSModule = () => {
 : CSS-in-JS 자바스크립트 파일 안에 스타일을 선언 / css 나 scss 파일을 따로 만들지 않아도 됨
 
 
+{% raw %}
 ```javascript
 import styled, { css } from "styled-components";
 
@@ -217,6 +234,7 @@ const StyledComponent = () => (
 
 export default StyledComponent;
 ```
+{% endraw %}
 
 
 🌀 잘 모르겠지만 props 값으로 전달해 주는 값을 쉽게 스타일에 적용할 수 있다고 한다
@@ -234,6 +252,7 @@ export default StyledComponent;
 🌀 템플릿 사이사이에 들어가는 자바스크립트 객체나 함수의 원본값을 그대로 추출할 수 있음
 
 
+{% raw %}
 ```javascript
 import styled from "styled-components";
 
@@ -241,11 +260,13 @@ const MyComponent = styled.div`
   font-size: 2rem;
 `;
 ```
+{% endraw %}
 
 
 🌀 styled.div 뒤에 Tagged 템플릿 리터럴 문법을 통해 스타일을 넣어 주면 해당 스타일이 적용된 div 로 이루어진 리액트 컴포넌트가 생성됨 / 나중에 <MyComponent>Hello</MyComponent> 와 같은 형태로 사용할 수 있음
 
 
+{% raw %}
 ```javascript
 //태그의 타입을 styled 함수의 인자로 전달
 const MyInput = styled("input")`
@@ -257,19 +278,23 @@ const StyledLink = styled(Link)`
     color: blue;
 `
 ```
+{% endraw %}
 
 
 🌀 사용해야 할 태그명이 유동적이거나 특정 컴포넌트 자체에 스타일링해 주고 싶을 때
 
 
+{% raw %}
 ```javascript
 background: ${props => props.color || "blue"};
 ```
+{% endraw %}
 
 
 🌀 값이 주어지지 않았을 때 blue 써라
 
 
+{% raw %}
 ```javascript
 const Box = styled.div`
   /* props로 넣어 준 값을 직접 전달해 줄 수 있음 */
@@ -286,11 +311,13 @@ const Box = styled.div`
   }
 `;
 ```
+{% endraw %}
 
 
 🌀 반응형 디자인
 
 
+{% raw %}
 ```javascript
 import styled, { css } from "styled-components";
 
@@ -318,6 +345,7 @@ const Box = styled.div`
   ${media.tablet`width:100%;`}
 `;
 ```
+{% endraw %}
 
 
 🌀 혼란 그 자체 간단해졌다고 한다

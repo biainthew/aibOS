@@ -36,9 +36,11 @@ The most basic form of data binding is text interpolation using the “Mustache�
 데이터 바인딩의 가장 기초적인 형식은 “이중중괄호” 문법을 사용한 문자 보간법 입니다.
 
 
+{% raw %}
 ```javascript
-<span>Message: {% raw %}{{{% endraw %} message {% raw %}}}{% endraw %}</span>
+<span>Message: {{ message }}</span>
 ```
+{% endraw %}
 
 
 The mustache tag will be replaced with the value of the `msg` property from the corresponding component instance. It will also be updated whenever the `msg` property changes.
@@ -56,14 +58,16 @@ The double mustaches interpret the data as plain text, not HTML. In order to out
 이중 중괄호는 데이터를 HTML 이 아닌 텍스트로 변환합니다. HTML 을 출력하기 위해서는 v-html 디렉티브를 사용해야 합니다.
 
 
+{% raw %}
 ```javascript
-<p>Using text interpolation: {% raw %}{{{% endraw %} rawHTML {% raw %}}}{% endraw %}</p>
+<p>Using text interpolation: {{ rawHTML }}</p>
 <p>Using v-html directive: <span v-html="rawHTML"></span></p>
 
 Using text interpolation: <span style="color: red">This should be red.</span>
 Using v-html directive: 
 This should be red.
 ```
+{% endraw %}
 
 
 Here we’re encountering something new. The `v-html` attribute you’re seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, we’re basically saying “keep this element’s inner HTML up-to-date with the `rawHtml` property on the current active instance.”
@@ -96,9 +100,11 @@ Mustaches cannot be used inside HTML attributes. Instead, use a [`v-bind`](https
 중괄호는 HTML 속성들 안에서는 사용될 수 없습니다. 대신 v-bind 디렉티브를 사용하세요
 
 
+{% raw %}
 ```javascript
 <div v-bind:id="dynamicId"></div>
 ```
+{% endraw %}
 
 
 The `v-bind` directive instructs Vue to keep the element’s `id` attribute in sync with the component’s `dynamicId` property. If the bound value is `null` or `undefined`, then the attribute will be removed from the rendered element.
@@ -116,9 +122,11 @@ Because `v-bind` is so commonly used, it has a dedicated shorthand syntax
 `v-bind` 는 너무 자주 쓰이기 때문에 전용 단축 문법이 있습니다
 
 
+{% raw %}
 ```javascript
 <div :id="dynamicId"></div>
 ```
+{% endraw %}
 
 
 Attributes that start with `:` may look a bit different from normal HTML, but it is in fact a valid character for attribute names and all Vue-supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is optional, but you will likely appreciate it when you learn more about its usage later.
@@ -142,9 +150,11 @@ Boolean attributes are attributes that can indicate true / false values by their
 `v-bind` 가 이 상황에서는 조금 다르게 쓰입니다
 
 
+{% raw %}
 ```javascript
 <button :disabled="isButtonDisabled">Button</button>
 ```
+{% endraw %}
 
 
 The `disabled` attribute will be included if `isButtonDisabled` has a truthy value. It will also be included if the value is an empty string, maintaining consistency with <button disabled=””>. For other falsy values the attribute will be omitted.
@@ -162,6 +172,7 @@ If you have a Javascript object representing multiple attributes that looks like
 이런 다중 속성을 나타내는 자바스크립트 객체가 있다면
 
 
+{% raw %}
 ```javascript
 data(){
 	return{
@@ -172,6 +183,7 @@ data(){
 	}
 }
 ```
+{% endraw %}
 
 
 You can bind them to a single element by using v-bind without an argument:
@@ -180,9 +192,11 @@ You can bind them to a single element by using v-bind without an argument:
 논쟁의 여지 없이 v-bind 를 사용하여 단일 요소에 바인딩할 수 있습니다
 
 
+{% raw %}
 ```javascript
 <div v-bind="objectOfAttrs"></div>
 ```
+{% endraw %}
 
 
 ### Using JavaScript Expression | 자바스크립트 표현 사용
@@ -194,12 +208,14 @@ So far we’ve only been binding to simple property keys in our templates. But V
 지금까지는 템플릿의 간단한 속성 키에만 바인딩을 했지만 사실 뷰는 모든 데이터 바인딩에 모든 자바스크립트 표현을 지원합니다.
 
 
+{% raw %}
 ```javascript
-{% raw %}{{{% endraw %} number + 1 {% raw %}}}{% endraw %}
-{% raw %}{{{% endraw %} ok ? 'YES' : 'NO' {% raw %}}}{% endraw %}
-{% raw %}{{{% endraw %} message.split('').reverse().join('') {% raw %}}}{% endraw %}
+{{ number + 1 }}
+{{ ok ? 'YES' : 'NO' }}
+{{ message.split('').reverse().join('') }}
 <div :id="`list-${id}`"></div>
 ```
+{% endraw %}
 
 
 These expressions will be evaluated as JavaScript in the data scope of the current component instance.
@@ -230,13 +246,15 @@ Each binding can only contain one single expression. An expression is a piece of
 Therefore, the following will NOT work
 
 
+{% raw %}
 ```javascript
 // this is a statement not an expression
-{% raw %}{{{% endraw %} const a = 1 {% raw %}}}{% endraw %}
+{{ const a = 1 }}
 
 // flow control won't work either, use ternary expressions | 삼항조건연산자 사용해라
-{% raw %}{{{% endraw %} if (ok) { return message } {% raw %}}}{% endraw %}
+{{ if (ok) { return message } }}
 ```
+{% endraw %}
 
 
 ### Calling Functions | 함수 호출
@@ -248,11 +266,13 @@ It is possible to call a component-exposed method inside a binding expression
 바인딩 표현식에서 컴포넌트에서 노출한 메서드를 호출하는것이 가능합니다
 
 
+{% raw %}
 ```javascript
 <span :title="toTitleDate(date)">
-	{% raw %}{{{% endraw %} formatDate(date) {% raw %}}}{% endraw %}
+	{{ formatDate(date) }}
 </span>
 ```
+{% endraw %}
 
 > Functions called inside binding expressions will be called every time the component updates, so they should not have any side effects, such as changing data of triggering asynchronous operations.
 > 내부 바인딩 표현식을 호출하는 함수들은 컴포넌트가 업데이트 될 때마다 호출됩니다 그래서  데이터를 바꾸거나 비동기 작업을 트리거하는 등의 다른 부작용을 가지고 있으면 안됩니다.
@@ -287,9 +307,11 @@ Directives attribute values are expected to be single JavaScript expressions (wi
 Directive 속성값들은 단일 자바스크립트 표현식으로 기대됩니다 (나중에 그 각각의 섹션에서 다뤄질 `v-for`, `v-on`, and `v-slot` 제외). Directive 의 역할은 그 표현식의 값이 바뀔 때 반응적으로 돔에 업데이트를 적용하는 것입니다 
 
 
+{% raw %}
 ```javascript
 <p v-if="seen">Now you see me</p>
 ```
+{% endraw %}
 
 
 Here, the `v-if` directive would remove / insert the `<p>` element based on the truthiness of the value of the expression `seen`.
@@ -307,12 +329,14 @@ Some directives can take an “argument”, denoted by a colon after the directi
 몇몇 디렉티브들은 디렉티브 이름 뒤에 콜론을 사용하여 나타내는 “인자”를 받을 수 있습니다. 예를 들어 `v-bind` 디렉티브는 HTML 속성을 반응적으로 업데이트할 때 사용됩니다.
 
 
+{% raw %}
 ```javascript
 <a v-bind:href="url">...</a>
 
 //shorthand
 <a :href="url"></a>
 ```
+{% endraw %}
 
 
 Here, `href` is the argument, which tells the `v-bind` directive to bind the element’s `href` attribute to the value of the expression `url`. In the shorthand, everything before the argument (i.e., `v-bind:` ) is condensed into a single character, `:`.
@@ -327,12 +351,14 @@ Another example is the `v-on` directive, which listens to DOM events
 다른 예시로는 돔 이벤트를 수신하는 다른 `v-on` 디렉티브가 있습니다.
 
 
+{% raw %}
 ```javascript
 <a v-on:click="doSomething">...</a>
 
 //shorthand
 <a @click="doSomething">...</a>
 ```
+{% endraw %}
 
 
 Here, the argument is the event name to listen to: `click`. `v-on` has a corresponding shorthand, namely the `@` character. We will talk about event handling in more detail too.
@@ -341,6 +367,7 @@ Here, the argument is the event name to listen to: `click`. `v-on` has a corresp
 여기서 인자는 `click` 을 수신하는 이벤트 이름입니다. `v-on`은 그에 해당하는 단축문법인 `@` 문자열이 있습니다. 우리는 이벤트 핸들링을 더 살펴볼 것입니다.
 
 
+{% raw %}
 ```javascript
 <!--
 Note that there are some constraints to the argument expression,
@@ -351,6 +378,7 @@ as explained in the "Dynamic Argument Value Constraints" and "Dynamic Argument S
 //shorthand
 <a :[attributeName]="url">...</a>
 ```
+{% endraw %}
 
 
 Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your component instance has a data property, `attributeName`, whose value is `“href”`, then this binding will be equivalent to `v-bine:href`.
@@ -365,12 +393,14 @@ Similarly , you can use dynamic arguments to bind a handler to a dynamic event n
 비슷한 예로 동적인 인자를 동적인 이벤트 이름에 바인딩하는 핸들러로 사용할 수 있습니다.
 
 
+{% raw %}
 ```javascript
 <a v-on:[eventName]="doSomething">...</a>
 
 //shorthand
 <a @[eventName]="doSomething">
 ```
+{% endraw %}
 
 
 In this example, when `eventName`’s value is `“focus”`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
@@ -397,9 +427,11 @@ Dynamic argument expressions have some syntax constraints because certain charac
 동적 인자 표현식은 몇몇 문법 제한이 있습니다. 왜냐하면 공백과 인용들 같은 몇몇 문자들은 HTML 속성명 안에서 유효하지 않기 때문입니다. 다음의 예시들은 유효하지 않습니다.
 
 
+{% raw %}
 ```javascript
 <a :['foo' + bar]="value">...</a>
 ```
+{% endraw %}
 
 
 If you need to pass a complex dynamic argument, it’s probably better to use a [computed property](https://vuejs.org/guide/essentials/computed.html), which we will cover shortly
@@ -414,9 +446,11 @@ When using in-DOM templates (templates directly written in an HTML file), you sh
 돔 내부 템플릿(HTML 파일로 직접 쓰인 템플릿)을 사용할 때는 키값에 대문자를 사용하면 안됩니다. 브라우저가 강제로 소문자로 만들것입니다.
 
 
+{% raw %}
 ```javascript
 <a :[someAttr]="value">...</a>
 ```
+{% endraw %}
 
 
 The above will be converted to `:[someattr]` in in-DOM templates. If your component has a `someAttr` property instead of `someattr`, your code won’t work. Templates inside Single-File Components are not subject to this constraint.
@@ -434,9 +468,11 @@ Modifiers are special postfixes denoted by a dot, which indicate that a directiv
 수식어는 점으로 시작하는 특수한 접미사로 디렉티브가 특수한 방식으로 바인딩 되어야 하는 것을 가리킵니다. 예를 들어 `.prevent` 수식어는 `v-on` 에 발생될 이벤트에 `event.preventDefault()` 를 요청하도록 해줍니다.
 
 
+{% raw %}
 ```javascript
 <form @submit.prevent="onSubmit">...</form>
 ```
+{% endraw %}
 
 
 You’ll see other examples of modifiers later, for `v-on` and for `v-model`, when we explore those features.

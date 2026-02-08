@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 const btnCollapse=document.getElementById('btn-collapse');
 const question=document.getElementsByClassName('panel-question');
@@ -25,4 +26,5 @@ for(i=0;i<heading.length;i++){
 	})
 }
 ```
+{% endraw %}
 

@@ -12,14 +12,17 @@ excerpt_separator: ""
 ### 🫐 state 를 사용한 코드 스플리팅 🫐
 
 
+{% raw %}
 ```javascript
 const SplitMe = () => {
     return <div>SplitMe</div>;
 };
 export default SplitMe;
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 import logo from './logo.svg';
@@ -51,6 +54,7 @@ class App extends Component {
 
 export default App;
 ```
+{% endraw %}
 
 
 💎 코드 스플리팅을 해서 p 를 클릭하고 네트워크에서 확인했을 때 불필요한 것들은 렌더링 되지 않음
@@ -60,12 +64,15 @@ export default App;
 
 - `React.lazy` : 컴포넌트를 렌더링 하는 시점에서 비동기적으로 로딩할 수 있게 해 주는 유틸함수
 
+{% raw %}
 ```javascript
 const SplitMe = React.lazy(()⇒import(’./SplitMe’));
 ```
+{% endraw %}
 
 - `Suspense` : 리액트 내장 컴포넌트, 코드 스플리팅 된 컴포넌트를 로딩하도록 발동시킬 수 있고 로딩이 끝나지 않았을 때 보여 줄 UI 를 설정할 수 있음
 
+{% raw %}
 ```javascript
 import { Suspense } from ‘react’
 (…)
@@ -73,8 +80,10 @@ import { Suspense } from ‘react’
     <SplitMe/>
 </Suspense>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import React, { useState, Suspense } from 'react';
 import logo from './logo.svg';
@@ -101,6 +110,7 @@ function App() {
 
 export default App;
 ```
+{% endraw %}
 
 
 💎 false && 컴포넌트 해서 안보이던게 클릭하면 true 로 보인다 ?
@@ -116,6 +126,7 @@ export default App;
 > - **그 외** : 타임아웃, 로딩 UI 딜레이 드으이 기능 제공
 - `서버 사이드 렌더링` : 웹 서비스의 초기 로딩 속도 개선, 캐싱 및 검색 엔진 최적화를 가능하게 해 주는 기술 / 이를 사용하면 초기 렌더링을 서버 쪽에서 처리 → 사용자는 렌더링된 결과물을 받아 사용하므로 속도 개선
 
+{% raw %}
 ```javascript
 import React, { useState, Suspense } from 'react';
 import logo from './logo.svg';
@@ -147,11 +158,13 @@ function App() {
 
 export default App;
 ```
+{% endraw %}
 
 
 💎 npm add @loadable/component → Suspend 만 뺀 React.lazy 와 비슷
 
 
+{% raw %}
 ```javascript
 import React, { useState, Suspense } from "react";
 import logo from "./logo.svg";
@@ -184,6 +197,7 @@ function App() {
 
 export default App;
 ```
+{% endraw %}
 
 
 💎 마우스 커서를 p 에 올리기만 해도 로딩 시작 클릭하면 렌더링

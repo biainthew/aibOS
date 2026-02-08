@@ -12,6 +12,7 @@ excerpt_separator: ""
 ### 🫐 서버에서 리덕스 설정 및 PreloadContext 사용하기 🫐
 
 
+{% raw %}
 ```javascript
 import ReactDOMServer from "react-dom/server";
 import express from "express";
@@ -81,11 +82,13 @@ app.listen(5000, () => {
   console.log("Running on http://localhost:5000");
 });
 ```
+{% endraw %}
 
 
 💎 서버가 실행될 때 스토어를 한 번만 만드는 것이 아니라 요청이 들어올 때마다 새로운 스토어를 만듦
 
 
+{% raw %}
 ```javascript
 import ReactDOMServer from "react-dom/server";
 import express from "express";
@@ -180,6 +183,7 @@ app.listen(5000, () => {
   console.log("Running on http://localhost:5000");
 });
 ```
+{% endraw %}
 
 
 💎 첫번째 렌더링을 할 때는 `renderToString` 대신 `renderToStaticMarkup` 이라는 함수 사용 / 이 함수는 리액트를 사용하여 정적인 페이지를 만들 때 사용 / 이 함수로 만든 리액트 렌더링 결과물은 클라이언트 쪽에서 HTML DOM 인터랙션을 지원하기 힘듦 / 사용한 이유는 `Preloader` 로 넣어주었던 함수를 호출하기 위해서, 속도가 좀 더 빨라서
@@ -191,6 +195,7 @@ app.listen(5000, () => {
 → 지금까지 작성한 코드는 API 를 통해 받아 온 데이터를 렌더링 하지만 그 과정에서 만들어진 스토어의 상태를 브라우저에서 재사용하지 못하는 상황 / 재사용하려면 현재 스토어 상태를 문자열로 변환한 뒤 스크립트로 주입해 주어야 함
 
 
+{% raw %}
 ```javascript
 import ReactDOMServer from "react-dom/server";
 import express from "express";
@@ -282,8 +287,10 @@ app.listen(5000, () => {
   console.log("Running on http://localhost:5000");
 });
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -319,6 +326,7 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 ```
+{% endraw %}
 
 
 💎 스토어의 상태를 브라우저에서 재사용 할 때는 스토어 생성 과정에서 window.__PRELOADED_STATE__ 를 초깃값으로 사용하면 됨
@@ -330,11 +338,14 @@ reportWebVitals();
 ### 🫐 redux-saga 코드 준비하기 🫐
 
 
+{% raw %}
 ```javascript
 npm add redux-saga
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import axios from "axios";
 
@@ -455,11 +466,13 @@ function users(state = initialState, action) {
 }
 export default users;
 ```
+{% endraw %}
 
 
 💎 모듈 수정 saga 의 effect 사용
 
 
+{% raw %}
 ```javascript
 import { combineReducers } from "redux";
 import users, { usersSaga } from "./users";
@@ -471,6 +484,7 @@ export function* rootSaga() {
 const rootReducer = combineReducers({ users });
 export default rootReducer;
 ```
+{% endraw %}
 
 
 [`function*`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/function*)
@@ -479,6 +493,7 @@ export default rootReducer;
 💎 리덕스 스토어에 redux-saga 적용하기 위해서 루트 사가 만들기
 
 
+{% raw %}
 ```javascript
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -516,6 +531,7 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 ```
+{% endraw %}
 
 
 💎 스토어를 생성할 때 미들웨어 적용
@@ -524,6 +540,7 @@ reportWebVitals();
 ### 🫐 User, UserContainer 컴포넌트 준비하기 🫐
 
 
+{% raw %}
 ```javascript
 const User = ({ user }) => {
   const { email, name, username } = user;
@@ -541,11 +558,13 @@ const User = ({ user }) => {
 
 export default User;
 ```
+{% endraw %}
 
 
 💎 이전에 만들었던 Users 컴포넌트에서는 users 값이 null 인지 배열인지 확인하는 유효성 검사를 해 주었던 반면, 위 User 컴포넌트에서는 user 값이 null 인지 객체인지 확인하는 유효성 검사를 해주지 않음
 
 
+{% raw %}
 ```javascript
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -570,11 +589,13 @@ const UsersContainer = ({ id }) => {
 
 export default UsersContainer;
 ```
+{% endraw %}
 
 
 💎 컨테이너에서 유효성 검사를 할 때 아직 정보가 없는 경우에는 user 값이 null 을 가리키므로 User 컴포넌트가 렌더링되지 않도록 컨테이너 컴포넌트에서 null 을 반환해 주어야 함
 
 
+{% raw %}
 ```javascript
 import UsersContainer from "../containers/UsersContainer";
 import { useParams } from "react-router-dom";
@@ -586,11 +607,13 @@ const UsersPage = () => {
 
 export default UsersPage;
 ```
+{% endraw %}
 
 
 💎 UserPage 에서는 useParams 를 통해 URL 파라미터를 조회하고 id 파라미터를 props 로 넣어줌
 
 
+{% raw %}
 ```javascript
 import UsersContainer from "../containers/UsersContainer";
 import { Route, Routes } from "react-router-dom";
@@ -609,6 +632,7 @@ const UsersPage = () => {
 
 export default UsersPage;
 ```
+{% endraw %}
 
 
 💎 Route 에 component 대신 render 를 설정해 줌으로써 UserContainer 를 렌더링할 때 URL 파라미터 id 를 props 로 바로 집어넣어 줄 수 있음

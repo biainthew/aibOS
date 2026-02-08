@@ -15,21 +15,25 @@ excerpt_separator: ""
 1) 부모 컴포넌트에서 가져올 데이터 정하기
 
 
+{% raw %}
 ```javascript
 <Modal v-bind:원룸들="원룸들"/>
 //:작명="데이터 이름"
 ```
+{% endraw %}
 
 
 2) 자식 컴포넌트에서 데이터 받기
 
 
+{% raw %}
 ```javascript
 props: {
     원룸들 : Object
 		//데이터 이름 : 형식(맨 앞 대문자)
 }
 ```
+{% endraw %}
 
 
 3) 사용하기
@@ -41,18 +45,22 @@ props: {
 - 오브젝트 안의 데이터를 각각 보내고 싶을 때
 
 
+{% raw %}
 ```javascript
 <Discount v-bind="오브젝트" :이름="오브젝트.name" :나이="오브젝트.age"/>
 ```
+{% endraw %}
 
 
 ## Component
 
 - name 속성을 써 줘야 함
 
+{% raw %}
 ```javascript
 name: 'MyCard',
 ```
+{% endraw %}
 
 
 ## $ : vue 의 특별한 변수
@@ -64,26 +72,32 @@ name: 'MyCard',
 ### 자식 컴포넌트
 
 
+{% raw %}
 ```javascript
-<h4 @click="$emit('openModal')">{% raw %}{{{% endraw %} oneroom.title {% raw %}}}{% endraw %}</h4>
+<h4 @click="$emit('openModal')">{{ oneroom.title }}</h4>
 //$emit('작명',데이터)
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 emits: [
     'openModal'
 ]
 ```
+{% endraw %}
 
 
 ### 부모 컴포넌트
 
 
+{% raw %}
 ```javascript
 <Card @openModal=""/>
 //@작명한거 = "이벤트"
 ```
+{% endraw %}
 
 
 ## 커스텀 이벤트 (자식→ 부모 데이터 전달)
@@ -92,30 +106,37 @@ emits: [
 ### 자식 컴포넌트
 
 
+{% raw %}
 ```javascript
-<h4 @click="$emit('openModal',oneroom.id)">{% raw %}{{{% endraw %} oneroom.title {% raw %}}}{% endraw %}</h4>
+<h4 @click="$emit('openModal',oneroom.id)">{{ oneroom.title }}</h4>
 ```
+{% endraw %}
 
 
 ### 부모 컴포넌트
 
 
+{% raw %}
 ```javascript
 <Card @openModal="누른거 = $event"/>
 //전달한 데이터는 $event 로 받음
 ```
+{% endraw %}
 
 
 ## input
 
 
+{% raw %}
 ```javascript
 <input type="text" @input="" @change="">
 //@input : 입력할 때마다
 //@change : 입력 한 뒤에 커서를 다른 곳에 찍었을 때
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 <input type="text" @input="$event.target.value"/>
 //input 에 입력한 값
@@ -125,6 +146,7 @@ emits: [
 v-model.number=""
 //무조건 숫자로 입력해라
 ```
+{% endraw %}
 
 
 ## Watcher
@@ -133,6 +155,7 @@ v-model.number=""
 데이터를 감시하는 함수 / input 이 있다면 거의 필수적으로 등장
 
 
+{% raw %}
 ```javascript
 watch: {
     month(a){
@@ -143,6 +166,7 @@ watch: {
 }
 //month 데이터가 변할 때마다 안의 함수 실행
 ```
+{% endraw %}
 
 
 form validation 라이브러리 사용하면 watcher 안 써도 됨
@@ -151,13 +175,16 @@ form validation 라이브러리 사용하면 watcher 안 써도 됨
 ## Transition
 
 
+{% raw %}
 ```javascript
 <transition name="fade">
         <Modal v-bind:원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니" @closeModal="모달창열렸니 = false"/>
 </transition>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```css
 .fade-enter-from{
     opacity: 0;
@@ -178,6 +205,7 @@ form validation 라이브러리 사용하면 watcher 안 써도 됨
     opacity: 0;
 }
 ```
+{% endraw %}
 
 
 그냥 css 애니메이션이 더 깔끔한 것 같기도 ,,
@@ -186,6 +214,7 @@ form validation 라이브러리 사용하면 watcher 안 써도 됨
 ## 정렬
 
 
+{% raw %}
 ```javascript
 sortBack(){
     this.원룸들 = [...this.원룸들오리지널]
@@ -195,11 +224,13 @@ sortBack(){
 원룸들오리지널 : [...data]
 //원본 데이터 복사도 마찬가지
 ```
+{% endraw %}
 
 
 ### array 안 오브젝트 안의 특정 값만 정렬하기
 
 
+{% raw %}
 ```javascript
 nameSort(){
     this.원룸들.sort((a,b)=>{
@@ -211,6 +242,7 @@ nameSort(){
 }
 //역순은 등호만 바꿔주면 됨
 ```
+{% endraw %}
 
 
 ## 라이프 사이클

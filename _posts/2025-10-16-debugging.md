@@ -18,9 +18,11 @@ excerpt_separator: ""
 코드의 특정 위치에 `System.out.println` 을 추가하여 변수의 값을 출력하거나 흐름을 추적합니다
 
 
+{% raw %}
 ```java
 System.out.println("현재 변수 값: " + variableName);
 ```
+{% endraw %}
 
 
 ### 2. Log(Logging)
@@ -32,6 +34,7 @@ System.out.println("현재 변수 값: " + variableName);
 예를 들어 `java.util.logging` 또는 `log4j` 를 사용할 수 있습니다
 
 
+{% raw %}
 ```java
 import java.util.logging.Logger;
 
@@ -43,6 +46,7 @@ public class MyClass {
     }
 }
 ```
+{% endraw %}
 
 
 ### 2-1. log4j
@@ -57,6 +61,7 @@ log4j 는 여러 로그 레벨을 제공합니다
 5. **ERROR** : 오류 메세지를 기록합니다 프로그램의 기능에 영향을 미칠 수 있는 오류입니다
 6. **FATAL** : 치명적인 오류를 기록합니다 프로그램이 더 이상 실행될 수 없는 경우 사용합니다
 
+{% raw %}
 ```java
 import org.apache.log4j.Logger;
 
@@ -83,6 +88,7 @@ public class MyClass {
     }
 }
 ```
+{% endraw %}
 
 
 ### 3. Console

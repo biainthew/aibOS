@@ -30,6 +30,7 @@ Web Component 라는 문법을 사용하면 html 안에서 <div>들을 하나의
 정해진 문법이라 그냥 이해할 필요는 없고 외우면 됨
 
 
+{% raw %}
 ```javascript
 class 클래스 extends HTMLElement {
 	connectedCallback() {
@@ -39,6 +40,7 @@ class 클래스 extends HTMLElement {
 
 customElements.define("custom-input", 클래스)
 ```
+{% endraw %}
 
 1. 컴포넌트에 어떤 html 들을 집어넣을지 맘대로 설정 가능
 
@@ -63,6 +65,7 @@ customElements.define("custom-input", 클래스)
 ### attribute 를 추가하면 각각 다른 내용을 보여줄 수도 있음
 
 
+{% raw %}
 ```javascript
 class 클래스 extends HTMLElement {
 	connectedCallback(){
@@ -73,12 +76,15 @@ class 클래스 extends HTMLElement {
 
 customElements.define("custom-input", 클래스)
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 <custom-input name="이메일"></custom-input>
 <custom-input name="비번"></custom-input>
 ```
+{% endraw %}
 
 
 getAttribute(X) 를 쓰면 현재 요소의 X 라고 정의된 attribute를 가져올 수 있음
@@ -102,6 +108,7 @@ attribute 활용하면 각각 다른 내용을 보여줄 수 있음
 ### attribute가 변경될 때 특정 코드 실행도 가능
 
 
+{% raw %}
 ```javascript
 class 클래스 extends HTMLElement {
 	connectedCallback() {
@@ -118,6 +125,7 @@ class 클래스 extends HTMLElement {
 
 customElements.define("custom-input", 클래스);
 ```
+{% endraw %}
 
 
 static get observedAttribute() 안에 감시할 attribute들을 array 로 적으면 됨

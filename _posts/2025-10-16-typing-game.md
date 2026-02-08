@@ -12,6 +12,7 @@ excerpt_separator: ""
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-218829fab25d.png)
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -52,8 +53,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```css
 *{margin: 0; padding: 0; box-sizing: border-box;}
 body{background: #2c3e50; display: flex; align-items: center; justify-content: center; min-height: 100vh;}
@@ -71,8 +74,10 @@ input{border: 0; border-radius: 4px; font-size: 14px; width: 300px; padding: 12p
 .time-container{position: absolute; top: 60px; left: 20px;}
 .end-game-container{background: inherit; position: absolute; width: 100%; height: 100%; z-index: 1; top: 0; left: 0; align-items: center; justify-content: center; display: none;}
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 const word = document.getElementById('word');
 const text = document.getElementById('text');
@@ -146,4 +151,5 @@ text.addEventListener('input',e => {
 })
 settingsBtn.addEventListener('click',() => settings.classList.toggle('hide'))
 ```
+{% endraw %}
 

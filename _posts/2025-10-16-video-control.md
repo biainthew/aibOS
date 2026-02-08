@@ -54,6 +54,7 @@ excerpt_separator: ""
 👉🏻 소리 재생
 
 
+{% raw %}
 ```javascript
 const videoPlay=$('#videoPlay')
 const videoPlay1=$('#videoPlay1')
@@ -83,4 +84,5 @@ $('#vmutedOn1').click(function(){
     videoPlay1.get(0).muted=false;
 })
 ```
+{% endraw %}
 

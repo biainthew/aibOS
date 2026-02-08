@@ -9,9 +9,11 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```java
 public class CustomErrorController extends BasicErrorController implements CustomResolveErrorView {
 ```
+{% endraw %}
 
 
 `CustomErrorController` 는 `BasicErrorController` 를 상속(확장)
@@ -26,20 +28,24 @@ public class CustomErrorController extends BasicErrorController implements Custo
 -> `CustomResolveErrorView` 안에 정의된 추상 메서드를 `CustomErrorController` 에서 반드시 구현해야 함
 
 
+{% raw %}
 ```java
 public CustomErrorController(ErrorAttributes errorAttributes,
                              ServerProperties serverProperties,
                              MessageSource messageSource,
                              ApplicationContext applicationContext)
 ```
+{% endraw %}
 
 
 생성자 정의, 네 개의 매개변수를 받음
 
 
+{% raw %}
 ```java
 super(errorAttributes, serverProperties.getError());
 ```
+{% endraw %}
 
 
 부모 클래스인 `BasicErrorController` 의 생성자를 호출

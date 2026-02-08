@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +38,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
@@ -147,8 +150,10 @@ main{
     }
 }
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 const main=document.querySelector('main');
 const voicesSelect=document.getElementById('voices');
@@ -278,4 +283,5 @@ readBtn.addEventListener('click', () => {
 speechSynthesis.addEventListener('voiceschanged',getVoices)
 getVoices();
 ```
+{% endraw %}
 

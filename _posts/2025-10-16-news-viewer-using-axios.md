@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 import React from 'react';
 import { useState } from 'react';
@@ -41,11 +42,13 @@ const App = () => {
 
 export default App;
 ```
+{% endraw %}
 
 
 🌀 axios.get 함수를 사용 / then 을 통해 비동기적으로 결과 확인
 
 
+{% raw %}
 ```javascript
 import React from 'react';
 import { useState } from 'react';
@@ -81,11 +84,13 @@ const App = () => {
 
 export default App;
 ```
+{% endraw %}
 
 
 🌀 async 적용 / try catch 구문 사용
 
 
+{% raw %}
 ```javascript
 import styled from 'styled-components';
 
@@ -143,8 +148,10 @@ const NewsItem = ({ article }) => {
 
 export default NewsItem;
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
@@ -203,11 +210,13 @@ const NewsList = () => {
 
 export default NewsList;
 ```
+{% endraw %}
 
 
 🌀 데이터를 불러와 map 함수를 사용하여 컴포넌트 배열로 변환하기 전에 꼭 !articles 를 조회하여 해당 값이 현재 null 인지 아닌지 검사해야함 / 하지 않으면 아직 데이터가 없을 때 null 에는 map 함수가 없기 때문에 렌더링 과정에서 오류 발생
 
 
+{% raw %}
 ```javascript
 import styled from 'styled-components';
 
@@ -273,11 +282,13 @@ const Categories = () => {
 
 export default Categories;
 ```
+{% endraw %}
 
 
 🌀 categories 배열 안에 name 과 text 가 들어있는 객체들을 넣어주고 / map 돌려서 리턴값반환
 
 
+{% raw %}
 ```javascript
 import Categories from './components/Categories';
 import NewsList from './components/NewsList';
@@ -296,11 +307,13 @@ const App = () => {
 
 export default App;
 ```
+{% endraw %}
 
 
 🌀 App 에서 category 의 상태를 useState 로 관리 / category 값을 업데이트하는 onSelcet 함수도 useCallback 으로 만들어줌 / 그 둘을 컴포넌트에 props 로 전달
 
 
+{% raw %}
 ```javascript
 import styled, 
 { css }
@@ -390,11 +403,13 @@ active={category === c.name}
 
 export default Categories;
 ```
+{% endraw %}
 
 
 🌀 props 로 전달받은 것들을 적용
 
 
+{% raw %}
 ```javascript
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
@@ -462,11 +477,13 @@ ${query}
 
 export default NewsList;
 ```
+{% endraw %}
 
 
 🌀 현재 category 값에 따라 요청할 주소 바뀌게 설정 / category 값이 바뀔 때마다 뉴스를 새로 불러와야 하기 때문에 useEffect 의 의존배열에 category 를 넣어주어야 함
 
 
+{% raw %}
 ```javascript
 import { useParams } from 'react-router-dom';
 import Categories from '../components/Categories';
@@ -486,11 +503,13 @@ const NewsPage = () => {
 
 export default NewsPage;
 ```
+{% endraw %}
 
 
 🌀 이번에는 Route 사용
 
 
+{% raw %}
 ```javascript
 import { Route, Routes } from 'react-router-dom';
 import NewsPage from './pages/NewsPage';
@@ -506,11 +525,13 @@ const App = () => {
 
 export default App;
 ```
+{% endraw %}
 
 
 🌀 경로에 category URL 파라미터가 없어도 NewsPage 컴포넌트를 보여줘야 하고 category 가 있어도 NewsPage 를 보여줘야 하기 때문에 Route 컴포넌트 두 번 사용
 
 
+{% raw %}
 ```javascript
 import styled, { css } from 'styled-components';
 
@@ -597,6 +618,7 @@ className={({ isAcive }) =>
 
 export default Categories;
 ```
+{% endraw %}
 
 
 🌀 to 값은 /카테고리이름 , 전체보기는 / 로 설정
@@ -605,6 +627,7 @@ export default Categories;
 ### ✔️ usePromise 커스텀 hook 만들기
 
 
+{% raw %}
 ```javascript
 import { useState, useEffect } from 'react';
 
@@ -630,11 +653,13 @@ export default function usePromise(promiseCreator, deps) {
     return [loading, resolved, error];
 }
 ```
+{% endraw %}
 
 
 🌀 프로젝트의 다양한 곳에서 사용될 수 있는 유틸 함수들은 보통 이렇게 src 디렉토리에 lib 디렉토리를 만들 후 그 안에 작성 / 이 hook 은 Promise 의 대기중, 완료결과, 실패결과에 대한 상태를 관리 , usePromise 의 의존배열 deps 를 파라미터로 받아옴 / deps 는 usePromise 내부에서 사용한 useEffect 의 의존배열로 설정 ⇒ 경고 발생 ⇒ 특정 줄에서만 ESlint 규칙을 무시하도록 주석 작성
 
 
+{% raw %}
 ```javascript
 import styled from 'styled-components';
 import NewsItem from './NewsItem';
@@ -685,6 +710,7 @@ const NewsList = ({ category }) => {
 
 export default NewsList;
 ```
+{% endraw %}
 
 
 🌀 hook 을 사용하면 NewsList 에서 대기 중 상태관리와 useEffect 설정을 직접 하지 않아도 되므로 코드가 훨씬 간결해짐

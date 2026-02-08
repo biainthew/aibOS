@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -36,8 +37,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```css
 *{margin: 0; padding: 0;}
 .section{position: relative; width: 100%; color: #fff; text-align: center; font-weight: 600; text-transform: uppercase; font-size: 100px; line-height: 900px; height: 100vh;}
@@ -51,8 +54,10 @@ excerpt_separator: ""
 #section8{background: rgb(236, 159, 255);}
 #section9{background: rgb(255, 189, 217);}
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 let wheelDelta = 0; //휠 이벤트 발생 시 반환값 확인 변수
 let browser = 0; //파이어폭스인지 브라우저 판별하기 위해
@@ -93,4 +98,5 @@ $('.section').each(function(index){
     })
 });
 ```
+{% endraw %}
 

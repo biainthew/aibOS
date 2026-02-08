@@ -15,11 +15,13 @@ excerpt_separator: ""
 Object 자료형과 똑같이 key, value 형태로 자료를 저장할 수 있는 자료형임
 
 
+{% raw %}
 ```javascript
 let person = new Map();
 person.set('name', 'Kim');
 person.set('age', 20);
 ```
+{% endraw %}
 
 
 이렇게 만들고 저장할 수 있음
@@ -40,11 +42,13 @@ person.set('age', 20);
 ### 그래서 Map 자료형은 key, value 값에 모든 자료를 집어넣을 수 있음
 
 
+{% raw %}
 ```javascript
 let person = new Map();
 person.set([1,2,3], 'Kim');
 person.set('age', 20);
 ```
+{% endraw %}
 
 
 자료의 이름으로 array 도 되고 object도 됨
@@ -56,6 +60,7 @@ person.set('age', 20);
 ### Map 다루는 법
 
 
+{% raw %}
 ```javascript
 let person = new Map();
 person.set('age', 20);
@@ -75,6 +80,7 @@ let person = new Map([
 	['name', 'Kim']
 ])
 ```
+{% endraw %}
 
 
 이렇게 다룰 수 있고 자주 쓰지 않는다고 함
@@ -86,9 +92,11 @@ let person = new Map([
 array 같은 곳에 자료를 저장할 때 자료가  천만개 1억개 이상으로 많으면 Hash Map, Hash Table 이라는 걸 사용함 왜냐면 1억개 자료가 저장된 array 에서 원하는 것만 쏙 뽑고 싶으면 반복문을 돌리든지 해서 1억개를 전부 들춰봐야하니까
 
 
+{% raw %}
 ```javascript
 let array = [1,5,34,67,43,2,213,8]
 ```
+{% endraw %}
 
 
 이런 자료에서 2라는 자료가 어디에 있는지 찾고싶다면 ?
@@ -129,10 +137,12 @@ Map 자료형을 사용함
 자료를 일렬로 쭉 저장할 수 있음
 
 
+{% raw %}
 ```javascript
 let 출석부2 = new Set(['john', 'tom', 'andy', 'tom']);
 console.log(출석부2);
 ```
+{% endraw %}
 
 
 출력해보면 중괄호로 표현이 됨
@@ -147,6 +157,7 @@ console.log(출석부2);
 ### Set 자료형 다루기
 
 
+{% raw %}
 ```javascript
 let 출석부2 = new Set(['john', 'tom', 'andy', 'tom']);
 
@@ -154,6 +165,7 @@ let 출석부2 = new Set(['john', 'tom', 'andy', 'tom']);
 출석부2.has('tom'); //자료 있는지 확인
 출석부2.size; //자료 몇개인지
 ```
+{% endraw %}
 
 
 반복문도 가능 forEach 혹은 for of 반복문 사용
@@ -168,11 +180,13 @@ Map 보다는 많이 씀
 왜냐면 array 를 Set 으로 바꾸는게 매우 쉽기 때문
 
 
+{% raw %}
 ```javascript
 let 출석부 = [ 'john' , 'tom', 'andy', 'tom' ];
 let 출석부2 = new Set(출석부); //Array 를 Set 으로 바꾸기
 출석부 = [...출석부2]; //Set 을 Array 로 바꾸기
 ```
+{% endraw %}
 
 
 Array → Set → Array 하면 중복 제거됨 개꿀

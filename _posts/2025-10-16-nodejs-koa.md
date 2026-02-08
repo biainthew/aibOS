@@ -31,6 +31,7 @@ excerpt_separator: ""
 ### 🍏 Koa 기본 사용법 🍏
 
 
+{% raw %}
 ```javascript
 const Koa = require('koa');
 const app = new Koa();
@@ -43,6 +44,7 @@ app.listen(4000, () => {
     console.log('Listening to port 4000');
 });
 ```
+{% endraw %}
 
 
 🥬 서버를 포트 4000 번으로 열고 접속하면 hello world 를 반환하도록 설정

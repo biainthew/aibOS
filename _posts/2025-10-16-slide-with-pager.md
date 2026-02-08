@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 let slideUl = $('.slideUl');
 let slideLi = $('.slideUl>li'); //움직이는 li
@@ -109,8 +110,10 @@ pagerBtn.click(function(){
     }
 })
 ```
+{% endraw %}
 
 
+{% raw %}
 ```css
 *{margin: 0; padding: 0}
 ul{list-style: none}
@@ -136,8 +139,10 @@ position: absolute;
 .slide .pagerBtn .on{background: rgba(0,0,0,1);}
 .slide .pagerBtn li a{display: block;}
 ```
+{% endraw %}
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -173,6 +178,7 @@ position: absolute;
 </body>
 </html>
 ```
+{% endraw %}
 
 
 👉🏻 움직이는 li prev 를 0 에서 -100% 로 보내고 i++ next 를 100% 에서 0 으로 보내기

@@ -23,6 +23,7 @@ excerpt_separator: ""
 ## ✔️ `Context API` 사용법 익히기
 
 
+{% raw %}
 ```javascript
 import { createContext } from 'react';
 
@@ -30,11 +31,13 @@ const ColorContext = createContext({ color: 'black' });
 
 export default ColorContext;
 ```
+{% endraw %}
 
 
 🌀 새 Context 를 만들 때는 `createContext` 함수를 사용 / 파라미터에는 해당 Context 의 기본 상태 지정
 
 
+{% raw %}
 ```javascript
 import ColorContext from '../contexts/color';
 
@@ -43,11 +46,11 @@ const ColorBox = () => {
         <ColorContext.Consumer>
             {(value) => (
                 <div
-                    style={% raw %}{{{% endraw %}
+                    style={{
                         width: '64px',
                         height: '64px',
                         background: value.color,
-                    {% raw %}}}{% endraw %}
+                    }}
                 ></div>
             )}
         </ColorContext.Consumer>
@@ -56,6 +59,7 @@ const ColorBox = () => {
 
 export default ColorBox;
 ```
+{% endraw %}
 
 
 🌀 `Consumer` 사이에 중괄호를 열어 그 안에 함수를 넣어줌 ➡️ Function as a child , Render Props
@@ -64,6 +68,7 @@ export default ColorBox;
 ### ✨ Render Props 예제
 
 
+{% raw %}
 ```javascript
 const RenderPropsSample = ({children}) ⇒ {
     return <div>결과: {children(5)}</div>;
@@ -76,17 +81,19 @@ export default RenderPropsSample;
 
 RenderPropsSample 에게 children props 로 파라미터에 2 를 곱해서 반환하는 함수를 전달하면 해당 컴포넌트에서는 이 함수에 5를 인자로 넣어서 “결과: 10” 을 렌더링
 ```
+{% endraw %}
 
 
 ### ✔️ `Provider`
 
 
+{% raw %}
 ```javascript
 import ColorBox from './components/ColorBlack';
 import ColorContext from './contexts/color';
 const App = () => {
     return (
-        <ColorContext.Provider value={% raw %}{{{% endraw %} color: 'red' {% raw %}}}{% endraw %}>
+        <ColorContext.Provider value={{ color: 'red' }}>
             <div>
                 <ColorBox />
             </div>
@@ -95,6 +102,7 @@ const App = () => {
 };
 export default App;
 ```
+{% endraw %}
 
 
 🌀 `Provider` 를 사용하면 Context 의 value 를 변경할 수 있음
@@ -106,6 +114,7 @@ export default App;
 ### ✔️ 동적 Context 사용하기
 
 
+{% raw %}
 ```javascript
 import { createContext, useState } from 'react';
 
@@ -136,6 +145,7 @@ export { ColorProvider, ColorConsumer };
 
 export default ColorContext;
 ```
+{% endraw %}
 
 
 🌀 Provider 의 value 에 상태는 `state` 로 업데이트 함수는 `actions` 로 묶어서 전달
@@ -144,6 +154,7 @@ export default ColorContext;
 🌀 `createContext` 를 사용할 때 기본값은 실제 Provider 의 value 에 넣는 객체의 형태와 일치시켜 주는것이 좋음 ⇒ 구성 파악하기 쉽고 실수로 Provider 를 사용하지 않았을 때 리액트 어플리케이션에서 에러 발생 x
 
 
+{% raw %}
 ```javascript
 import ColorBox from './components/ColorBox';
 
@@ -164,8 +175,10 @@ const App = () => {
 };
 export default App;
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import { ColorConsumer } from '../contexts/color';
 
@@ -177,21 +190,21 @@ const ColorBox = () => {
             {(value) => (
                 <>
                     <div
-                        style={% raw %}{{{% endraw %}
+                        style={{
                             width: '64px',
                             height: '64px',
                             
 background: value.state.color
 ,
-                        {% raw %}}}{% endraw %}
+                        }}
                     ></div>
                     
 <div
-                        style={% raw %}{{{% endraw %}
+                        style={{
                             width: '32px',
                             height: '32px',
                             background: value.state.subcolor,
-                        {% raw %}}}{% endraw %}
+                        }}
                     ></div>
 
                 </>
@@ -204,38 +217,42 @@ background: value.state.color
 
 export default ColorBox;
 ```
+{% endraw %}
 
 
 🌀 위 코드에서 객체 비구조화 할당 문법을 사용하면 👇🏻
 
 
+{% raw %}
 ```javascript
 //value 조회 안 해도 됨
 
 {({state}) => (
                 <>
                     <div
-                        style={% raw %}{{{% endraw %}
+                        style={{
                             width: '64px',
                             height: '64px',
                             background: state.color,
-                        {% raw %}}}{% endraw %}
+                        }}
                     ></div>
                     <div
-                        style={% raw %}{{{% endraw %}
+                        style={{
                             width: '32px',
                             height: '32px',
                             background: state.subcolor,
-                        {% raw %}}}{% endraw %}
+                        }}
                     ></div>
                 </>
             )}
 ```
+{% endraw %}
 
 
 ### ✔️ 색상 선택 컴포넌트 만들기
 
 
+{% raw %}
 ```javascript
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
@@ -243,16 +260,16 @@ const SelectColors = () => {
     return (
         <div>
             <h2>색상을 선택하세요.</h2>
-            <div style={% raw %}{{{% endraw %} display: 'flex' {% raw %}}}{% endraw %}>
+            <div style={{ display: 'flex' }}>
                 {colors.map((color) => (
                     <div
                         key={color}
-                        style={% raw %}{{{% endraw %}
+                        style={{
                             background: color,
                             width: '24px',
                             height: '24px',
                             cursor: 'pointer',
-                        {% raw %}}}{% endraw %}
+                        }}
                     ></div>
                 ))}
             </div>
@@ -263,11 +280,13 @@ const SelectColors = () => {
 
 export default SelectColors;
 ```
+{% endraw %}
 
 
 🌀 Context 의 action 에 넣어 준 함수를 호출하는 컴포넌트
 
 
+{% raw %}
 ```javascript
 import { ColorConsumer } from '../contexts/color';
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
@@ -278,21 +297,21 @@ const SelectColors = () => {
             <h2>색상을 선택하세요.</h2>
             <ColorConsumer>
                 {({ actions }) => (
-                    <div style={% raw %}{{{% endraw %} display: 'flex' {% raw %}}}{% endraw %}>
+                    <div style={{ display: 'flex' }}>
                         {colors.map((color) => (
                             <div
                                 key={color}
-                                style={% raw %}{{{% endraw %}
+                                style={{
                                     background: color,
                                     width: '24px',
                                     height: '24px',
                                     cursor: 'pointer',
-                                {% raw %}}}{% endraw %}
+                                }}
                                 onClick={() => actions.setColor(color)}
                                 onContextMenu={(e) => {
                                     e.preventDefault();
                                     actions.setSubcolor(color);
-                                {% raw %}}}{% endraw %}
+                                }}
                             ></div>
                         ))}
                     </div>
@@ -305,6 +324,7 @@ const SelectColors = () => {
 
 export default SelectColors;
 ```
+{% endraw %}
 
 
 🌀 마우스 왼쪽 버튼을 클릭하면 큰 정사각형, 오른쪽은 작은 정사각형의 색 변경
@@ -322,6 +342,7 @@ export default SelectColors;
 ### ✔️ `useContext` 사용하기
 
 
+{% raw %}
 ```javascript
 import { useContext } from 'react';
 import ColorContext from '../contexts/color';
@@ -331,18 +352,18 @@ const ColorBox = () => {
     return (
         <>
             <div
-                style={% raw %}{{{% endraw %}
+                style={{
                     width: '64px',
                     height: '64px',
                     background: state.color,
-                {% raw %}}}{% endraw %}
+                }}
             />
             <div
-                style={% raw %}{{{% endraw %}
+                style={{
                     width: '32px',
                     height: '32px',
                     background: state.subcolor,
-                {% raw %}}}{% endraw %}
+                }}
             />
         </>
     );
@@ -350,6 +371,7 @@ const ColorBox = () => {
 
 export default ColorBox;
 ```
+{% endraw %}
 
 
 🌀 함수 컴포넌트에서 Context 를 편하게 사용 가능

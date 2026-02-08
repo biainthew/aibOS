@@ -29,6 +29,7 @@ excerpt_separator: ""
 👉🏻 type 이 필수는 아님 / 객체가 아니라 문자열이나 숫자여도 됨
 
 
+{% raw %}
 ```javascript
 import { useReducer } from "react";
 
@@ -58,6 +59,7 @@ const Counter = () => {
 
 export default Counter;
 ```
+{% endraw %}
 
 
 🌀 useReducer 의 첫 번째 파라미터에는 리듀서 함수를 넣고 두번째 파라미터에는 해당 리듀서의 기본값을 넣어줌 / state(현재 가리키고 있는 상태) 값과 dispatch(액션을 발생) 함수를 받아옴 / dispatch(action) 과 같은 형태로 함수 안에 파라미터로 액션 값을 넣어 주면 리듀서 함수가 호출되는 구조
@@ -66,6 +68,7 @@ export default Counter;
 🌀 useReducer 의 가장 큰 장점은 컴포넌트 업데이트 로직을 컴포넌트 바깥으로 빼낼 수 있다는 것
 
 
+{% raw %}
 ```javascript
 import { useReducer } from "react";
 
@@ -109,6 +112,7 @@ const Info = () => {
 
 export default Info;
 ```
+{% endraw %}
 
 
 🌀 액션에 [e.target](http://e.target/) 값 을 사용하여 깔끔하게 코드 정리

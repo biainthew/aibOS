@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 let newScr = $(window).scrollTop();
 let oldScr = newScr;
@@ -36,8 +37,10 @@ $(window).scroll(function(){
     oldScr=newScr;
 })
 ```
+{% endraw %}
 
 
+{% raw %}
 ```scss
 @keyframes headerParallaxUp {
     0%{transform: translateY(0);}
@@ -52,6 +55,7 @@ $(window).scroll(function(){
     100%{transform: translateY(0); height: 100rem;}
 }
 ```
+{% endraw %}
 
 
 스크롤을 내리면 header 가 사라지고 올리면 나타나는 animation

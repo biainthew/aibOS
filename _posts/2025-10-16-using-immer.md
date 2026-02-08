@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 import { useRef, useCallback, useState } from "react";
 
@@ -100,6 +101,7 @@ const App = () => {
 
 export default App;
 ```
+{% endraw %}
 
 
 🌀 아이디 / 이름을 입력하면 하단 리스트에 추가되고 리스트 항목을 클릭하면 삭제되는 컴포넌트
@@ -164,6 +166,7 @@ export default App;
 👉🏻 좀 더 복잡한 데이터를 불변성을 유지하며 업데이트 하는 예시
 
 
+{% raw %}
 ```javascript
 import { useRef, useCallback, useState } from "react";
 import produce from "immer";
@@ -262,6 +265,7 @@ const App = () => {
 
 export default App;
 ```
+{% endraw %}
 
 
 🌀 immer 를 적용해서 더 깔끔해진 코드
@@ -305,6 +309,7 @@ export default App;
 👉🏻 immer 의 속성과 useState 의 함수형 업데이트를 함께 활용하면 코드를 더욱 깔끔하게 만들 수 있음
 
 
+{% raw %}
 ```javascript
 setData(
         produce((draft) => {
@@ -312,6 +317,7 @@ setData(
         })
       );
 ```
+{% endraw %}
 
 
 🌀 이런식으로 produce 함수의 파라미터를 함수 형태로 사용하니 더 깔끔해 졌다고 한다

@@ -27,6 +27,7 @@ ReactDOM.render를 리액트 v18부터 사용하지 않기 때문에 나타나�
 👇🏻 해결 방법
 
 
+{% raw %}
 ```javascript
 import React from 'react';
 import * as ReactDOM from 'react-dom/client';
@@ -37,6 +38,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 reportWebVitals();
 ```
+{% endraw %}
 
 
 위의 코드를 붙여넣기 하면 에러가 사라짐

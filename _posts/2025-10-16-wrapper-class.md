@@ -17,8 +17,10 @@ excerpt_separator: ""
 2. 기본 데이터 타입과의 변환
     1. 예를 들어 Interger 클래스는 문자열을 정수로 변환하는 parseInt 메서드를 제공한다
 
-        ```java
+        {% raw %}
+```java
         String numberString = "123";
         int number = Integer.parseInt(numberString); // 문자열을 int로 변환
         ```
+{% endraw %}
 

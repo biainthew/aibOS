@@ -14,11 +14,14 @@ excerpt_separator: ""
 ### 🫐 redux-thunk 코드 준비하기 🫐
 
 
+{% raw %}
 ```javascript
 npm add redux react-redux redux-thunk axios
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import axios from "axios";
 
@@ -80,6 +83,7 @@ function users(state = initialState, action) {
 }
 export default users;
 ```
+{% endraw %}
 
 
 💎 이 모듈에서는 JSONPlaceholder 에서 제공하는 API 를 호출하여 테스트용 데이터를 조회함
@@ -88,6 +92,7 @@ export default users;
 💎 getUsers 라는 thunk 함수를 만들고 이와 관련된 액션들을 사용하여 상태 관리를 해주고 있음 / 모듈의 상태에는 loading 과 error 이라는 객체가 들어있는데 로딩 상태와 에러 상태를 객체로 만든 이유는 추후 redux-saga 를 사용한 서버 사이드 렌더링 방법을 연습할 때 단 하나의 사용자 정보를 가져오는 다른 API 를 호출할 것이기 때문
 
 
+{% raw %}
 ```javascript
 import { combineReducers } from "redux";
 import users from "./users";
@@ -95,8 +100,10 @@ import users from "./users";
 const rootReducer = combineReducers({ users });
 export default rootReducer;
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -134,6 +141,7 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 ```
+{% endraw %}
 
 
 💎 Provider 컴포넌트를 사용하여 프로젝트에 리덕스 적용
@@ -142,6 +150,7 @@ reportWebVitals();
 ### 🫐 Users, UsersContainer 컴포넌트 준비하기 🫐
 
 
+{% raw %}
 ```javascript
 import { Link } from "react-router-dom";
 
@@ -162,8 +171,10 @@ const Users = ({ users }) => {
 
 export default Users;
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import { useEffect } from "react";
 import Users from "../components/Users";
@@ -182,6 +193,7 @@ const UsersContainer = () => {
 
 export default UsersContainer
 ```
+{% endraw %}
 
 
 💎 서버사이드렌더링을 할 때는 이미 있는 정보를 재요청 하지 않게 처리하는 작업이 중요
@@ -190,6 +202,7 @@ export default UsersContainer
 [💎 ](https://juhi.tistory.com/23)[`useSelector`](https://juhi.tistory.com/23)[ ](https://juhi.tistory.com/23)[`useDispatch`](https://juhi.tistory.com/23)[ : useState 에 state 와 setState 같은 느낌](https://juhi.tistory.com/23)
 
 
+{% raw %}
 ```javascript
 import UsersContainer from "../containers/UsersContainer";
 
@@ -199,8 +212,10 @@ const UsersPage = () => {
 
 export default UsersPage;
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import React from "react";
 import { Route, Routes } from "react-router-dom";
@@ -229,11 +244,13 @@ const App = () => {
 
 export default App;
 ```
+{% endraw %}
 
 
 💎 컴포넌트를 보여줄 페이지 컴포넌트 만들고 라우트 설정
 
 
+{% raw %}
 ```javascript
 import { Link } from "react-router-dom";
 const Menu = () => {
@@ -255,6 +272,7 @@ const Menu = () => {
 };
 export default Menu;
 ```
+{% endraw %}
 
 
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-149d5c8d9668.png)
@@ -270,6 +288,7 @@ export default Menu;
 이 작업을 `PreloadContext` 를 만들고 이를 사용하는 `Preloader 컴포넌트`를 만들어 처리할 예정
 
 
+{% raw %}
 ```javascript
 import { createContext, useContext } from "react";
 
@@ -290,12 +309,14 @@ export const Preloader = ({ resolve }) => {
   return null;
 };
 ```
+{% endraw %}
 
 
 💎 `PreloadContext` 는 서버 사이드 렌더링을 하는 과정에서 처리해야 할 작업들을 실행하고 기다려야 하는 프로미스가 있으면 프로미스 수집함 그 뒤에 수집된 프로미스들이 끝나고 재렌더링하면 데이터가 채워진 상태로 컴포넌트들이 나타남
 `Preloader` 컴포넌트는 `resolve` 라는 함수를 props 로 받아오고 컴포넌트가 렌더링 될 때 서버환경에서만 resolve 함수를 호출
 
 
+{% raw %}
 ```javascript
 import { useEffect } from "react";
 import Users from "../components/Users";
@@ -320,4 +341,5 @@ const UsersContainer = () => {
 
 export default UsersContainer;
 ```
+{% endraw %}
 

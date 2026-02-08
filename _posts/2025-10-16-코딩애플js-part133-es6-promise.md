@@ -15,6 +15,7 @@ excerpt_separator: ""
 ### Promise 의 생김새
 
 
+{% raw %}
 ```javascript
 let 프로미스 = new Promise();
 프로미스.then(function(){
@@ -23,6 +24,7 @@ let 프로미스 = new Promise();
 
 });
 ```
+{% endraw %}
 
 
 : new Promise() 문법으로 프로미스라는 변수 오브젝트를 하나 생성하면 제작 끝
@@ -48,6 +50,7 @@ let 프로미스 = new Promise();
 : 성공 실패 판정기계
 
 
+{% raw %}
 ```javascript
 let 프로미스 = new Promise(function(성공, 실패){
 	성공();
@@ -58,6 +61,7 @@ let 프로미스 = new Promise(function(성공, 실패){
 
 })
 ```
+{% endraw %}
 
 
 : 성공() 이라고 첫째 파라미터를 함수형태로 작성하면 성공판정이 됨
@@ -67,6 +71,7 @@ let 프로미스 = new Promise(function(성공, 실패){
 ### 1. 힘든 수학연산 성공 후에 특정 코드를 실행하려면 ?
 
 
+{% raw %}
 ```javascript
 let 프로미스 = new Promise(function(성공, 실패){
 	let 어려운연산 = 1+1;
@@ -79,6 +84,7 @@ let 프로미스 = new Promise(function(성공, 실패){
 
 })
 ```
+{% endraw %}
 
 
 프로미스 내의 1+1 이라는 어려운 수학연산이 완료되면 성공 판정을 내리며 성공시 then 내의 코드를 실행해줌
@@ -87,6 +93,7 @@ let 프로미스 = new Promise(function(성공, 실패){
 ### 연산 결과를 then 안에서 활용하고싶으면 성공() 함수 파람 안에 넣어주면 됨
 
 
+{% raw %}
 ```javascript
 let 프로미스 = new Promise(function(){
 	let 어려운연산 = 1+1;
@@ -97,11 +104,13 @@ let 프로미스 = new Promise(function(){
 	console.log('연산 성공' + 결과)
 }).
 ```
+{% endraw %}
 
 
 ### 2. 1초 대기 성공 후에 특정 코드 실행하기
 
 
+{% raw %}
 ```javascript
 var 프로미스 = new Promise(function(성공, 실패){
   setTimeout(function(){
@@ -115,6 +124,7 @@ var 프로미스 = new Promise(function(성공, 실패){
   console.log('실패했습니다')
 });
 ```
+{% endraw %}
 
 
 ### Promise 의 몇가지 특징

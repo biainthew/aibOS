@@ -18,6 +18,7 @@ excerpt_separator: ""
 👇🏻 오류 코드
 
 
+{% raw %}
 ```javascript
 animateSpan.mouseout(function(){
     setTimeout(function(){
@@ -26,6 +27,7 @@ animateSpan.mouseout(function(){
     },1000)
 })
 ```
+{% endraw %}
 
 
 $(this)를 console 에 찍어보니 window 가 나왔다
@@ -37,6 +39,7 @@ $(this)를 console 에 찍어보니 window 가 나왔다
 👇🏻 해결 방법
 
 
+{% raw %}
 ```javascript
 animateSpan.mouseout(function(){
     
@@ -49,6 +52,7 @@ _this
     },1000)
 })
 ```
+{% endraw %}
 
 
 $(this) 를 인지하지 못해서 생긴 문제이니 setTimeout 밖에서 $(this) 를 변수에 저장하고 안에 그 변수를 넣어주면 해결 !

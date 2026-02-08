@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```xml
 <if test="cntrDcdList != null and cntrDcdList.size() > 0">
     AND SICTQ.CNTR_DCD IN
@@ -17,6 +18,7 @@ excerpt_separator: ""
     </foreach>
 </if>
 ```
+{% endraw %}
 
 
 `collection="cntrDcdList”`

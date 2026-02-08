@@ -39,9 +39,11 @@ excerpt_separator: ""
 3. **Table 레벨** : 테이블 내 기본값
 4. **Column 레벨** : 특정 컬럼에만 별도 적용
 
+{% raw %}
 ```sql
 SHOW VARIABLES LIKE 'collation%';
 ```
+{% endraw %}
 
 1. **collation_server**
     1. MYSQL 서버의 기본(Global) 콜레이션

@@ -12,6 +12,7 @@ excerpt_separator: ""
 ### 🎀 스토어 만들기
 
 
+{% raw %}
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -29,11 +30,13 @@ root.render(
     </React.StrictMode>,
 );
 ```
+{% endraw %}
 
 
 ### 🎀 `Provider` 컴포넌트를 사용하여 프로젝트에 리덕스 적용하기
 
 
+{% raw %}
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -60,6 +63,7 @@ root.render(
     </React.StrictMode>,
 );
 ```
+{% endraw %}
 
 
 💓 store 를 props 로 전달해 주어야 함
@@ -71,12 +75,14 @@ root.render(
 ### 🌈 예시
 
 
+{% raw %}
 ```javascript
 const store = createStore(
   rootReducer, /* preloadedState */
   window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 ```
+{% endraw %}
 
 
 → 크롬 확장 프로그램으로 설치하여 사용 가능

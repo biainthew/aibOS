@@ -12,6 +12,7 @@ excerpt_separator: ""
 ### ✨ 예제
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -107,8 +108,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 let a = []; //전체공지 배열 (글 번호, 구분, 제목, 날짜)
 let b = []; //쇼핑공지
@@ -315,6 +318,7 @@ $.ajax({
     }
 });
 ```
+{% endraw %}
 
 
 ### ✔️ 문법

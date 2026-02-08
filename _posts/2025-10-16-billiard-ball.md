@@ -12,6 +12,7 @@ excerpt_separator: ""
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-89b74e620a3a.png)
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +48,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```plain text
 #ground{width: 500px; height: 700px; background: forestgreen; margin: 0 auto; border: 15px solid saddlebrown; position: relative;}
 #stick{width: 20px; height: 300px; left: 50%; bottom: -100px;  position: absolute; transform: translateX(-50%) ; background: burlywood; border-radius: 40% 40% 0 0 ;}
@@ -70,8 +73,10 @@ excerpt_separator: ""
 #ball14{background: rgb(87, 84, 84);top: 170px; left: calc(50% + 40px);}
 .ball#ball100{background: #fff; top: 480px;}
 ```
+{% endraw %}
 
 
+{% raw %}
 ```plain text
 $('#stick').animate({bottom:0},1000).animate({bottom:-100},1000)
 $('#ball100').animate({top:270},1000,'linear')
@@ -123,4 +128,5 @@ $('#ball13').delay(1000).animate({top:num12,left:num27},2000)
 $('#ball14').delay(1000).animate({top:num13,left:num28},2000)
 $('#ball15').delay(1000).animate({top:num14,left:num29},2000)
 ```
+{% endraw %}
 

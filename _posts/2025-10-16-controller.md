@@ -26,6 +26,7 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```java
 @RestController
 @RequestMapping("/users")
@@ -53,6 +54,7 @@ public class UserController {
     }
 }
 ```
+{% endraw %}
 
 
 ### 장점

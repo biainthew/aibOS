@@ -12,6 +12,7 @@ excerpt_separator: ""
 ### class 를 상속한 class 를 만들고 싶을 때 쓰는 extends
 
 
+{% raw %}
 ```javascript
 class 할아버지 {
 	constructor(name){
@@ -27,6 +28,7 @@ class 아버지 extends 할아버지 {
 	}
 }
 ```
+{% endraw %}
 
 
 ### super() 는 extends 로 상속중인 부모 class 의 contructor()
@@ -37,6 +39,7 @@ class 아버지 extends 할아버지 {
 ### 할아버지 메소드에 함수 추가하면 자식에서도 사용 가능
 
 
+{% raw %}
 ```javascript
 class 할아버지{
 	constructor(name){
@@ -57,11 +60,13 @@ class 아버지 extends 할아버지{
 
 var a = new 아버지('만수');
 ```
+{% endraw %}
 
 
 ### class 간에 함수를 상속하고 싶을 때 ?
 
 
+{% raw %}
 ```javascript
 class 할아버지{
   constructor(name){
@@ -86,6 +91,7 @@ class 아버지 extends 할아버지{
 
 var a = new 아버지('만수');
 ```
+{% endraw %}
 
 
 여기서의 super 는 **부모 class 의 prototype**

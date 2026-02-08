@@ -24,6 +24,7 @@ HTTP 요청의 헤더 정보를 메서드 파라미터로 받아오는 데 사�
 ### 예시
 
 
+{% raw %}
 ```java
 @GetMapping("/greet")
 public ResponseEntity<String> greetUser(@RequestHeader("User-Agent") String userAgent) {
@@ -31,4 +32,5 @@ public ResponseEntity<String> greetUser(@RequestHeader("User-Agent") String user
     return ResponseEntity.ok("User-Agent: " + userAgent);
 }
 ```
+{% endraw %}
 

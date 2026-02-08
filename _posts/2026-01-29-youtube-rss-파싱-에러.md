@@ -9,9 +9,11 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```java
 java.io.FileNotFoundException: https://www.youtube.com/feeds/videos.xml?channel_id=
 ```
+{% endraw %}
 
 
 ### 예상 원인
@@ -35,6 +37,7 @@ Rome 라이브러리의 `XmlReader(feedUrl)` 을 사용해서 유튜브 영상�
 ### 기존 코드
 
 
+{% raw %}
 ```java
 @Override
 public List<YoutubeDTO> selectYoutubeVideos(String rssUrl, int limit) {
@@ -67,11 +70,13 @@ public List<YoutubeDTO> selectYoutubeVideos(String rssUrl, int limit) {
     return videos;
 }
 ```
+{% endraw %}
 
 
 ### 수정된 코드
 
 
+{% raw %}
 ```java
 @Override
 public List<YoutubeDTO> selectYoutubeVideos(String rssUrl, int limit) {
@@ -116,6 +121,7 @@ public List<YoutubeDTO> selectYoutubeVideos(String rssUrl, int limit) {
     return videos;
 }
 ```
+{% endraw %}
 
 
 ### 이렇게 수정한 이유
@@ -145,6 +151,7 @@ XmlReader(URLConnection) : 직접 User-Agent 를 설정해서 보내면 유튜�
 ### 최종 수정 코드
 
 
+{% raw %}
 ```java
 private final Integer youtubeCacheExpirationMinutes = 60; // 유튜브 캐시만료 시간(분)
 
@@ -217,6 +224,7 @@ private final Cache<String, List<YoutubeDTO>> youtubeCache = Caffeine.newBuilder
         }
     }
 ```
+{% endraw %}
 
 
 **작동 원리**

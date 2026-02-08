@@ -18,6 +18,7 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```javascript
 let arr = [1, 2, 3, 4, 5];
 
@@ -32,6 +33,7 @@ let result = arr.filter((value, index, self) => {
 
 console.log(result); // [4, 5]
 ```
+{% endraw %}
 
 1. `value` : `arr` 배열의 각 숫자가 차례대로 `value`로 전달됨
 2. `index` : 배열에서 `arr[0]` 에 해당하는 요소는 `index`가 0
@@ -54,6 +56,7 @@ console.log(result); // [4, 5]
 ### 중복제거 예시
 
 
+{% raw %}
 ```javascript
 let combinedEl = [
     { elevatorno: 'A001', buldnm: 'Building 1' },
@@ -70,6 +73,7 @@ combinedEl = combinedEl.filter((value, index, self) =>
 
 console.log(combinedEl);
 ```
+{% endraw %}
 
 
 index 가 self.findIndex 결과인 것만 새로운 배열에 추가하는데
@@ -99,21 +103,25 @@ findIndex로 첫 번째 인덱스를 찾고 filter()는 현재 요소의 인덱�
 
 1. 배열에 짝수가 하나라도 있는지 확인
 
-    ```javascript
+    {% raw %}
+```javascript
     const numbers = [1, 2, 3, 4, 5];
     
     const hasEven = numbers.some(num => num % 2 === 0);
     
     console.log(hasEven); // true (배열에 짝수가 하나라도 있음)
     ```
+{% endraw %}
 
 2. 배열에 특정 값이 있는지 확인
 
-    ```javascript
+    {% raw %}
+```javascript
     const items = ['apple', 'banana', 'orange'];
     
     const hasBanana = items.some(item => item === 'banana');
     
     console.log(hasBanana); // true ('banana'가 배열에 있음)
     ```
+{% endraw %}
 
