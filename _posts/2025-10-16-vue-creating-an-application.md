@@ -18,6 +18,7 @@ Every Vue application starts by creating a new application instance with the `cr
 모든 뷰 어플리케이션은 `createApp` 함수를 사용하여 새로운 어플리케이션 인스턴스를 생성하는 것으로 시작합니다.
 
 
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 
@@ -25,6 +26,7 @@ const app = createApp({
 	/* root component options*/
 })
 ```
+{% endraw %}
 
 
 ### The Root Component / 루트 컴포넌트 (최상위 컴포넌트)
@@ -42,6 +44,7 @@ If you are using Single-File Components, we typically import the root component 
 만약 당신이 싱글 파일 컴포넌트를 사용한다면 우리는 주로 다른 파일에서 루트 컴포넌트를 가져옵니다.
 
 
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 //import the root component App from a single-file component
@@ -49,6 +52,7 @@ import App from './App.vue'
 
 const app = createApp(App)
 ```
+{% endraw %}
 
 
 While many examples in this guide only need a single component, most real applications are organized into a tree of nested, reusable components. For example, a Todo application’s component tree might look like this
@@ -57,6 +61,7 @@ While many examples in this guide only need a single component, most real applic
 이 가이드의 많은 예제들이 싱글 컴포넌트만 필요로 하는 반면 대부분의 실제 어플리케이션들은 중첩된, 재사용 가능한 컴포넌트 구조로 이루어져 있습니다. 예를 들어 Todo 앱의 컴포넌트 구조는 이렇게 생겼을 것입니다.
 
 
+{% raw %}
 ```javascript
 App (root component)
 ├─ TodoList
@@ -67,6 +72,7 @@ App (root component)
 ├─ TodoClearButton
 └─ TodoStatistics
 ```
+{% endraw %}
 
 
 In later sections of the guide, we will discuss how to define and compose multiple components together. Before that, we will focus on what happens inside a single component.
@@ -84,14 +90,18 @@ An application instance won’t render anything until its `.mount()` method is c
 어플리케이션 사례는 `.mount()` method 가 호출되기 전까지는 아무것도 렌더링하지 않을 것입니다. (아무 일도 일어나지 않을 것) 그것은 실제 돔 요소 혹은 셀렉터 문자열이 될 수 있는 “컨테이너” 독립변수를 필요로 합니다.
 
 
+{% raw %}
 ```html
 <div id="app"></div>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 app.mount('#app')
 ```
+{% endraw %}
 
 
 The content of the app’s root component will be rendered inside the container element. The container element itself is not considered part of the app.
@@ -115,13 +125,16 @@ When using Vue without a build step, we can write our root component’s templat
 빌드 단계를 거치지 않고 뷰를 사용할 때 우리는 마운트 컨테이너에 루트 컴포넌트의 템플릿을 직접 쓸 수 있습니다
 
 
+{% raw %}
 ```html
 <div id="app">
-	<button @click="count++">{% raw %}{{{% endraw %} count {% raw %}}}{% endraw %}</button>
+	<button @click="count++">{{ count }}</button>
 </div>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 
@@ -135,6 +148,7 @@ const app = createApp({
 
 app.mount('#app')
 ```
+{% endraw %}
 
 
 Vue will automatically use the container’s `innerHTML` as the template if the root component does not already have a `template` option.
@@ -152,11 +166,13 @@ The application instance exposes a `.config` object that allows us to configure 
 어플리케이션 인스턴스는 앱 레벨 옵션을 구성할 수 있게 해주는 `.config` 객체를 노출시킵니다. 예를 들어 모든 자손 컴포넌트들의 에러를 캡쳐하는 앱 레벨 에러 핸들러를 정의합니다
 
 
+{% raw %}
 ```javascript
 app.config.errorHandler = (err) => {
 	/* handle error */
 }
 ```
+{% endraw %}
 
 
 The application instance also provides a few methods for registering app-scoped assets. For example, registering a component
@@ -165,9 +181,11 @@ The application instance also provides a few methods for registering app-scoped 
 어플리케이션 인스턴스는 또한 컴포넌트 등록과 같은 앱 레벨 asset 을 등록하는 몇가지 method 를 제공합니다.
 
 
+{% raw %}
 ```javascript
 app.component('TodoDeleteButton', TodoDeleteButton)
 ```
+{% endraw %}
 
 
 This makes the TodoDeleteButton available for use anywhere in our app. We will discuss registration for components and other types of assets in later sections of the guide. You can also browse the full list of application instance APIs in its API reference.
@@ -191,6 +209,7 @@ You are not limited to a single application instance on the same page. The `crea
 당신은 같은 페이지에서 싱글 어플리케이션 인스턴스에만 국한되지 않습니다. (한 페이지에 여러 어플리케이션 인스턴스 가능) `createApp` API 는 다중 어플리케이션을 허용합니다. 그 구성과 글로벌 asset 에 대한 고유한 범위를 갖는 각각이 한 페이지에 공존하기 위해
 
 
+{% raw %}
 ```javascript
 const app1 = createApp({
 	/* ... */
@@ -202,6 +221,7 @@ const app2 = createApp({
 })
 app2.mount('#container-2')
 ```
+{% endraw %}
 
 
 If you are using Vue to enhance server-rendered HTML and only need Vue to control specific parts of a large page, avoid mounting a single Vue application instance on the entire page. Instead, create multiple small application instances and mount them on the elements they are responsible for.

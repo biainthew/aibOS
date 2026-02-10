@@ -12,6 +12,7 @@ excerpt_separator: ""
 ### ✨ 예제
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -34,8 +35,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 <script>
         function next(val, len, nextId){ //next 라는 이름의 함수 매개변수는 value 개수 다음에 올 선택자의 아이디
@@ -59,6 +62,7 @@ excerpt_separator: ""
         }
     </script>
 ```
+{% endraw %}
 
 
 ### ✔️ 메모

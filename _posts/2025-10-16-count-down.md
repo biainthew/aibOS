@@ -12,6 +12,7 @@ excerpt_separator: ""
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-ae7238359c28.png)
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -48,8 +49,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```css
 *{margin: 0; padding: 0; box-sizing: border-box;}
 body{background: url(https://cdn.pixabay.com/photo/2021/12/27/16/40/sylvester-6897648_960_720.jpg) no-repeat center center/cover; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;}
@@ -61,8 +64,10 @@ h1{font-size: 60px; margin: -80px 0 40px;}
 .time{display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 15px;}
 .time h2{margin: 0 0 5px;}
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 const days = document.getElementById('days')
 const hours = document.getElementById('hours')
@@ -99,4 +104,5 @@ setTimeout(() => {
     countdown.style.display='flex'
 },1000)
 ```
+{% endraw %}
 

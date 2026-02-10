@@ -27,6 +27,7 @@ HTTP요청의 본문에 담긴 데이터를 메서드의 파라미터로 변환�
 ### 예시
 
 
+{% raw %}
 ```java
 @PostMapping("/user")
 public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) {
@@ -34,4 +35,5 @@ public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) {
     return ResponseEntity.ok("User created");
 }
 ```
+{% endraw %}
 

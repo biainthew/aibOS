@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -29,6 +30,7 @@ class EventPractice extends Component {
 
 export default EventPractice;
 ```
+{% endraw %}
 
 
 🌀 e 는 이벤트 객체 , syntheticEvent
@@ -40,6 +42,7 @@ export default EventPractice;
 🌀 비동기적으로 이벤트 객체를 참조하려면 e.persist() 함수를 호출해야함
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -65,11 +68,13 @@ class EventPractice extends Component {
 
 export default EventPractice;
 ```
+{% endraw %}
 
 
 🌀 input 태그 다루기
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -103,11 +108,13 @@ class EventPractice extends Component {
 
 export default EventPractice;
 ```
+{% endraw %}
 
 
 🌀 button 을 누르면 지금 입력한 값을 alert 창에 띄워주고 값을 공백으로 바꿔줌
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -144,6 +151,7 @@ class EventPractice extends Component {
 
 export default EventPractice;
 ```
+{% endraw %}
 
 
 🌀 좀 더 가독성 좋게 /  함수를 미리 만들어 전달하는 방법
@@ -152,6 +160,7 @@ export default EventPractice;
 🌀 함수가 호출될 때 this 는 호출부에 따라 결정됨, 클래스의 임의 메서드가 특정 요소의 이벤트로 등록되는 과정에서 메서드와 this 의 관계가 끊어져버림 , 임의 메서드가 이벤트로 등록되어도 this 가 컴포넌트 자신으로 제대로 가리키기 위해서는 메서드를 this 와 바인딩 하는 작업이 필요, 만약 하지 않는다면 undefined
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -183,11 +192,13 @@ class EventPractice extends Component {
 
 export default EventPractice;
 ```
+{% endraw %}
 
 
 🌀 constructor 지우고 babel 의 transform-class-properties 사용하여 화살표함수 형태로 정의
 
 
+{% raw %}
 ```javascript
 handleChange = (e)=>{
         this.setState({
@@ -195,11 +206,13 @@ handleChange = (e)=>{
         });
     }
 ```
+{% endraw %}
 
 
 🌀 객체 안에서 key 를 []로 감싸면 그 안에 넣은 레퍼런스가 가리키는 실제 값이 key 로 사용됨 ⇒ []안에 넣으면 걔의 값을 쓸 수 있음
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -238,11 +251,13 @@ class EventPractice extends Component {
 
 export default EventPractice;
 ```
+{% endraw %}
 
 
 🌀 keyPress 추가
 
 
+{% raw %}
 ```javascript
 import {useState} from 'react';
 
@@ -274,6 +289,7 @@ const EventPractice = () => {
 
 export default EventPractice;
 ```
+{% endraw %}
 
 
 🌀 function component 로 input 다루기

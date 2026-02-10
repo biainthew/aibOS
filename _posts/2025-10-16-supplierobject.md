@@ -21,10 +21,12 @@ excerpt_separator: ""
 예를들어 특정 타입의 값을 저장할 수 있는 변수나 필드를 정의할 때 사용됨
 
 
+{% raw %}
 ```java
 Object obj = "Hello, World!";
 System.out.println(obj); // 출력: Hello, World!
 ```
+{% endraw %}
 
 
 ### Supplier<Object>
@@ -39,10 +41,12 @@ System.out.println(obj); // 출력: Hello, World!
 특정 **값을 나중에 제공**하는 용도로 사용되며 즉시 값을 제공하지 않음 대신 `get()` 메서드를 호출할 때 값이 공급됨
 
 
+{% raw %}
 ```java
 Supplier<Object> supplier = () -> "Hello, World!"; // Supplier로 값 공급
 System.out.println(supplier.get()); // 출력: Hello, World!
 ```
+{% endraw %}
 
 
 ### 차이점
@@ -67,6 +71,7 @@ System.out.println(supplier.get()); // 출력: Hello, World!
 ### 왜 쓰냐 ?
 
 
+{% raw %}
 ```java
 // 예시. 비용이 많이 드는 연산을 지연 실행하기 위해 Supplier 사용
 Supplier<Object> supplier = () -> {
@@ -77,4 +82,5 @@ Supplier<Object> supplier = () -> {
 // 값이 실제로 필요할 때만 계산 시작
 Object result = supplier.get();
 ```
+{% endraw %}
 

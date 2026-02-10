@@ -15,6 +15,7 @@ excerpt_separator: ""
 클래스가 필요로 하는 의존 객체를 직접 생성하지 않고 외부에서 전달받아 사용하는 방식
 
 
+{% raw %}
 ```java
 public class Service {
     private Repository repository;
@@ -24,11 +25,13 @@ public class Service {
     }
 }
 ```
+{% endraw %}
 
 
 위 코드에서는 Service 클래스가 Repository
 
 
+{% raw %}
 ```java
 public class Service {
     private Repository repository;
@@ -39,4 +42,5 @@ public class Service {
     }
 }
 ```
+{% endraw %}
 

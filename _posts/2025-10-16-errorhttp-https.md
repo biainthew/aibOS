@@ -27,9 +27,11 @@ https 보다 보안에 취약한 http 로는 연결해 줄 수 없다 이런 내
 👇🏻 해결 방법
 
 
+{% raw %}
 ```javascript
 .get('//api.kcisa.kr/openapi/service/rest/convergence2019/getConver11?serviceKey=51a64879-1354-44fe-a738-c8a05f7559d1&numOfRows=50')
 ```
+{% endraw %}
 
 
 api 앞부분의 http:// 를 그냥 //로 바꿔주면 끝 !

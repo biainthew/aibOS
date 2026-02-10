@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -58,8 +59,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```plain text
 *{margin: 0; padding: 0;}
 ul{list-style: none;}
@@ -71,8 +74,10 @@ ul{list-style: none;}
 #nav .text_image{text-align: center; padding: 10px 0;}
 #nav .text_image .on{display: none;}
 ```
+{% endraw %}
 
 
+{% raw %}
 ```plain text
 let menu=$('#nav li');
 //menu.hover(function(){},function(){});
@@ -137,4 +142,5 @@ menu.on({'mouseout':function(){
 }
 });
 ```
+{% endraw %}
 

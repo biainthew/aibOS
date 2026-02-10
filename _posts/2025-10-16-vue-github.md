@@ -12,12 +12,14 @@ excerpt_separator: ""
 ### 1) vue.config.js 파일 생성
 
 
+{% raw %}
 ```javascript
 module.exports = {
     outputDir: './docs',
     publicPath: '/repository name/'
 }
 ```
+{% endraw %}
 
 
 ### 2) npm run build

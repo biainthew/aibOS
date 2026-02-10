@@ -24,6 +24,7 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```java
 @GetMapping("/search")
 public ResponseEntity<List<UserDTO>> searchUsers(@RequestParam("name") String name) {
@@ -31,4 +32,5 @@ public ResponseEntity<List<UserDTO>> searchUsers(@RequestParam("name") String na
     return ResponseEntity.ok(userService.searchByName(name));
 }
 ```
+{% endraw %}
 

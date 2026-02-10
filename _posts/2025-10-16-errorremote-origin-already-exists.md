@@ -27,12 +27,14 @@ excerpt_separator: ""
 👇🏻 해결 방법
 
 
+{% raw %}
 ```css
 git remote remove origin
 git remote add origin 새로 연결할 깃 주소
 git remote -v
 git push origin master
 ```
+{% endraw %}
 
 
 remove 하고 새로운 깃 주소를 연결해주면 됨

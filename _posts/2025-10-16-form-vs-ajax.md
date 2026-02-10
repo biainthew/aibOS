@@ -32,6 +32,7 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```java
 <form action="/submit" method="POST">
     <input type="text" name="username" />
@@ -39,6 +40,7 @@ excerpt_separator: ""
     <button type="submit">Submit</button>
 </form>
 ```
+{% endraw %}
 
 
 ## AJAX

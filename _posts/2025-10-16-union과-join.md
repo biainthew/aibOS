@@ -31,6 +31,7 @@ excerpt_separator: ""
 | 사용 목적    | 동일한 구조의 데이터 결합           | 관련 데이터를 두 테이블에서 가져와 결합 |
 
 
+{% raw %}
 ```sql
 SELECT customer_id, customer_name, 'VIP' AS customer_type
 FROM vip_customers
@@ -38,11 +39,14 @@ UNION
 SELECT customer_id, customer_name, 'Regular' AS customer_type
 FROM regular_customers;
 ```
+{% endraw %}
 
 
+{% raw %}
 ```sql
 SELECT log_date, user_id, action FROM logs_january
 UNION ALL
 SELECT log_date, user_id, action FROM logs_february;
 ```
+{% endraw %}
 

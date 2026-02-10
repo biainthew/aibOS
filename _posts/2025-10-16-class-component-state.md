@@ -30,6 +30,7 @@ excerpt_separator: ""
 : props 를 바꾸려면 부모 컴포넌트에서 바꿔야 함
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -49,7 +50,7 @@ class Counter extends Component {
                 <button
                     onClick={() => {
                         this.setState({ number: number + 1 });
-                    {% raw %}}}{% endraw %}
+                    }}
                 >
                     +1
                 </button>
@@ -60,11 +61,13 @@ class Counter extends Component {
 
 export default Counter;
 ```
+{% endraw %}
 
 
 🌀 초깃값 설정 / 이벤트 설정
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -82,7 +85,7 @@ class Counter extends Component {
                 <button
                     onClick={() => {
                         this.setState({ number: number + 1 });
-                    {% raw %}}}{% endraw %}
+                    }}
                 >
                     +1
                 </button>
@@ -93,30 +96,35 @@ class Counter extends Component {
 
 export default Counter;
 ```
+{% endraw %}
 
 
 🌀 초깃값 설정2
 
 
+{% raw %}
 ```javascript
 onClick={() => {
                         this.setState({ number: number + 1 });
                         this.setState({ number: this.state.number + 1 });
-                    {% raw %}}}{% endraw %}
+                    }}
 ```
+{% endraw %}
 
 
 🌀 두 번 사용해도 숫자는 1씩 더해짐 / this.setstate 를 사용한다고 해서 state 값이 바로 바뀌지는 않기 때문
 
 
+{% raw %}
 ```javascript
 onClick={() => {
                         this.setState({ number: number + 1 });
                         this.setState((prevState) => {
                             return { number: prevState.number + 1 };
                         });
-                    {% raw %}}}{% endraw %}
+                    }}
 ```
+{% endraw %}
 
 
 🌀 위의 해결방법
@@ -131,13 +139,15 @@ onClick={() => {
 👉🏻 {} 를 없애주면 됨
 
 
+{% raw %}
 ```javascript
 onClick={() => {
                         this.setState({ number: number + 1 }, () => {
                             console.log('setState 가 호출되었습니다');
                         });
-                    {% raw %}}}{% endraw %}
+                    }}
 ```
+{% endraw %}
 
 
 🌀 setState 사용 후 특정 작업 하고 싶을 때
@@ -154,6 +164,7 @@ onClick={() => {
 > const [one, two] = array;`
 
 
+{% raw %}
 ```javascript
 import { useState } from 'react';
 
@@ -172,11 +183,13 @@ const Say = () => {
 
 export default Say;
 ```
+{% endraw %}
 
 
 🌀 useState 사용하기
 
 
+{% raw %}
 ```javascript
 import { useState } from 'react';
 
@@ -189,28 +202,28 @@ const Say = () => {
         <div>
             <button onClick={onClickEnter}>입장</button>
             <button onClick={onClickLeave}>퇴장</button>
-            <h1 style={% raw %}{{{% endraw %} color {% raw %}}}{% endraw %}>{message}</h1>
+            <h1 style={{ color }}>{message}</h1>
             <button
-                style={% raw %}{{{% endraw %} color: 'red' {% raw %}}}{% endraw %}
+                style={{ color: 'red' }}
                 onClick={() => {
                     setColor('red');
-                {% raw %}}}{% endraw %}
+                }}
             >
                 빨간색
             </button>
             <button
-                style={% raw %}{{{% endraw %} color: 'green' {% raw %}}}{% endraw %}
+                style={{ color: 'green' }}
                 onClick={() => {
                     setColor('green');
-                {% raw %}}}{% endraw %}
+                }}
             >
                 초록색
             </button>
             <button
-                style={% raw %}{{{% endraw %} color: 'blue' {% raw %}}}{% endraw %}
+                style={{ color: 'blue' }}
                 onClick={() => {
                     setColor('blue');
-                {% raw %}}}{% endraw %}
+                }}
             >
                 파란색
             </button>
@@ -220,6 +233,7 @@ const Say = () => {
 
 export default Say;
 ```
+{% endraw %}
 
 
 🌀 useState 여러번 사용하기

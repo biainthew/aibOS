@@ -15,6 +15,7 @@ excerpt_separator: ""
 - toValueType :  변환하려는 대상 타입(예. `Map.class`, `List.class`, 특정 DTO 클래스 등)
 - 입력된 객체를 지정된 타입으로 변환하여 반환
 
+{% raw %}
 ```java
 public class Example {
 	public static void main(String[] args) throws Exception {
@@ -55,6 +56,7 @@ class Person {
 	}
 }
 ```
+{% endraw %}
 
 - `convertValue()` 는 `Map<String, Object>` 와 같은 변환된 객체를 `Person` 클래스와 같은 DTO로 변환할 수 있음
 - `objectMapper.readValue()` 는 문자열 JSON을 바로 Java 객체로 변환하는 반면,

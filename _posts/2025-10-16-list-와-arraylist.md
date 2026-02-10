@@ -27,6 +27,7 @@ excerpt_separator: ""
 다양한 `List` 구현체를 변경하거나 교체하기 쉬움
 
 
+{% raw %}
 ```java
 List<String> list = new ArrayList<>();
 list.add("A");
@@ -35,6 +36,7 @@ list.add("B");
 // 나중에 LinkedList로 변경해도 코드 수정 불필요
 list = new LinkedList<>();
 ```
+{% endraw %}
 
 
 ### ArrayList
@@ -55,6 +57,7 @@ list = new LinkedList<>();
 동기화되지 않으므로 멀티 스레드 환경에서 안전하지 않음 동기화가 필요한 경우 `Collections.synchronizedList`를 사용해야 함
 
 
+{% raw %}
 ```java
 ArrayList<String> arrayList = new ArrayList<>();
 arrayList.add("A");
@@ -63,6 +66,7 @@ arrayList.add("B");
 // ArrayList만의 메서드 사용 가능 (List에는 없음)
 arrayList.ensureCapacity(50); // 용량을 미리 확장
 ```
+{% endraw %}
 
 
 ### ??? 결국 둘 다 배열인거 아니냐 ???

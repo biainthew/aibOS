@@ -36,10 +36,12 @@ excerpt_separator: ""
 : 내가 만든 array 에 toString() 이렇게 붙일 수 있는 이유는 부모 유전자가 가지고 있기 때문 (혹은 부모의 부모)
 
 
+{% raw %}
 ```javascript
 var arr = [1,2,3];
 var arr = new Array(1,2,3);
 ```
+{% endraw %}
 
 
 : Array 라는 기계로부터 자식을 하나 새로 뽑아달라는 뜻

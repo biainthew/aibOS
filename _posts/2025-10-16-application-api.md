@@ -18,9 +18,11 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```javascript
+    {% raw %}
+```javascript
     function createApp(rootComponent: Component, rootProps?: object): App
     ```
+{% endraw %}
 
 
     ### - Details
@@ -38,24 +40,28 @@ excerpt_separator: ""
     With inline root component :
 
 
-    ```javascript
+    {% raw %}
+```javascript
     import { createApp } from 'vue'
     
     const app = createApp({
     	// root component options
     })
     ```
+{% endraw %}
 
 
     With imported component :
 
 
-    ```javascript
+    {% raw %}
+```javascript
     import { createApp } from 'vue'
     import App from './App.vue'
     
     const app = createApp({App})
     ```
+{% endraw %}
 
     - See also : [**Guide - Creating a Vue Application**](https://vuejs.org/guide/essentials/application.html)
 
@@ -77,11 +83,13 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```javascript
+    {% raw %}
+```javascript
     interface App{
     	mount(rootContainer: Element | string): ComponentPublicInstance
     }
     ```
+{% endraw %}
 
 
     ### - Details
@@ -114,20 +122,24 @@ excerpt_separator: ""
     ### - Example
 
 
-    ```javascript
+    {% raw %}
+```javascript
     import { createApp } from 'vue'
     const app = createApp()
     
     app.mount('#app')
     ```
+{% endraw %}
 
 
     Can also mount to an actual DOM element:
 
 
-    ```javascript
+    {% raw %}
+```javascript
     app.mount(document.body.firstChild)
     ```
+{% endraw %}
 
 
 ## app.unmount()
@@ -142,11 +154,13 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```javascript
+    {% raw %}
+```javascript
     interface App {
     	unmount(): void
     }
     ```
+{% endraw %}
 
 
 ## app.provide()
@@ -161,11 +175,13 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```javascript
+    {% raw %}
+```javascript
     interface App {
     	provide<T>(key: InjectionKey<T> | symbol | string, value: T): this
     }
     ```
+{% endraw %}
 
 
     ### - Details
@@ -180,19 +196,22 @@ excerpt_separator: ""
     ### - Example
 
 
-    ```javascript
+    {% raw %}
+```javascript
     import { createApp } from 'vue'
     
     const app = createApp()
     
     app.provide('message', 'hello')
     ```
+{% endraw %}
 
 
     Inside a component in the application:
 
 
-    ```javascript
+    {% raw %}
+```javascript
     export default {
     	inject: ['message'],
     	created() {
@@ -200,6 +219,7 @@ excerpt_separator: ""
     	}
     }
     ```
+{% endraw %}
 
 
     ### - See also
@@ -219,18 +239,21 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```javascript
+    {% raw %}
+```javascript
     interface App {
     	component(name: string): Component | undefined
     	component(name: string, component: Component): this
     }
     ```
+{% endraw %}
 
 
     ### - Example
 
 
-    ```javascript
+    {% raw %}
+```javascript
     import { createApp } from 'vue'
     
     const app = createApp({})
@@ -243,6 +266,7 @@ excerpt_separator: ""
     //retrieve a registered component
     const MyComponent = app.component('my-component')
     ```
+{% endraw %}
 
 
     ### - See also
@@ -261,18 +285,21 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```typescript
+    {% raw %}
+```typescript
     interface App {
     	directive(name: string): Directive | undefined
     	directive(name: string, directive: Directive): this
     }
     ```
+{% endraw %}
 
 
     ### - Example
 
 
-    ```typescript
+    {% raw %}
+```typescript
     import { createApp } from 'vue'
     
     const app = createApp({
@@ -292,6 +319,7 @@ excerpt_separator: ""
     //retrieve a registered directive
     const myDirective = app.directive('my-directive')
     ```
+{% endraw %}
 
 
     ### - See also : [**Custom Directives**](https://vuejs.org/guide/reusability/custom-directives.html)
@@ -306,11 +334,13 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```typescript
+    {% raw %}
+```typescript
     interface App {
     	use(plugin: Plugin, ...options: any[]): this
     }
     ```
+{% endraw %}
 
 
     ### - Details
@@ -337,7 +367,8 @@ excerpt_separator: ""
     ### - Example
 
 
-    ```typescript
+    {% raw %}
+```typescript
     import { createApp } from 'vue'
     import MyPlugin from './plugins/MyPlugin'
     
@@ -347,6 +378,7 @@ excerpt_separator: ""
     
     app.use(MyPlugin)
     ```
+{% endraw %}
 
 
     ### - See also : [**Plugins**](https://vuejs.org/guide/reusability/plugins.html)
@@ -370,11 +402,13 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```typescript
+    {% raw %}
+```typescript
     interface App {
     	mixin(mixin: ComponentOptions): this
     }
     ```
+{% endraw %}
 
 
 ## app.version
@@ -389,11 +423,13 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```typescript
+    {% raw %}
+```typescript
     interface App {
     	version: string
     }
     ```
+{% endraw %}
 
 
     ### - Example
@@ -402,7 +438,8 @@ excerpt_separator: ""
     : Performing a version check inside a plugin
 
 
-    ```typescript
+    {% raw %}
+```typescript
     export default {
     	install(app) {
     		const version = Number(app.version.split('.')[0])
@@ -412,6 +449,7 @@ excerpt_separator: ""
     	}
     }
     ```
+{% endraw %}
 
 
     ### - See also : [**Global API - version**](https://vuejs.org/api/general.html#version)
@@ -426,13 +464,15 @@ excerpt_separator: ""
     모든 앱 인스턴스는 그 앱을 위한 환경설정을 포함하는  `config` 객체를 나타냅니다. 그 속성들을 앱에 마운트 하기 전에 수정할 수 있습니다.
 
 
-    ```typescript
+    {% raw %}
+```typescript
     import { createApp } from 'vue'
     
     const app = createApp()
     
     console.log(app.config)
     ```
+{% endraw %}
 
 
 ## app.config.errorHandler
@@ -447,7 +487,8 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```typescript
+    {% raw %}
+```typescript
     interface AppConfig {
     errorHandler?: (
     	error: unknown,
@@ -458,6 +499,7 @@ excerpt_separator: ""
     	} => void
     )
     ```
+{% endraw %}
 
 
     ### - Details
@@ -482,11 +524,13 @@ excerpt_separator: ""
     ### - Examples
 
 
-    ```typescript
+    {% raw %}
+```typescript
     app.config.errorHandler = (err, instance, info) => {
     	// handle error, e.g. report to a service
     }
     ```
+{% endraw %}
 
 
 ## app.config.warnHandler
@@ -501,7 +545,8 @@ excerpt_separator: ""
     ### - Type
 
 
-    ```typescript
+    {% raw %}
+```typescript
     interface AppConfig {
     	warnHandler?: (
     		msg: string,
@@ -510,6 +555,7 @@ excerpt_separator: ""
     	) => void
     }
     ```
+{% endraw %}
 
 
     ### - Details
@@ -535,11 +581,13 @@ excerpt_separator: ""
     ### - Examples
 
 
-    ```typescript
+    {% raw %}
+```typescript
     app.config.warnHandler = (msg, instance,trace) => {
     	// trace is the component hierarchy (계층구조) trace
     }
     ```
+{% endraw %}
 
 
 ## app.config.performance

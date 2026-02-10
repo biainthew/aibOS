@@ -13,15 +13,19 @@ excerpt_separator: ""
 
 1. 인라인 스타일 주기 - 따옴표
 
+{% raw %}
 ```javascript
 <div class="post-body" :style="'background-image: url('+post.postImage+')'"></div>
 ```
+{% endraw %}
 
 1. 인라인 스타일 주기 - 백틱
 
+{% raw %}
 ```javascript
 <div class="post-body" :style="{backgroundImage: `url(${post.postImage})`}"></div>
 ```
+{% endraw %}
 
 
 ## 서버 & 데이터
@@ -56,6 +60,7 @@ excerpt_separator: ""
 ~~: more 함수에 파라미터로 넣어야 하는 줄 알고 잠깐 삽질했다~~
 
 
+{% raw %}
 ```javascript
 methods: {
     more() {
@@ -69,11 +74,13 @@ methods: {
     },
 },
 ```
+{% endraw %}
 
 
 ### 탭 메뉴 만들기
 
 
+{% raw %}
 ```javascript
 <div v-if="step === 0">내용0</div>
 <div v-if="step === 1">내용1</div>
@@ -84,12 +91,14 @@ methods: {
 
 //data에 step : 0
 ```
+{% endraw %}
 
 - v-if 와 v-for 한번에 못 씀 / wrapper(div) 로 감싸야 함
 
 ### 서버 없이 이미지 업로드 하기
 
 
+{% raw %}
 ```javascript
 <input
     @change="upload"
@@ -100,6 +109,7 @@ methods: {
     class="inputfile"
 />
 ```
+{% endraw %}
 
 
 1) **FileReader()**
@@ -117,6 +127,7 @@ methods: {
 **BLOB** : binary 데이터를 다룰 때 이 object 에 담아서 다룸
 
 
+{% raw %}
 ```javascript
 upload(e) {
     let file = e.target.files;
@@ -126,6 +137,7 @@ upload(e) {
     this.step = 1;
 },
 ```
+{% endraw %}
 
 
 ### 글 발행이란 ?
@@ -140,11 +152,14 @@ upload(e) {
 **자식 컴포넌트**
 
 
+{% raw %}
 ```javascript
 <textarea class="write-box" @click="$emit('myText', myContent)">write!</textarea>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 data() {
     return {
@@ -157,19 +172,23 @@ methods: {
     },
 },
 ```
+{% endraw %}
 
 
 아니면
 
 
+{% raw %}
 ```javascript
 <textarea class="write-box" @input="$emit('myText', $event.target.value)">write!</textarea>
 ```
+{% endraw %}
 
 
 **부모 컴포넌트**
 
 
+{% raw %}
 ```javascript
 <Container
     :instadata="instadata"
@@ -178,6 +197,7 @@ methods: {
     @myText="myContent = $event"
 />
 ```
+{% endraw %}
 
 
 ## slot
@@ -192,34 +212,42 @@ methods: {
 : 여러개라면 props 가 나은 것 같음
 
 
+{% raw %}
 ```javascript
 <FilterBox
     :imageUrl="imageUrl"
     v-for="filter in filters"
     :key="filter"
     :class="filter"
->{% raw %}{{{% endraw %}filter{% raw %}}}{% endraw %}</FilterBox>
+>{{filter}}</FilterBox>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 <slot></slot>
 ```
+{% endraw %}
 
 
 ### slot 여러개 사용하기
 
 
+{% raw %}
 ```javascript
 <slot name="a"></slot>
 <slot name="b"></slot>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 <template v-slot:a>데이터1</template>
 <template v-slot:b>데이터2</template>
 ```
+{% endraw %}
 
 
 ### slot props
@@ -228,14 +256,18 @@ methods: {
 : 부모가 자식 컴포넌트에서 데이터 가져오고 싶을 때
 
 
+{% raw %}
 ```javascript
 <slot :msg="msg"/>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
-<template v-slot:default="작명"><span>{% raw %}{{{% endraw %}작명.msg{% raw %}}}{% endraw %}</span></template>
+<template v-slot:default="작명"><span>{{작명.msg}}</span></template>
 ```
+{% endraw %}
 
 
 ### mitt
@@ -244,6 +276,7 @@ methods: {
 : 먼 컴포넌트 사이에서 props 전달할 때 사용
 
 
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -254,6 +287,7 @@ app.config.globalProperties.emitter = emitter
 
 createApp(App).mount('#app')
 ```
+{% endraw %}
 
 
 ### mitt 로 데이터 전송하기
@@ -262,6 +296,7 @@ createApp(App).mount('#app')
 : 많이 쓰면 안됨 / vuex 써야됨
 
 
+{% raw %}
 ```javascript
 methods: {
     fire(){
@@ -269,8 +304,10 @@ methods: {
     }
 }
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 mounted() {
     this.emitter.on('작명', (data) => {
@@ -278,6 +315,7 @@ mounted() {
     });
 },
 ```
+{% endraw %}
 
 
 ## Vuex
@@ -292,6 +330,7 @@ mounted() {
 ### vuex 세팅
 
 
+{% raw %}
 ```javascript
 import { createStore } from 'vuex'
 
@@ -305,20 +344,25 @@ const store = createStore({
 
 export default store
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import store from './store.js'
 app.use(store).mount('#app')
 ```
+{% endraw %}
 
 
 ### 꺼내 쓰는 방법
 
 
+{% raw %}
 ```javascript
-{% raw %}{{{% endraw %} $store.state.name {% raw %}}}{% endraw %}
+{{ $store.state.name }}
 ```
+{% endraw %}
 
 
 ### 수정하는 방법 / 사실 이렇게 하면 안됨
@@ -327,14 +371,17 @@ app.use(store).mount('#app')
 : 직접 수정하는것은 안됨
 
 
+{% raw %}
 ```javascript
 @click=" $store.state.name = '박' "
 ```
+{% endraw %}
 
 
 : 미리 store.js 에 수정방법을 정의해두고 그 방법을 컴포넌트에서 소환해서 수정해야 함
 
 
+{% raw %}
 ```javascript
 mutations: {
         이름변경(state) {
@@ -342,9 +389,12 @@ mutations: {
         },
     },
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 @click="$store.commit('이름변경')"
 ```
+{% endraw %}
 

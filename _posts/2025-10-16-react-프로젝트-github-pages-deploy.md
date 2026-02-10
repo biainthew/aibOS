@@ -13,9 +13,11 @@ excerpt_separator: ""
 
 1. package.json 에 homepage 추가
 
+{% raw %}
 ```visual basic
 "homepage": "https://username.github.io/YOUR_REPO"
 ```
+{% endraw %}
 
 1. dist 폴더 내 내용을 root 디렉토리로 이동
 2. src, public 디렉토리 삭제

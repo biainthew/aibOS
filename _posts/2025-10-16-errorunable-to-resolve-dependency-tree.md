@@ -27,10 +27,12 @@ excerpt_separator: ""
 👇🏻 해결 방법
 
 
+{% raw %}
 ```javascript
 npm install --legacy-peer-deps
 npm install --force
 ```
+{% endraw %}
 
 
 둘 중 하나를 뒤에 붙여주면 된다

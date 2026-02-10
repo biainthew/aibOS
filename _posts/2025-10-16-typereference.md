@@ -49,6 +49,7 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```java
 import java.util.ArrayList;
 import java.util.List;
@@ -65,11 +66,13 @@ public class Example {
     }
 }
 ```
+{% endraw %}
 
 - `List` 에 `String` 과 `Integer` 를 섞어서 추가할 수 있음 (잘못된 타입이 들어갈 가능성 O)
 - 데이터를 꺼낼 때 `(String)` 으로 형 변환(캐스팅) 해야 함
 - 런타임에서 `ClassCastException` 이 발생할 위험이 있음
 
+{% raw %}
 ```java
 import java.util.ArrayList;
 import java.util.List;
@@ -85,11 +88,13 @@ public class Example {
     }
 }
 ```
+{% endraw %}
 
 - `List<String>` 을 사용하면 문자열만 저장 가능
 - 컴파일 시점에 타입을 체크해서 잘못된 타입이 들어가는 것을 방지
 - 데이터를 꺼낼 때 형 변환 필요 없음
 
+{% raw %}
 ```java
 // 제네릭 클래스를 만들 때 <T> 사용
 class Box<T> {
@@ -118,10 +123,12 @@ public class Example {
     }
 }
 ```
+{% endraw %}
 
 - 타입이 다르지만 동일한 `Box<T>` 클래스를 재사용 가능
 - 컴파일 시 타입 체크를 해주므로 안전성 증가
 
+{% raw %}
 ```java
 class Util {
     // 제네릭 메서드: <T> 선언 후 사용 가능
@@ -146,6 +153,7 @@ public class Example {
     }
 }
 ```
+{% endraw %}
 
 - printArray 는 어떤 타입의 배열이든 출력할 수 있음
 - String[], Integer[] 여러 타입을 지원 가능
@@ -154,11 +162,13 @@ public class Example {
 ### 강제 형 변환 (Explicit Casting)
 
 
+{% raw %}
 ```java
 Object obj = "Hello"; // Object 타입에 문자열 저장
 String str = (String) obj; // 강제 형 변환 (캐스팅)
 System.out.println(str); // Hello
 ```
+{% endraw %}
 
 - `Object` 타입의 변수 `obj` 에는 `“Hello”` 라는 `String` 값이 저장되어 있음
 - 하지만 `Object` 타입은 모든 타입을 담을 수 있기 때문에 다시 `String`으로 꺼낼 때 강제 형 변환이 필요
@@ -192,15 +202,18 @@ Java 에서는 제네릭 타입이 컴파일 시 제거(소거) 되기 때문에
 
 1. 메서드 정의
 
-    ```java
+    {% raw %}
+```java
     public void printMessage() {
     	System.out.println("Hello, World!");
     }
     ```
+{% endraw %}
 
 2. 생성자 정의
 
-    ```java
+    {% raw %}
+```java
     public class Person {
     	String name;
     	
@@ -210,10 +223,12 @@ Java 에서는 제네릭 타입이 컴파일 시 제거(소거) 되기 때문에
     	}
     }
     ```
+{% endraw %}
 
 3. 익명 클래스
 
-    ```java
+    {% raw %}
+```java
     Runnable task = new Runnable() {
     	@Override
     	public void run() {
@@ -221,6 +236,7 @@ Java 에서는 제네릭 타입이 컴파일 시 제거(소거) 되기 때문에
     	}
     }
     ```
+{% endraw %}
 
     - `new Runnable() {}` => 인터페이스 `Runnable`을 익명 클래스로 구현
     - `{}` 안에 `run()` 메서드를 정의하여 실행 내용을 작성

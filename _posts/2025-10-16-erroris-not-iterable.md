@@ -18,6 +18,7 @@ excerpt_separator: ""
 👇🏻 오류 코드
 
 
+{% raw %}
 ```javascript
 import {useState} from 'react';
 
@@ -59,6 +60,7 @@ const EventPractice = () => {
 
 export default EventPractice;
 ```
+{% endraw %}
 
 
 ![%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-01-24_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_6.01.24.png](/aibOS/public/images/posts/28e0a7f9-261d5023b0be.png)

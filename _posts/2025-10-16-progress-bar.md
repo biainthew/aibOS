@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -47,11 +48,13 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
 👉🏻 bar 한 개 일 때
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -115,6 +118,7 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
 👉🏻 bar 여러개 일 때

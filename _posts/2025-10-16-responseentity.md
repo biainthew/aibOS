@@ -52,32 +52,38 @@ ResponseEntity는 제네릭 클래스로 <T>는 응답의 본문에 담길 데�
 
 1. 상태 코드 설정
 
-    ```java
+    {% raw %}
+```java
     if (user == null) {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // 404 반환
     }
     ```
+{% endraw %}
 
 
     상태코드를 명시하지 않으면 `user`가 `null`일 때도 200 OK가 반환될 수 있음
 
 2. 헤더 설정
 
-    ```java
+    {% raw %}
+```java
     HttpHeaders headers = new HttpHeaders();
     headers.set("Custom-Header", "Value");
     return new ResponseEntity<>(user, headers, HttpStatus.OK);
     ```
+{% endraw %}
 
 3. 빌더 패턴 사용
 
-    ```java
+    {% raw %}
+```java
     return ResponseEntity.ok(user);  // 200 OK와 함께 응답
     
     //or
     
     return ResponseEntity.status(HttpStatus.CREATED).body(user);  // 201 Created와 함께 응답
     ```
+{% endraw %}
 
 
 ### 왜
@@ -116,6 +122,7 @@ ResponseEntity는 제네릭 클래스로 <T>는 응답의 본문에 담길 데�
 ### 예시
 
 
+{% raw %}
 ```java
 import org.springframework.http.ResponseEntity;
 
@@ -140,8 +147,10 @@ public class BookController {
     // 나머지 메서드들
 }
 ```
+{% endraw %}
 
 
+{% raw %}
 ```java
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -172,4 +181,5 @@ public class BookController {
     // 나머지 메서드들
 }
 ```
+{% endraw %}
 

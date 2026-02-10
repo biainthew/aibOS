@@ -25,6 +25,7 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```java
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -36,6 +37,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByActiveTrue();
 }
 ```
+{% endraw %}
 
 
 ### 장점

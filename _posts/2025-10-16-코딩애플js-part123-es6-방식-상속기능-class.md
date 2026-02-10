@@ -12,6 +12,7 @@ excerpt_separator: ""
 ### constructor(오브젝트 뽑는 기계) 만들기
 
 
+{% raw %}
 ```javascript
 class 부모 {
 	constructor(){
@@ -21,12 +22,14 @@ class 부모 {
 
 let 자식 = new 부모();
 ```
+{% endraw %}
 
 
 ### 상속 가능한 함수 추가하기
 
 1. 함수를 this.sayHi 이렇게 constructor 안에 추가하는 방법
 
+{% raw %}
 ```javascript
 class 부모 {
 	constructor(){
@@ -39,9 +42,11 @@ class 부모 {
 
 let 자식 = new 부모();
 ```
+{% endraw %}
 
 1. prototype 에 추가
 
+{% raw %}
 ```javascript
 class 부모 {
 	constructor(){
@@ -54,6 +59,7 @@ class 부모 {
 
 let 자식 = new 부모();
 ```
+{% endraw %}
 
 
 이렇게 하면 sayHi() 라고 썼을 때 부모의 prototype 에 있던 sayHi() 함수를 쓸 수 있음

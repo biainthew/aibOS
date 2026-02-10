@@ -23,9 +23,11 @@ excerpt_separator: ""
     입력하면 id_rsa(개인키) 와 id_rsa.pub(공개키) 이렇게 두가지를 생성해준다
 
 
+{% raw %}
 ```javascript
 ssh-keygen
 ```
+{% endraw %}
 
 
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-b59d8a7147fa.png)
@@ -52,7 +54,9 @@ ssh-keygen
 ### 5. 근데 이제 다른 branch 를 clone 받고 싶을 때는
 
 
+{% raw %}
 ```javascript
 git clone --branch '브랜치 이름' 'SSH 복사한 주소'
 ```
+{% endraw %}
 

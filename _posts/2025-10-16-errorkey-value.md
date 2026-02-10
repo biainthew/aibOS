@@ -24,6 +24,7 @@ excerpt_separator: ""
 👇🏻 해결 방법
 
 
+{% raw %}
 ```javascript
 const IterationSample = () => {
     const names = ['눈사람', '얼음', '눈', '바람'];
@@ -38,4 +39,5 @@ const IterationSample = () => {
 };
 export default IterationSample;
 ```
+{% endraw %}
 

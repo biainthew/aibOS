@@ -24,6 +24,7 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```java
 @GetMapping("/user")
 @ResponseBody
@@ -31,4 +32,5 @@ public UserDTO getUser() {
     return new UserDTO("John", "Doe");
 }
 ```
+{% endraw %}
 

@@ -22,6 +22,7 @@ excerpt_separator: ""
 ### 2/13
 
 
+{% raw %}
 ```javascript
 const positions = locations.map((item, idx) => {
         const returnObj = {};
@@ -33,6 +34,7 @@ const positions = locations.map((item, idx) => {
         return returnObj;
     });
 ```
+{% endraw %}
 
 - 내가 찾아 헤매던 객체들을 배열에 넣기 / 키값을 같이 써줘야 하는거였음
 

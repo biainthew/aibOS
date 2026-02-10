@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +46,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```plain text
 ul{list-style: none;}
 a{color: #333; text-decoration: none;}
@@ -61,8 +64,10 @@ a{color: #333; text-decoration: none;}
 #tabContent>div:first-child{display: block;}
 #tabContent>div h2{}
 ```
+{% endraw %}
 
 
+{% raw %}
 ```plain text
 const targetLink=document.querySelectorAll('.tab-menu a');
 const tabContent=document.querySelectorAll('#tabContent div');
@@ -101,4 +106,5 @@ for(i=0; i<targetLink.length; i++){
     })
 }
 ```
+{% endraw %}
 

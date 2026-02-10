@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 import { useState } from "react";
 
@@ -44,6 +45,7 @@ const IterationSample = () => {
 };
 export default IterationSample;
 ```
+{% endraw %}
 
 
 🌀 기존 배열을 변경하는 push 를 사용하지 않고 새로운 배열을 만들어주는 concat 사용
@@ -52,6 +54,7 @@ export default IterationSample;
 🌀 리액트에서 상태를 업데이트 할 때 기존 상태를 그대로 두면서 새로운 값을 상태로 설정해야 함 = 불변성 유지
 
 
+{% raw %}
 ```javascript
 import { useState } from "react";
 
@@ -91,6 +94,7 @@ const IterationSample = () => {
 };
 export default IterationSample;
 ```
+{% endraw %}
 
 
 🌀 기존 상태를 변경하지 않는 filter method 사용 / li 지우기

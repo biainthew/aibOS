@@ -27,6 +27,7 @@ excerpt_separator: ""
 👇🏻 해결 방법
 
 
+{% raw %}
 ```javascript
 sudo lsof -i :5000
 //이거 치면 나오는 화면에서 PID 밑에 있는 번호를
@@ -35,6 +36,7 @@ sudo kill -9
 
 //여기에 넣어주면 됨
 ```
+{% endraw %}
 
 
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-e73e1d30a49f.png)

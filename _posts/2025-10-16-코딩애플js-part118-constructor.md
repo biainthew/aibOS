@@ -15,25 +15,30 @@ excerpt_separator: ""
 : object 자료 복사 기계
 
 
+{% raw %}
 ```javascript
 function 기계 (){
 	this.name = 'Kim';
 	this.age = 15;
 }
 ```
+{% endraw %}
 
 
 기계로부터 새로운 오브젝트 뽑아내는 방법
 
 
+{% raw %}
 ```javascript
 let 학생1 = new 기계();
 ```
+{% endraw %}
 
 
 오브젝트에 함수 넣기
 
 
+{% raw %}
 ```javascript
 let 학생1 = {
 	sayHi(){
@@ -41,8 +46,10 @@ let 학생1 = {
 	}
 }
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 let 학생1 = {
 	sayHi = function(){
@@ -50,6 +57,7 @@ let 학생1 = {
 	}
 }
 ```
+{% endraw %}
 
 
 ![codingapple.com_course-status__%288%29.png](/aibOS/public/images/posts/28e0a7f9-98164301104f.png)

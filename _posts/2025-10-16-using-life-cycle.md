@@ -9,6 +9,7 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -77,6 +78,7 @@ class LifeCycleSample extends Component {
 
 export default LifeCycleSample;
 ```
+{% endraw %}
 
 
 🌀 부모 컴포넌트에서 props 로 색상을 받아 버튼을 누르면 state.number 값을 1씩 더함
@@ -91,6 +93,7 @@ export default LifeCycleSample;
 🌀 shouldComponentUpdate 에서 state.number 값의 마지막 자리 수가 4 이면 리렌더링을 취소
 
 
+{% raw %}
 ```javascript
 import { Component } from "react";
 import LifeCycleSample from "./LifeCycleSample";
@@ -120,6 +123,7 @@ class App extends Component {
 
 export default App;
 ```
+{% endraw %}
 
 
 🌀 getRandomColor 함수는 color 값을 랜덤 색상으로 설정 (16777215 를 hex 로 표현하면 ffffff / 해당 코드는 000000 부터 ffffff 값을 반환)
@@ -128,6 +132,7 @@ export default App;
 🌀 버튼을 렌더링하고 누를 때마다 handleClick 메서드가 호출되게 이벤트를 설정하며 불러온 LifeCycleSample 컴포넌트에 color 값을 props 로 설정
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -197,11 +202,13 @@ class LifeCycleSample extends Component {
 
 export default LifeCycleSample;
 ```
+{% endraw %}
 
 
 🌀 의도적으로 에러 발생
 
 
+{% raw %}
 ```javascript
 import { Component } from 'react';
 
@@ -223,11 +230,13 @@ class ErrorBoundary extends Component {
 
 export default ErrorBoundary;
 ```
+{% endraw %}
 
 
 🌀 ErrorBoundary 생성
 
 
+{% raw %}
 ```javascript
 import { Component } from "react";
 import LifeCycleSample from "./LifeCycleSample";
@@ -260,6 +269,7 @@ class App extends Component {
 
 export default App;
 ```
+{% endraw %}
 
 
 🌀 ErrorBoundary 로 감싸줌

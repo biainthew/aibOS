@@ -12,6 +12,7 @@ excerpt_separator: ""
 ### ✨ 예제
 
 
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -66,8 +67,10 @@ excerpt_separator: ""
 </body>
 </html>
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 const val = document.getElementById('text1').value='안녕';
 //val 이라는 변수에 input value값을 바꿔서 대입
@@ -94,6 +97,7 @@ function save(){ //함수 이름 save
     console.log(document.getElementById('el').innerHTML)
 }
 ```
+{% endraw %}
 
 
 ### ✔️ 메모

@@ -18,6 +18,7 @@ excerpt_separator: ""
 👇🏻 해결 방법
 
 
+{% raw %}
 ```json
 "emmet.syntaxProfiles": {
         "javascript": "jsx" 
@@ -26,6 +27,7 @@ excerpt_separator: ""
        "javascript": "html"
    }
 ```
+{% endraw %}
 
 
 vscode 에서 control shift P 눌러 작업영역 설정에 들어가서 저 코드를 넣어주면 끝

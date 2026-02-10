@@ -12,6 +12,7 @@ excerpt_separator: ""
 : 여러 컴포넌트에서 비슷한 기능을 공유할 경우 커스터 Hook  으로 로직 재사용 가능
 
 
+{% raw %}
 ```javascript
 import { useReducer } from "react";
 
@@ -30,8 +31,10 @@ export default function useInputs(initialForm) {
   return [state, onChange];
 }
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import useInputs from "./useInputs";
 
@@ -66,6 +69,7 @@ const Info = () => {
 
 export default Info;
 ```
+{% endraw %}
 
 
 🌀 깔끔해짐

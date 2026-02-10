@@ -18,9 +18,11 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```javascript
 <input type="text" value="test" th:value="${item}"
 ```
+{% endraw %}
 
 
 : `input` 태그는 `th:value` 를 통해 `item` 이라는 변수에 값이 존재하면 해당 값을 세팅해준다.

@@ -12,11 +12,13 @@ excerpt_separator: ""
 ### 🎂 웹팩 설정 커스터마이징 🎂
 
 
+{% raw %}
 ```javascript
 git add .
 git commit -m "Commit before eject"
 npm run eject
 ```
+{% endraw %}
 
 
 ### 🎂 엔트리 만들기 🎂
@@ -24,6 +26,7 @@ npm run eject
 - `entry` : 웹팩에서 프로젝트를 불러올 때 가장 먼저 불러오는 파일 ex) index.js
 - 서버 사이드 렌더링을 할 때는 서버를 위한 엔트리 파일을 따로 생성해야 함
 
+{% raw %}
 ```javascript
 import ReactDomServer from "react-dom/server";
 
@@ -33,6 +36,7 @@ const html = ReactDomServer.renderToString(
 
 console.log(html);
 ```
+{% endraw %}
 
 
 ◽ `ReactDOMServer` 의 `renderToString` : 서버에서 리액트 컴포넌트 렌더링 할 때 사용 / 이 함수에 JSX 를 넣어서 호출하면 렌더링 결과를 문자열로 반환
@@ -41,12 +45,15 @@ console.log(html);
 ### 🎂 웹팩 환경설정 🎂
 
 
+{% raw %}
 ```javascript
 ssrIndexJs: resolveApp('src/index.server.js'),// 서버 사이드 렌더링 엔트리
   ssrBuild: resolveApp('dist'), // 웹팩 처리 후 저장 경로
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 const paths = require("./paths");
 
@@ -62,6 +69,7 @@ module.exports = {
   },
 };
 ```
+{% endraw %}
 
 
 ◽ 기본 설정 완료 / 로더 설정 / 로더는 파일을 불러올 때 확장자에 맞게 필요한 처리를 해줌
@@ -70,6 +78,7 @@ module.exports = {
 [: 웹팩 쓰는 이유](https://velog.io/@kim-jaemin420/%EC%9B%B9%ED%8C%A9%EC%9B%B9%ED%8C%A9%EC%9D%B4%EB%9E%80-%EC%9B%B9%ED%8C%A9%EC%9D%B4-%ED%95%98%EB%8A%94-%EC%9D%BC%EA%B3%BC-%ED%95%84%EC%9A%94%ED%95%9C-%EC%9D%B4%EC%9C%A0)
 
 
+{% raw %}
 ```javascript
 const paths = require("./paths");
 const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
@@ -214,16 +223,19 @@ module.exports = {
   },
 };
 ```
+{% endraw %}
 
 
 ◽ css 나 이미지 파일을 로더에서 별도로 설정하여 처리하지만 따로 결과물에 포함되지 않도록 구현
 
 
+{% raw %}
 ```javascript
 resolve:{
     modules:['node_modules']
   }
 ```
+{% endraw %}
 
 
 ◽ 맨 밑에 추가해줌 → 코드에서 node_modules 내부의 라이브러리를 불러올 수 있게
@@ -238,14 +250,17 @@ resolve:{
 ◽ So 서버를 위해 번들링 할 때는 node_modules 에서 불러오는 것을 제외하고 번들링 하는 것이 좋음 → webpack-node-externals 라는 라이브러리를 사용해야 함
 
 
+{% raw %}
 ```javascript
 npm add webpack-node-externals
 ```
+{% endraw %}
 
 
 ◽ 하고 설정에 적용
 
 
+{% raw %}
 ```javascript
 const nodeExternals = require("webpack-node-externals");
 const paths = require("./paths");
@@ -403,6 +418,7 @@ module.exports = {
   plugins: [new webpack.DefinePlugin(env.stringified)],
 };
 ```
+{% endraw %}
 
 
 ◽ 환경변수를 주입하면 프로젝트 내에서 process.env.NODE_ENV 값을 참조하여 현재 개발 환경인지 아닌지를 알 수 있음
@@ -411,6 +427,7 @@ module.exports = {
 ### 🎂 빌드 스크립트 작성하기 🎂
 
 
+{% raw %}
 ```javascript
 process.env.BABEL_ENV = "production";
 process.env.NODE_ENV = "production";
@@ -441,11 +458,13 @@ function build() {
 }
 build();
 ```
+{% endraw %}
 
 
 ◽ 서버에서 사용할 빌드 파일을 만드는 스크립트
 
 
+{% raw %}
 ```javascript
 node scripts/build.server.js
 node dist/server.js
@@ -462,16 +481,20 @@ node dist/server.js
   },
 //package.json 에 명령어 추가
 ```
+{% endraw %}
 
 
 ### 🎂 서버 코드 작성하기 🎂
 
 
+{% raw %}
 ```javascript
 npm add express
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 import React from "react";
 import ReactDOMServer from "react-dom/server";
@@ -504,6 +527,7 @@ app.listen(5000, () => {
   console.log("Running on http://localhost:5000");
 });
 ```
+{% endraw %}
 
 
 일단 이거 안됨 → [https://algoroot.tistory.com/44](https://algoroot.tistory.com/44) 해결함
@@ -521,6 +545,7 @@ app.listen(5000, () => {
 ### 🎂 정적 파일 제공하기 🎂
 
 
+{% raw %}
 ```javascript
 import ReactDOMServer from "react-dom/server";
 import express from "express";
@@ -561,11 +586,13 @@ app.listen(5000, () => {
   console.log("Running on http://localhost:5000");
 });
 ```
+{% endraw %}
 
 
 ◽ Express 에 내장되어 있는 static 미들웨어를 사용하여 서버를 통해 build 에 있는 js, css 정적 파일들에 접근할 수 있도록 해줌
 
 
+{% raw %}
 ```javascript
 import ReactDOMServer from "react-dom/server";
 import express from "express";
@@ -634,6 +661,7 @@ app.listen(5000, () => {
   console.log("Running on http://localhost:5000");
 });
 ```
+{% endraw %}
 
 
 ◽ 이제 페이지에 들어가면 css 적용됨 / 서버 사이드 렌더링을 구현하면 첫 번째 렌더링은 서버를 통해 하지만 그 이후에는 브라우저에서 처리함 → 링크를 눌러 이동할 때 네트워크 요청이 추가로 발생하지 않아야 함

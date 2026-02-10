@@ -57,17 +57,21 @@ CR 과 LF 를 합친 것 Window, DOS 줄바꿈 문자열
 👇🏻 해결 방법 Window, DOS
 
 
+{% raw %}
 ```javascript
 git config --global core.autocrlf true
 ```
+{% endraw %}
 
 
 👇🏻 해결 방법 Mac, Linux
 
 
+{% raw %}
 ```javascript
 git config --global core.autocrlf input
 ```
+{% endraw %}
 
 
 >> git config --global core.autocrlf false 가 기본값

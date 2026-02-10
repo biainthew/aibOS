@@ -12,22 +12,27 @@ excerpt_separator: ""
 ## Vuetify 사용하기
 
 
+{% raw %}
 ```javascript
 npm install vuetify
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 new Vue({
     vuetify,
     render: h => h(App)
 }).$mount('#app')
 ```
+{% endraw %}
 
 
 [설명](https://goodteacher.tistory.com/85?category=774667) not that important
 
 
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -45,6 +50,7 @@ const vuetify = createVuetify({
 
 createApp(App).use(vuetify).mount('#app')
 ```
+{% endraw %}
 
 
 ### elevation - 그림자 정도

@@ -15,14 +15,17 @@ ORACLE SQL에서 제공하는 함수로 IF-THEN-ELSE 구문과 비슷한 역할�
 **기본 문법**
 
 
+{% raw %}
 ```sql
 DECODE(표현식, 검색값1, 반환값1, 검색값2, 반환값2, ..., 기본값)
 ```
+{% endraw %}
 
 
 **예시**
 
 
+{% raw %}
 ```sql
 SELECT 
     employee_id,
@@ -34,6 +37,7 @@ SELECT
            'Unknown') AS job_title
 FROM employees;
 ```
+{% endraw %}
 
 
 **DECODE와 CASE 차이점**

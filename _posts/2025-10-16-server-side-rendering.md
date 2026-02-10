@@ -43,6 +43,7 @@ ex) 구현되지 않은 페이지에 사용자가 방문하면 js 가 로딩 실
 ## 🐴 일단 리액트 라이터를 사용하여 라우팅 하는 프로젝트 생성 🐴
 
 
+{% raw %}
 ```javascript
 import React from "react";
 import { Route, Routes } from "react-router-dom";
@@ -65,6 +66,7 @@ const App = () => {
 
 export default App;
 ```
+{% endraw %}
 
 
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-a8aae2c32adb.png)

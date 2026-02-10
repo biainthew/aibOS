@@ -24,6 +24,7 @@ excerpt_separator: ""
 ### 예시
 
 
+{% raw %}
 ```java
 @GetMapping("/download")
 public ResponseEntity<byte[]> downloadFile() {
@@ -32,4 +33,5 @@ public ResponseEntity<byte[]> downloadFile() {
     return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
 }
 ```
+{% endraw %}
 

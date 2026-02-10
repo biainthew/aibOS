@@ -18,9 +18,11 @@ excerpt_separator: ""
 👇🏻 오류 코드
 
 
+{% raw %}
 ```css
 react_devtools_backend.js:4045 Warning: A future version of React will block javascript: URLs as a security precaution. Use event handlers instead if you can. If you need to generate unsafe HTML try using dangerouslySetInnerHTML instead. React was passed "javascript:void(0);".
 ```
+{% endraw %}
 
 
 javascript:void(0); 를 이제 사용하지 않을거라는 뜻
@@ -29,9 +31,11 @@ javascript:void(0); 를 이제 사용하지 않을거라는 뜻
 👇🏻 해결 방법
 
 
+{% raw %}
 ```javascript
 <a href="#" onClick={e => e.preventDefault}>
 ```
+{% endraw %}
 
 
 대신에 저렇게 넣어주면 오류 해결

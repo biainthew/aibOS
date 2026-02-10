@@ -30,54 +30,66 @@ excerpt_separator: ""
     : 특정 키에 값을 저장하고 기존에 동일한 키가 있으면 값을 덮어쓴다
 
 
-    ```java
+    {% raw %}
+```java
     localStorage.setItem("username", "Alice");
     ```
+{% endraw %}
 
 2. `getItem(key)` : 데이터 가져오기
 
     : 특정 키에 저장된 값을 가져오고 키가 없으면 null 을 반환
 
 
-    ```java
+    {% raw %}
+```java
     let username = localStorage.getItem("username"); // "Alice"
     ```
+{% endraw %}
 
 3. `removeItem(key)` : 데이터 삭제
 
     : 특정 키에 해당하는 데이터를 삭제
 
 
-    ```java
+    {% raw %}
+```java
     localStorage.removeItem("username");
     ```
+{% endraw %}
 
 4. `clear()` : 모든 데이터 삭제
 
     : 로컬스토리지에 저장된 모든 데이터를 삭제
 
 
-    ```java
+    {% raw %}
+```java
     localStorage.clear();
     ```
+{% endraw %}
 
 5. `length` : 저장된 데이터의 개수
 
     : 로컬스토리지에 저장된 키-값 쌍의 개수를 반환
 
 
-    ```java
+    {% raw %}
+```java
     let count = localStorage.length;
     ```
+{% endraw %}
 
 6. `key(index)` : 특정 인덱스에 있는 키 가져오기
 
     : 저장된 데이터의 순서를 기준으로 index 번째 키를 반환
 
 
-    ```java
+    {% raw %}
+```java
     let keyName = localStorage.key(0);
     ```
+{% endraw %}
 
 
 ### 사용 예시
@@ -86,6 +98,7 @@ excerpt_separator: ""
 : 사용자가 웹사이트의 테마를 다크모드로 설정했을 때 이 설정을 로컬스토리지에 저장하여 페이지를 새로고침하거나 다음 방문 때도 다크모드가 유지되도록 할 수 있다
 
 
+{% raw %}
 ```java
 // 다크 모드로 설정하기
 localStorage.setItem("theme", "dark");
@@ -96,6 +109,7 @@ if (theme === "dark") {
     document.body.classList.add("dark-mode");
 }
 ```
+{% endraw %}
 
 
 ### 다른 웹 저장소와의 비교

@@ -9,12 +9,16 @@ excerpt_separator: ""
 
 
 
+{% raw %}
 ```javascript
 Netstat -ano | findstr ****
 ```
+{% endraw %}
 
 
+{% raw %}
 ```javascript
 taskkill /f /pid ****
 ```
+{% endraw %}
 

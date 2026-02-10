@@ -12,6 +12,7 @@ excerpt_separator: ""
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-77451bafd453.png)
 
 
+{% raw %}
 ```javascript
 let data = {
 	odd : [],
@@ -26,4 +27,5 @@ let data = {
 	}
 }
 ```
+{% endraw %}
 

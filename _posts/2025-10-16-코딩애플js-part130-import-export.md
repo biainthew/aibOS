@@ -15,15 +15,18 @@ ES6 import export 를 사용해서 내가 원하는 변수, 함수, class 만 �
 import 해온 변수, 함수는 사용은 가능하지만 수정은 불가능함
 
 
+{% raw %}
 ```javascript
 //index.html
 <script type="module"></script>
 ```
+{% endraw %}
 
 
 ### 1. export default / import 를 쓰면
 
 
+{% raw %}
 ```javascript
 //library.js
 let a = 10;
@@ -35,6 +38,7 @@ export default a;
 	console.log(a);
 </script>
 ```
+{% endraw %}
 
 
 내보낼 때 : export default 변수명
@@ -44,6 +48,7 @@ export default a;
 ### 2. 여러개를 export 가능
 
 
+{% raw %}
 ```javascript
 //library.js
 let a = 10;
@@ -57,6 +62,7 @@ export { a, b };
 	console.log(a);
 </script>
 ```
+{% endraw %}
 
 
 export 라고 쓸 때는 export{변수1, 변수2 … } 이렇게 담아야됨
@@ -79,6 +85,7 @@ export 키워드로 내보낸 것들을 import 할 때는 import {변수1, 변�
 가능
 
 
+{% raw %}
 ```javascript
 //library.js
 let a = 10;
@@ -93,6 +100,7 @@ export default c;
 	console.log(c);
 </script>
 ```
+{% endraw %}
 
 
 export default 한건 맨 왼쪽에 쓰고 그 다음부터 중괄호 안에 export 했던 변수들 적어주기
@@ -101,6 +109,7 @@ export default 한건 맨 왼쪽에 쓰고 그 다음부터 중괄호 안에 exp
 ### 4. 변수명이 마음에 안들면 as 로 새로 짓자
 
 
+{% raw %}
 ```javascript
 //library.js
 let a = 10;
@@ -115,11 +124,13 @@ export default c;
 	console.log(폭발);
 </script>
 ```
+{% endraw %}
 
 
 ### 5. import 할 때 변수들이 너무 많으면 * 기호를 쓴다
 
 
+{% raw %}
 ```javascript
 //library.js
 let a = 10;
@@ -135,6 +146,7 @@ export default c;
 	console.log(c);
 </script>
 ```
+{% endraw %}
 
 
 * 라는 기호는 export 했던 애들을 다 import 해달라는 뜻인데 그냥 쓰는건 안되고 as 로 별명을 꼭 지어주어야 함 그럼 이제 별명에 export 했던 변수들이 다 들어감
@@ -146,6 +158,7 @@ export default 했던 건 그냥 원래대로 import 하면 됨
 ### 옛날엔 require, module.export 라는 게 있었음
 
 
+{% raw %}
 ```javascript
 (export 하는 js 파일)
 module.exports.a = 10;
@@ -153,6 +166,7 @@ module.exports.a = 10;
 (import 하는 js 파일)
 let 가져온거 = require('/library.js');
 ```
+{% endraw %}
 
 
 이해만 하기

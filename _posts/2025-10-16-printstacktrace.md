@@ -36,6 +36,7 @@ excerpt_separator: ""
 실제로 예외를 처리할 때는 `printStackTrace()` 대신 `try-catch` 블록을 사용하여 예외를 적절하게 처리하는 것이 좋다
 
 
+{% raw %}
 ```java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,4 +53,5 @@ public class MyClass {
     }
 }
 ```
+{% endraw %}
 
