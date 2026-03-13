@@ -3,7 +3,7 @@ layout: post
 title: "Swagger UI에 JWT 인증 버튼 설정"
 date: 2026-03-12
 categories: [general]
-tags: []
+tags: [Java]
 excerpt_separator: ""
 ---
 
@@ -51,17 +51,18 @@ public class SwaggerConfig {
 {% endraw %}
 
 
-### SecurityScheme 설정
+### API 기본 정보 설정 (`.info()`)
 
+- `title`, `description`, `version` 등을 통해 이 API 문서가 어떤 서비스를 위한 것인지 현재 버전은 무엇인지 명시
+- 브라우저에서 Swagger 접속 시 가장 상단에 노출되는 정보
 
-Swagger 가 어떤 방식으로 인증을 처리할 지 정의
+### 인증 요구사항 적용 (`.addSecurityItem()`)
 
+- 실제 API 호출 시 인증이 필요하다는 것을 선언하는 부분
+- SecurityRequirement 를 추가함으로써 Swagger UI 의 각 API 옆에 자물쇠 아이콘이 생기고 설정한 인증 방식이 모든 요청에 포함되도록 함
 
-Http 타입의 bearer 스키마로 설정했고 포맷은 JWT로 지정
+### 보안 스키마 정의 (`.components()`)
 
-
-### SecurityRequirement 추가
-
-
-정의한 인증 방식(BearerAuth) 을 API 전체에 기본으로 적용하도록 설정
-
+- Type : Http 방식의 인증임을 명시
+- Scheme : bearer 로 설정하여 헤더에 `Authorization: Bearer {Token}` 형식이 붙도록 함
+- BearerFormat : 해당 토큰이 JWT 형식임을 안내하여 가독성을 높임
