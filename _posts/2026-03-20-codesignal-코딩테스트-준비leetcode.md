@@ -32,7 +32,7 @@ LeetCode Easy~Medium 문제를 유형별로 학습한 내용 정리
 
 
 {% raw %}
-```plain text
+```html
 1. 연속된 구간(subarray/substring)을 찾는 문제인가?
    → Yes + 양수만 있음 → Sliding Window
    → Yes + 음수 포함 가능 → Prefix Sum + HashMap

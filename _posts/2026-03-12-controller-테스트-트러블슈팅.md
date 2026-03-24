@@ -40,7 +40,7 @@ void delete_fail_unauthorized() throws Exception {
 
 
 {% raw %}
-```plain text
+```html
 jakarta.servlet.ServletException: Request processing failed:
 aib.noticeboard.exception.CustomException: 게시글 수정/삭제 권한이 없습니다.
 ```
@@ -69,7 +69,7 @@ aib.noticeboard.exception.CustomException: 게시글 수정/삭제 권한이 없
 
 
 {% raw %}
-```plain text
+```html
 ERROR : CustomException: 게시글 수정/삭제 권한이 없습니다.
 WARN  : Failure in @ExceptionHandler GlobalExceptionHandler#handleCustomException(CustomException)
 ```
@@ -92,7 +92,7 @@ Jackson은 기본적으로 getter 메서드를 통해 필드 값을 읽기 때�
 
 
 {% raw %}
-```plain text
+```html
 CustomException 발생
 → GlobalExceptionHandler.handleCustomException 실행
 → ErrorResponse 직렬화 시도
