@@ -293,6 +293,9 @@ async function syncNotionToGitHub() {
 
             // Liquid 문법 오해 방지: 코드블록은 전체를 {% raw %}로 감싸고, 그 외 {{ }}는 개별 처리
             if (bodyContent) {
+                // 0. Notion의 "plain text" 언어를 Jekyll 호환 "plaintext"로 변환
+                bodyContent = bodyContent.replace(/```plain text/g, '```plaintext');
+
                 // 1. 코드블록(```)을 찾아서 전체를 {% raw %}...{% endraw %}로 감싸기
                 bodyContent = bodyContent.replace(
                     /(```[\s\S]*?```)/g,
