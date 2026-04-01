@@ -57,17 +57,13 @@
             });
         });
     });
-})();
-</script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('div.highlighter-rouge').forEach(function(block) {
-        var btn = document.createElement('button');
+        let btn = document.createElement('button');
         btn.className = 'copy-btn';
         btn.textContent = '복사';
         btn.addEventListener('click', function() {
-            var code = block.querySelector('code');
+            let code = block.querySelector('code');
             if (code) {
                 navigator.clipboard.writeText(code.textContent).then(function() {
                     btn.textContent = '완료!';
@@ -77,8 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         block.appendChild(btn);
     });
-});
+})();
 </script>
-
 </body>
 </html>
