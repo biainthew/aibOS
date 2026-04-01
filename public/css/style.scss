@@ -674,6 +674,7 @@ body {
 // ============================================
 
 div.highlighter-rouge {
+    position: relative;
     background: var(--secondary);
     border-radius: var(--radius);
     padding: 1.5rem;
@@ -692,6 +693,29 @@ div.highlighter-rouge {
     code {
         font-size: 0.875rem;
         line-height: 1.6;
+    }
+
+    .copy-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: var(--secondary);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            color: var(--primary);
+        }
+    }
+
+    &:hover .copy-btn {
+        opacity: 1;
     }
 }
 
