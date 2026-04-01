@@ -45,6 +45,22 @@
                 });
             });
         });
+
+        document.querySelectorAll('div.highlighter-rouge').forEach(function(block) {
+            let btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.textContent = '복사';
+            btn.addEventListener('click', function() {
+                let code = block.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(function() {
+                        btn.textContent = '완료!';
+                        setTimeout(function() { btn.textContent = '복사'; }, 2000);
+                    });
+                }
+            });
+            block.appendChild(btn);
+        });
     });
 })();
 </script>
