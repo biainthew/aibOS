@@ -63,7 +63,7 @@ excerpt_separator: ""
 
 
 {% raw %}
-```plain text
+```plaintext
 *{margin: 0; padding: 0;}
 ul{list-style: none;}
 #wrap{margin: 100px auto; width: 700px;}
@@ -78,7 +78,7 @@ ul{list-style: none;}
 
 
 {% raw %}
-```plain text
+```plaintext
 let menu=$('#nav li');
 //menu.hover(function(){},function(){});
 

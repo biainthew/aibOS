@@ -52,7 +52,7 @@ excerpt_separator: ""
 
 
 {% raw %}
-```plain text
+```plaintext
 #ground{width: 500px; height: 700px; background: forestgreen; margin: 0 auto; border: 15px solid saddlebrown; position: relative;}
 #stick{width: 20px; height: 300px; left: 50%; bottom: -100px;  position: absolute; transform: translateX(-50%) ; background: burlywood; border-radius: 40% 40% 0 0 ;}
 .ball{width: 20px; height: 20px; background: white; border-radius: 50%;top: 600px; position: absolute; left: 50%;  transform: translateX(-50%);}
@@ -77,7 +77,7 @@ excerpt_separator: ""
 
 
 {% raw %}
-```plain text
+```plaintext
 $('#stick').animate({bottom:0},1000).animate({bottom:-100},1000)
 $('#ball100').animate({top:270},1000,'linear')
 let num = Math.round(Math.random()*250)

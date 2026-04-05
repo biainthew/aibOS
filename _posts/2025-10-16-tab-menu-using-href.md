@@ -50,7 +50,7 @@ excerpt_separator: ""
 
 
 {% raw %}
-```plain text
+```plaintext
 ul{list-style: none;}
 a{color: #333; text-decoration: none;}
 
@@ -68,7 +68,7 @@ a{color: #333; text-decoration: none;}
 
 
 {% raw %}
-```plain text
+```plaintext
 const targetLink=document.querySelectorAll('.tab-menu a');
 const tabContent=document.querySelectorAll('#tabContent div');
 
