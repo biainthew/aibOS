@@ -43,3 +43,11 @@ desktop.ini
 *.cache
 
 _sass/**
+
+# 환경변수
+.env
+
+# 기타
+docs/**
+*.test.js
+_data/related.json

@@ -24,9 +24,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: |
-          npm install @notionhq/client
-          npm install notion-to-md
+        run: npm install
 
       - name: Sync Notion to Markdown
         env:
@@ -39,6 +37,11 @@ jobs:
           else
             node scripts/notion-sync.js
           fi
+
+      - name: Generate related posts
+        env:
+          VOYAGE_API_KEY: ${{ secrets.VOYAGE_API_KEY }}
+        run: node scripts/generate-related.js
 
       - name: Commit and push changes
         run: |
