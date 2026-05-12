@@ -30,15 +30,24 @@ function parseFrontmatter(content) {
   return { meta, body };
 }
 
+function sanitizeText(text) {
+  return text
+      .replace(/\0/g, '')
+      .replace(/[\x01-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+      .replace(/[\uD800-\uDFFF]/g, '')
+      .replace(/�/g, '')
+      .normalize('NFC');
+}
+
 function buildEmbedInput(meta, body) {
-  const title = meta.title || '';
+  const title = sanitizeText(meta.title || '');
   let tags = '';
   if (Array.isArray(meta.tags)) {
-    tags = meta.tags.join(' ');
+    tags = meta.tags.map(sanitizeText).join(' ');
   } else if (typeof meta.tags === 'string') {
-    tags = meta.tags;
+    tags = sanitizeText(meta.tags);
   }
-  const cleaned = body.replace(/[#*`\[\]]/g, '').slice(0, 300);
+  const cleaned = sanitizeText(body).replace(/[#*`\[\]]/g, '').slice(0, 300);
   return `${title} ${tags} ${cleaned}`.replace(/\s+/g, ' ').trim();
 }
 
@@ -57,15 +66,15 @@ function cosineSimilarity(a, b) {
 
 function topRelated(target, all, n) {
   return all
-    .filter(item => item.file !== target.file)
-    .map(item => ({
-      file: item.file,
-      title: item.title,
-      score: cosineSimilarity(target.embedding, item.embedding),
-    }))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, n)
-    .map(({ file, title }) => ({ file, title }));
+      .filter(item => item.file !== target.file)
+      .map(item => ({
+        file: item.file,
+        title: item.title,
+        score: cosineSimilarity(target.embedding, item.embedding),
+      }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, n)
+      .map(({ file, title }) => ({ file, title }));
 }
 
 async function fetchEmbeddings(inputs, apiKey, fetchFn = fetch) {
@@ -83,9 +92,9 @@ async function fetchEmbeddings(inputs, apiKey, fetchFn = fetch) {
   }
   const json = await res.json();
   return json.data
-    .slice()
-    .sort((a, b) => a.index - b.index)
-    .map(d => d.embedding);
+      .slice()
+      .sort((a, b) => a.index - b.index)
+      .map(d => d.embedding);
 }
 
 async function embedInBatches(inputs, apiKey, batchSize = BATCH_SIZE) {
@@ -126,7 +135,7 @@ async function main() {
 
   const items = [];
   for (const file of files) {
-    const raw = fs.readFileSync(path.join(postsDir, file), 'utf-8');
+    const raw = fs.readFileSync(path.join(postsDir, file)).toString('utf-8').replace(/\0/g, '');
     const { meta, body } = parseFrontmatter(raw);
     if (!meta.title) {
       console.warn(`스킵 (title 없음): ${file}`);
