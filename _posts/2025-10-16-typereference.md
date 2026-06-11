@@ -238,8 +238,8 @@ Runnable task = new Runnable() {
 ```
 {% endraw %}
 
-    - `new Runnable() {}` => 인터페이스 `Runnable`을 익명 클래스로 구현
-    - `{}` 안에 `run()` 메서드를 정의하여 실행 내용을 작성
+ - `new Runnable() {}` => 인터페이스 `Runnable`을 익명 클래스로 구현
+ - `{}` 안에 `run()` 메서드를 정의하여 실행 내용을 작성
 
     > 💡 **익명 클래스** ❓  
     > 클래스 이름 없이 즉시 정의하고 사용할 수 있는 클래스  

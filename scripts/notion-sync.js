@@ -25,6 +25,80 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
 }
 
+// 코드블록(```)을 {% raw %}...{% endraw %}로 감싸며 리스트 중첩 들여쓰기를 정규화한다.
+//
+// notion-to-md 는 리스트 항목 안의 코드블록을 일관성 없이 출력한다(여는 펜스만 들여쓰고
+// 내용/닫는 펜스는 col 0 등). 펜스가 col 0 이면 마크다운 리스트가 그 지점에서 끊겨
+//   - 이어지는 번호 항목이 새 리스트로 재시작(2 → 1)되고
+//   - 들여쓴 콜아웃(> ...)이 코드블록으로 오인되며
+//   - 여는/닫는 펜스 들여쓰기가 어긋나면 kramdown 이 닫힘을 인식하지 못해 깨진다.
+// 또한 notion-to-md 의 4칸 들여쓰기는 리스트 마커 폭(`1. ` = 3칸)과 달라 코드 앞에 공백 1칸이 남는다.
+//
+// => 각 코드블록을 "직전 리스트 항목의 콘텐츠 오프셋"(예: `1.`→3칸, `- `→2칸)에 정확히 맞춰
+//    재들여쓰기한다. 코드 내부의 상대 들여쓰기(탭 등)는 보존하고, 리스트 밖 블록은 col 0 으로 둔다.
+function wrapCodeBlocks(text) {
+    const lines = text.split("\n");
+    const markerRe = /^(\s*)(\d+[.)]|[-*+])(\s+)\S/; // 순서/비순서 리스트 마커
+    const fenceClose = /^[ \t]*```[ \t]*$/;
+    const out = [];
+    let i = 0;
+
+    while (i < lines.length) {
+        if (!/^[ \t]*```/.test(lines[i])) {
+            out.push(lines[i]);
+            i++;
+            continue;
+        }
+
+        // 닫는 펜스 탐색
+        let j = i + 1;
+        while (j < lines.length && !fenceClose.test(lines[j])) j++;
+        if (j >= lines.length) { // 닫는 펜스가 없으면 손대지 않음(방어)
+            out.push(lines[i]);
+            i++;
+            continue;
+        }
+        const block = lines.slice(i, j + 1);
+
+        // 직전 리스트 항목의 콘텐츠 오프셋 계산 (없으면 최상위 → 빈 문자열)
+        let offset = "";
+        for (let k = i - 1; k >= 0; k--) {
+            const t = lines[k];
+            if (t.trim() === "") continue;            // 빈 줄 건너뜀
+            const m = t.match(markerRe);
+            if (m) { offset = " ".repeat((m[1] + m[2] + m[3]).length); break; }
+            if (/^[ \t]+\S/.test(t)) continue;         // 들여쓴 연속 콘텐츠 → 계속 위로
+            break;                                     // col 0 의 비-마커 콘텐츠 → 리스트 밖
+        }
+
+        // 내용 줄들의 공통 선행 공백(베이스)을 구해 제거 후 offset 부여 (상대 들여쓰기 보존)
+        const content = block.slice(1, -1);
+        let base = null;
+        for (const l of content) {
+            if (l.trim() === "") continue;
+            const lead = (l.match(/^[ \t]*/) || [""])[0];
+            if (base === null) { base = lead; continue; }
+            let c = 0;
+            while (c < base.length && c < lead.length && base[c] === lead[c]) c++;
+            base = base.slice(0, c);
+        }
+        base = base || "";
+
+        const openFence = block[0].replace(/^[ \t]*/, "");
+        const closeFence = block[block.length - 1].replace(/^[ \t]*/, "");
+        const reContent = content.map((l) => {
+            if (l.trim() === "") return "";
+            const rest = l.startsWith(base) ? l.slice(base.length) : l.replace(/^[ \t]*/, "");
+            return offset + rest;
+        });
+
+        out.push(`${offset}{% raw %}`, offset + openFence, ...reContent, offset + closeFence, `${offset}{% endraw %}`);
+        i = j + 1;
+    }
+
+    return out.join("\n");
+}
+
 // 파일명 생성 함수
 function createFileName(title, date) {
     const formattedDate = formatDate(date);
@@ -296,27 +370,8 @@ async function syncNotionToGitHub() {
                 // 0. Notion의 "plain text" 언어를 Jekyll 호환 "plaintext"로 변환
                 bodyContent = bodyContent.replace(/```plain text/g, '```plaintext');
 
-                // 1. 코드블록(```)을 찾아서 들여쓰기를 정규화한 뒤 {% raw %}...{% endraw %}로 감싸기
-                //    리스트 항목 안의 코드블록은 notion-to-md가 내용/닫는 펜스에 4칸 들여쓰기를 넣어
-                //    여는 펜스(0칸)와 어긋난다. kramdown은 닫는 펜스가 4칸 이상이면 인식하지 못해
-                //    코드블록이 닫히지 않고 이후 콘텐츠를 전부 삼켜 레이아웃이 깨진다.
-                //    => 닫는 펜스의 들여쓰기를 기준으로 블록 전체를 dedent 하여 양쪽 펜스를 col 0 에 맞춘다.
-                bodyContent = bodyContent.replace(/```[\s\S]*?```/g, (block) => {
-                    const lines = block.split("\n");
-                    const lastIdx = lines.length - 1;
-                    // 닫는 펜스 라인의 선행 공백/탭을 공통 들여쓰기로 간주
-                    const indentMatch = lines[lastIdx].match(/^[ \t]+/);
-                    const indent = indentMatch ? indentMatch[0] : "";
-                    const normalized = lines.map((line, i) => {
-                        // 여는/닫는 펜스 라인은 들여쓰기를 완전히 제거해 col 0 으로
-                        if (i === 0 || i === lastIdx) {
-                            return line.replace(/^[ \t]+/, "");
-                        }
-                        // 내용 라인은 공통 들여쓰기만큼만 제거 (상대 들여쓰기는 보존)
-                        return indent && line.startsWith(indent) ? line.slice(indent.length) : line;
-                    });
-                    return `{% raw %}\n${normalized.join("\n")}\n{% endraw %}`;
-                });
+                // 1. 코드블록(```)을 {% raw %}...{% endraw %}로 감싸며 리스트 중첩 들여쓰기를 정규화
+                bodyContent = wrapCodeBlocks(bodyContent);
 
                 // 2. 코드블록 밖의 {{ }}는 개별 처리 (이미 {% raw %} 안에 있는 것은 제외)
                 // {% raw %}...{% endraw %} 블록을 임시로 플레이스홀더로 대체

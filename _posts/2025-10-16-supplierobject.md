@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Supplier&lt;Object>"
+title: "Supplier<Object>"
 date: 2025-01-17
 categories: [general]
 tags: [Java]
