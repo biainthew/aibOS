@@ -51,3 +51,4 @@ _sass/**
 docs/**
 *.test.js
 _data/related.json
+.claude/

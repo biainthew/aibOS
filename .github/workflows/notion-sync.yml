@@ -50,7 +50,6 @@ jobs:
           fi
 
       - name: Generate related posts
-        if: github.event_name != 'push'
         env:
           VOYAGE_API_KEY: ${{ secrets.VOYAGE_API_KEY }}
         run: node scripts/generate-related.js
