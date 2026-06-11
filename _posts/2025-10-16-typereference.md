@@ -18,10 +18,10 @@ excerpt_separator: ""
 즉 컴파일 시 타입을 체크하여 타입 안전성을 보장하면서 여러 타입에 대해 재사용이 가능하게 만들어줌
 
 
-### <T>
+### `<T>`
 
 
-<T>는 제네릭 타입을 나타내는 변수로 임의의 타입을 의미하며 보통 클래스 또는 메서드에서 타입을 유동적으로 처리하기 위해 사용됨
+`<T>`는 제네릭 타입을 나타내는 변수로 임의의 타입을 의미하며 보통 클래스 또는 메서드에서 타입을 유동적으로 처리하기 위해 사용됨
 
 
 보통 T, E, K, V 같은 이름을 사용하지만 원하는 이름을 사용할 수도 있음
@@ -174,7 +174,7 @@ System.out.println(str); // Hello
 - 하지만 `Object` 타입은 모든 타입을 담을 수 있기 때문에 다시 `String`으로 꺼낼 때 강제 형 변환이 필요
 - `(String) obj` 를 사용하여 `String` 타입으로 변환
 
-### TypeReference<T> ?
+### `TypeReference<T>` ?
 
 
 제네릭 타입을 유지하면서 Jackson에서 객체를 변환할 수 있도록 도와주는 클래스
@@ -186,10 +186,10 @@ Java의 Type Erasure(타입 소거) 문제를 해결하기 위해 사용됨
 ### 이유 : Java의 타입 소거(Type Erasure)
 
 
-Java 에서는 제네릭 타입이 컴파일 시 제거(소거) 되기 때문에 런타임에서는 List<String>과 List<Integer> 를 구분할 수 없음
+Java 에서는 제네릭 타입이 컴파일 시 제거(소거) 되기 때문에 런타임에서는 `List<String>`과 `List<Integer>` 를 구분할 수 없음
 
 
-즉 objectMapper.convertValue(dto, Map.class) 처럼 사용하면 Map<?, ?> 으로 변환되기 때문에 경고가 발생함
+즉 `objectMapper.convertValue(dto, Map.class)` 처럼 사용하면 `Map<?, ?>` 으로 변환되기 때문에 경고가 발생함
 
 
 ### 결론
@@ -204,38 +204,38 @@ Java 에서는 제네릭 타입이 컴파일 시 제거(소거) 되기 때문에
 
     {% raw %}
 ```java
-    public void printMessage() {
-    	System.out.println("Hello, World!");
-    }
-    ```
+public void printMessage() {
+	System.out.println("Hello, World!");
+}
+```
 {% endraw %}
 
 2. 생성자 정의
 
     {% raw %}
 ```java
-    public class Person {
-    	String name;
-    	
-    	// 생성자 (클래스 이름과 동일)
-    	public Person(String name) {
-    		this.name = name;
-    	}
-    }
-    ```
+public class Person {
+	String name;
+	
+	// 생성자 (클래스 이름과 동일)
+	public Person(String name) {
+		this.name = name;
+	}
+}
+```
 {% endraw %}
 
 3. 익명 클래스
 
     {% raw %}
 ```java
-    Runnable task = new Runnable() {
-    	@Override
-    	public void run() {
-    		System.out.println("Thread is running...")
-    	}
-    }
-    ```
+Runnable task = new Runnable() {
+	@Override
+	public void run() {
+		System.out.println("Thread is running...")
+	}
+}
+```
 {% endraw %}
 
     - `new Runnable() {}` => 인터페이스 `Runnable`을 익명 클래스로 구현

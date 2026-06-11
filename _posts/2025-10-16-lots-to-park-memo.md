@@ -12,7 +12,7 @@ excerpt_separator: ""
 ### 2/9
 
 - 카카오맵 api 뒤에 &libraries=services 이걸 추가해줘야 라이브러리 사용 가능 왜 안되나 한참 헤맸다
-- <Map zoomable={false}> 이렇게 Map 컴포넌트 안에 속성으로 넣어줘도 됨
+- &lt;Map zoomable={false}> 이렇게 Map 컴포넌트 안에 속성으로 넣어줘도 됨
 
 ### 2/12
 

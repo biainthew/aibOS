@@ -20,8 +20,8 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    function createApp(rootComponent: Component, rootProps?: object): App
-    ```
+function createApp(rootComponent: Component, rootProps?: object): App
+```
 {% endraw %}
 
 
@@ -42,12 +42,12 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    import { createApp } from 'vue'
-    
-    const app = createApp({
-    	// root component options
-    })
-    ```
+import { createApp } from 'vue'
+
+const app = createApp({
+	// root component options
+})
+```
 {% endraw %}
 
 
@@ -56,11 +56,11 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    import { createApp } from 'vue'
-    import App from './App.vue'
-    
-    const app = createApp({App})
-    ```
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp({App})
+```
 {% endraw %}
 
     - See also : [**Guide - Creating a Vue Application**](https://vuejs.org/guide/essentials/application.html)
@@ -85,10 +85,10 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    interface App{
-    	mount(rootContainer: Element | string): ComponentPublicInstance
-    }
-    ```
+interface App{
+	mount(rootContainer: Element | string): ComponentPublicInstance
+}
+```
 {% endraw %}
 
 
@@ -124,11 +124,11 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    import { createApp } from 'vue'
-    const app = createApp()
-    
-    app.mount('#app')
-    ```
+import { createApp } from 'vue'
+const app = createApp()
+
+app.mount('#app')
+```
 {% endraw %}
 
 
@@ -137,8 +137,8 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    app.mount(document.body.firstChild)
-    ```
+app.mount(document.body.firstChild)
+```
 {% endraw %}
 
 
@@ -156,10 +156,10 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    interface App {
-    	unmount(): void
-    }
-    ```
+interface App {
+	unmount(): void
+}
+```
 {% endraw %}
 
 
@@ -177,10 +177,10 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    interface App {
-    	provide<T>(key: InjectionKey<T> | symbol | string, value: T): this
-    }
-    ```
+interface App {
+	provide<T>(key: InjectionKey<T> | symbol | string, value: T): this
+}
+```
 {% endraw %}
 
 
@@ -198,12 +198,12 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    import { createApp } from 'vue'
-    
-    const app = createApp()
-    
-    app.provide('message', 'hello')
-    ```
+import { createApp } from 'vue'
+
+const app = createApp()
+
+app.provide('message', 'hello')
+```
 {% endraw %}
 
 
@@ -212,13 +212,13 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    export default {
-    	inject: ['message'],
-    	created() {
-    		console.log(this.message) //'hello'
-    	}
-    }
-    ```
+export default {
+	inject: ['message'],
+	created() {
+		console.log(this.message) //'hello'
+	}
+}
+```
 {% endraw %}
 
 
@@ -241,11 +241,11 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    interface App {
-    	component(name: string): Component | undefined
-    	component(name: string, component: Component): this
-    }
-    ```
+interface App {
+	component(name: string): Component | undefined
+	component(name: string, component: Component): this
+}
+```
 {% endraw %}
 
 
@@ -254,18 +254,18 @@ excerpt_separator: ""
 
     {% raw %}
 ```javascript
-    import { createApp } from 'vue'
-    
-    const app = createApp({})
-    
-    //register an options object
-    app.component('my-component', {
-    	//...
-    })
-    
-    //retrieve a registered component
-    const MyComponent = app.component('my-component')
-    ```
+import { createApp } from 'vue'
+
+const app = createApp({})
+
+//register an options object
+app.component('my-component', {
+	//...
+})
+
+//retrieve a registered component
+const MyComponent = app.component('my-component')
+```
 {% endraw %}
 
 
@@ -287,11 +287,11 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    interface App {
-    	directive(name: string): Directive | undefined
-    	directive(name: string, directive: Directive): this
-    }
-    ```
+interface App {
+	directive(name: string): Directive | undefined
+	directive(name: string, directive: Directive): this
+}
+```
 {% endraw %}
 
 
@@ -300,25 +300,25 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    import { createApp } from 'vue'
-    
-    const app = createApp({
-    	...
-    })
-    
-    //register (object directive)
-    app.directive('my-directive', {
-    	// custom directive hooks
-    })
-    
-    //register (function directive shorthand)
-    app.directive('my-directive', () => {
-    	...
-    })
-    
-    //retrieve a registered directive
-    const myDirective = app.directive('my-directive')
-    ```
+import { createApp } from 'vue'
+
+const app = createApp({
+	...
+})
+
+//register (object directive)
+app.directive('my-directive', {
+	// custom directive hooks
+})
+
+//register (function directive shorthand)
+app.directive('my-directive', () => {
+	...
+})
+
+//retrieve a registered directive
+const myDirective = app.directive('my-directive')
+```
 {% endraw %}
 
 
@@ -336,10 +336,10 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    interface App {
-    	use(plugin: Plugin, ...options: any[]): this
-    }
-    ```
+interface App {
+	use(plugin: Plugin, ...options: any[]): this
+}
+```
 {% endraw %}
 
 
@@ -369,15 +369,15 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    import { createApp } from 'vue'
-    import MyPlugin from './plugins/MyPlugin'
-    
-    const app = createApp({
-    	...
-    })
-    
-    app.use(MyPlugin)
-    ```
+import { createApp } from 'vue'
+import MyPlugin from './plugins/MyPlugin'
+
+const app = createApp({
+	...
+})
+
+app.use(MyPlugin)
+```
 {% endraw %}
 
 
@@ -404,10 +404,10 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    interface App {
-    	mixin(mixin: ComponentOptions): this
-    }
-    ```
+interface App {
+	mixin(mixin: ComponentOptions): this
+}
+```
 {% endraw %}
 
 
@@ -425,10 +425,10 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    interface App {
-    	version: string
-    }
-    ```
+interface App {
+	version: string
+}
+```
 {% endraw %}
 
 
@@ -440,15 +440,15 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    export default {
-    	install(app) {
-    		const version = Number(app.version.split('.')[0])
-    		if (version < 3){
-    			console.warn('This plugin requires Vue 3')
-    		}
-    	}
-    }
-    ```
+export default {
+	install(app) {
+		const version = Number(app.version.split('.')[0])
+		if (version < 3){
+			console.warn('This plugin requires Vue 3')
+		}
+	}
+}
+```
 {% endraw %}
 
 
@@ -466,12 +466,12 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    import { createApp } from 'vue'
-    
-    const app = createApp()
-    
-    console.log(app.config)
-    ```
+import { createApp } from 'vue'
+
+const app = createApp()
+
+console.log(app.config)
+```
 {% endraw %}
 
 
@@ -489,16 +489,16 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    interface AppConfig {
-    errorHandler?: (
-    	error: unknown,
-    	instance: ComponentPublicInstance | null,
-    	//'info' is a Vue-specific error info,
-    	// e.g. which lifecycle hook the error was thrown in
-    	info: string
-    	} => void
-    )
-    ```
+interface AppConfig {
+errorHandler?: (
+	error: unknown,
+	instance: ComponentPublicInstance | null,
+	//'info' is a Vue-specific error info,
+	// e.g. which lifecycle hook the error was thrown in
+	info: string
+	} => void
+)
+```
 {% endraw %}
 
 
@@ -526,10 +526,10 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    app.config.errorHandler = (err, instance, info) => {
-    	// handle error, e.g. report to a service
-    }
-    ```
+app.config.errorHandler = (err, instance, info) => {
+	// handle error, e.g. report to a service
+}
+```
 {% endraw %}
 
 
@@ -547,14 +547,14 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    interface AppConfig {
-    	warnHandler?: (
-    		msg: string,
-    		instance: ComponentPublicInstance | null,
-    		trace: string
-    	) => void
-    }
-    ```
+interface AppConfig {
+	warnHandler?: (
+		msg: string,
+		instance: ComponentPublicInstance | null,
+		trace: string
+	) => void
+}
+```
 {% endraw %}
 
 
@@ -583,10 +583,10 @@ excerpt_separator: ""
 
     {% raw %}
 ```typescript
-    app.config.warnHandler = (msg, instance,trace) => {
-    	// trace is the component hierarchy (계층구조) trace
-    }
-    ```
+app.config.warnHandler = (msg, instance,trace) => {
+	// trace is the component hierarchy (계층구조) trace
+}
+```
 {% endraw %}
 
 

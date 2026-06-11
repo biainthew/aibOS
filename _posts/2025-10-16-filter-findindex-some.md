@@ -105,23 +105,23 @@ findIndex로 첫 번째 인덱스를 찾고 filter()는 현재 요소의 인덱�
 
     {% raw %}
 ```javascript
-    const numbers = [1, 2, 3, 4, 5];
-    
-    const hasEven = numbers.some(num => num % 2 === 0);
-    
-    console.log(hasEven); // true (배열에 짝수가 하나라도 있음)
-    ```
+const numbers = [1, 2, 3, 4, 5];
+
+const hasEven = numbers.some(num => num % 2 === 0);
+
+console.log(hasEven); // true (배열에 짝수가 하나라도 있음)
+```
 {% endraw %}
 
 2. 배열에 특정 값이 있는지 확인
 
     {% raw %}
 ```javascript
-    const items = ['apple', 'banana', 'orange'];
-    
-    const hasBanana = items.some(item => item === 'banana');
-    
-    console.log(hasBanana); // true ('banana'가 배열에 있음)
-    ```
+const items = ['apple', 'banana', 'orange'];
+
+const hasBanana = items.some(item => item === 'banana');
+
+console.log(hasBanana); // true ('banana'가 배열에 있음)
+```
 {% endraw %}
 

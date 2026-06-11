@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Supplier<Object>"
+title: "Supplier&lt;Object>"
 date: 2025-01-17
 categories: [general]
 tags: [Java]
@@ -29,7 +29,7 @@ System.out.println(obj); // 출력: Hello, World!
 {% endraw %}
 
 
-### Supplier<Object>
+### Supplier&lt;Object>
 
 
 값을 **공급**하는 함수형 인터페이스로 `get()` 메서드를 갖고 있으며 **값을 반환**함
@@ -52,7 +52,7 @@ System.out.println(supplier.get()); // 출력: Hello, World!
 ### 차이점
 
 
-|        |  Object            | Supplier<Object>           |
+|        |  Object            | Supplier&lt;Object>           |
 | ------ | ------------------ | -------------------------- |
 | 목적     | 값 자체를 저장하고 참조하는 용도 | 값을 생성하거나 제공하는 용도           |
 | 즉시 사용  | 즉시 값 사용 가능         | get() 메서드를 호출해야 값 사용 가능    |

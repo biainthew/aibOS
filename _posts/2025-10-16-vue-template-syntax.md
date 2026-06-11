@@ -157,7 +157,7 @@ Boolean attributes are attributes that can indicate true / false values by their
 {% endraw %}
 
 
-The `disabled` attribute will be included if `isButtonDisabled` has a truthy value. It will also be included if the value is an empty string, maintaining consistency with <button disabled=””>. For other falsy values the attribute will be omitted.
+The `disabled` attribute will be included if `isButtonDisabled` has a truthy value. It will also be included if the value is an empty string, maintaining consistency with &lt;button disabled=””>. For other falsy values the attribute will be omitted.
 
 
 `disabled` 속성은 `isButtonDisabled` 가 참 속성을 갖고 있으면 포함됩니다. 만약 값이 빈 문자열이어도 `<button disabled="">` 와 일관성을 유지하고 있으므로 포함됩니다. 속성의 다른 거짓 값들은 생략될 것입니다.

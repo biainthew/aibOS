@@ -4,7 +4,16 @@
       "Bash(bundle exec jekyll build:*)",
       "Bash(bundle exec jekyll serve:*)",
       "Read(//c/Users/Administrator/IdeaProjects/morethan-log/**)",
-      "Bash(npm test *)"
+      "Bash(npm test *)",
+      "Bash(sed -n '24,32p' _posts/2025-10-16-responseentity.md)",
+      "Bash(sed -n '175,185p' _posts/2025-10-16-application-api.md)",
+      "Bash(node *)",
+      "Read(//mnt/c/Users/user/IdeaProjects/**)",
+      "Bash(awk 'NR>=19 && NR<=27 {printf \"%d: \", NR; gsub\\(/\\\\t/,\"\\\\\\\\t\"\\); gsub\\(/ /,\"·\"\\); print}' _posts/2025-10-16-생성자.md)",
+      "Bash(grep -rlE '^    +```$' _posts/)",
+      "Bash(awk 'NR>=19 && NR<=27 {printf \"%d: \",NR; gsub\\(/\\\\t/,\"\\\\\\\\t\"\\); gsub\\(/ /,\"·\"\\); print}' _posts/2025-10-16-생성자.md)",
+      "Bash(awk 'NR>=33 && NR<=48 {printf \"%d: %s\\\\n\", NR, $0}' _posts/2025-10-16-responseentity.md)",
+      "Bash(grep -v ':0$')"
     ],
     "deny": [],
     "ask": []

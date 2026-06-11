@@ -296,11 +296,27 @@ async function syncNotionToGitHub() {
                 // 0. Notion의 "plain text" 언어를 Jekyll 호환 "plaintext"로 변환
                 bodyContent = bodyContent.replace(/```plain text/g, '```plaintext');
 
-                // 1. 코드블록(```)을 찾아서 전체를 {% raw %}...{% endraw %}로 감싸기
-                bodyContent = bodyContent.replace(
-                    /(```[\s\S]*?```)/g,
-                    '{% raw %}\n$1\n{% endraw %}'
-                );
+                // 1. 코드블록(```)을 찾아서 들여쓰기를 정규화한 뒤 {% raw %}...{% endraw %}로 감싸기
+                //    리스트 항목 안의 코드블록은 notion-to-md가 내용/닫는 펜스에 4칸 들여쓰기를 넣어
+                //    여는 펜스(0칸)와 어긋난다. kramdown은 닫는 펜스가 4칸 이상이면 인식하지 못해
+                //    코드블록이 닫히지 않고 이후 콘텐츠를 전부 삼켜 레이아웃이 깨진다.
+                //    => 닫는 펜스의 들여쓰기를 기준으로 블록 전체를 dedent 하여 양쪽 펜스를 col 0 에 맞춘다.
+                bodyContent = bodyContent.replace(/```[\s\S]*?```/g, (block) => {
+                    const lines = block.split("\n");
+                    const lastIdx = lines.length - 1;
+                    // 닫는 펜스 라인의 선행 공백/탭을 공통 들여쓰기로 간주
+                    const indentMatch = lines[lastIdx].match(/^[ \t]+/);
+                    const indent = indentMatch ? indentMatch[0] : "";
+                    const normalized = lines.map((line, i) => {
+                        // 여는/닫는 펜스 라인은 들여쓰기를 완전히 제거해 col 0 으로
+                        if (i === 0 || i === lastIdx) {
+                            return line.replace(/^[ \t]+/, "");
+                        }
+                        // 내용 라인은 공통 들여쓰기만큼만 제거 (상대 들여쓰기는 보존)
+                        return indent && line.startsWith(indent) ? line.slice(indent.length) : line;
+                    });
+                    return `{% raw %}\n${normalized.join("\n")}\n{% endraw %}`;
+                });
 
                 // 2. 코드블록 밖의 {{ }}는 개별 처리 (이미 {% raw %} 안에 있는 것은 제외)
                 // {% raw %}...{% endraw %} 블록을 임시로 플레이스홀더로 대체
@@ -319,6 +335,29 @@ async function syncNotionToGitHub() {
                 bodyContent = bodyContent.replace(/__RAW_BLOCK_(\d+)__/g, (_, index) => {
                     return rawBlocks[parseInt(index)];
                 });
+
+                // 3. 코드 밖의 HTML 태그처럼 보이는 '<' (제네릭 <T>, <String> 등)를 escape
+                //    kramdown이 이를 HTML 태그로 해석해 뒤따르는 콘텐츠를 삼켜 레이아웃이 깨지는 것을 방지.
+                {
+                    // 코드블록({% raw %}...{% endraw %})과 인라인 코드(`...`)는 보호한다.
+                    // (그 안에서는 < 가 안전하며, &lt; 로 바꾸면 오히려 글자 그대로 노출됨)
+                    const protectedBlocks = [];
+                    let escaped = bodyContent.replace(
+                        /\{% raw %\}[\s\S]*?\{% endraw %\}|`[^`\n]+`/g,
+                        (match) => {
+                            protectedBlocks.push(match);
+                            return `__PROTECTED_${protectedBlocks.length - 1}__`;
+                        }
+                    );
+
+                    // 태그 시작 패턴('<' 뒤에 영문/'/'/'!'/'?')만 escape.
+                    // blockquote('>')나 비교 연산('a < b')은 건드리지 않는다.
+                    escaped = escaped.replace(/<([A-Za-z\/!?])/g, "&lt;$1");
+
+                    bodyContent = escaped.replace(/__PROTECTED_(\d+)__/g, (_, index) => {
+                        return protectedBlocks[parseInt(index)];
+                    });
+                }
             }
 
             // 이미지 다운로드 및 경로 교체

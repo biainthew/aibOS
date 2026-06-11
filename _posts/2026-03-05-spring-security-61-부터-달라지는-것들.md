@@ -101,41 +101,41 @@ public class SecurityConfig {
 
     {% raw %}
 ```java
-    public HttpSecurity csrf(Customizer<CsrfConfigurer<HttpSecurity>> csrfCustomizer) throws Exception {
-        ApplicationContext context = this.getContext();
-        csrfCustomizer.customize((CsrfConfigurer)this.getOrApply(new CsrfConfigurer(context)));
-        return this;
-    }
-    ```
+public HttpSecurity csrf(Customizer<CsrfConfigurer<HttpSecurity>> csrfCustomizer) throws Exception {
+    ApplicationContext context = this.getContext();
+    csrfCustomizer.customize((CsrfConfigurer)this.getOrApply(new CsrfConfigurer(context)));
+    return this;
+}
+```
 {% endraw %}
 
 2. `CsrfConfigurer` 클래스는 `AbstractHttpConfigurer` 를 상속받음
 
     {% raw %}
 ```java
-    public final class CsrfConfigurer<H extends HttpSecurityBuilder<H>> extends AbstractHttpConfigurer<CsrfConfigurer<H>, H> {
-    		...
-    }
-    ```
+public final class CsrfConfigurer<H extends HttpSecurityBuilder<H>> extends AbstractHttpConfigurer<CsrfConfigurer<H>, H> {
+		...
+}
+```
 {% endraw %}
 
 3. `AbstractHttpConfigurer` 클래스의 `disable()` 메서드
 
     {% raw %}
 ```java
-    public B disable() {
-        ((HttpSecurityBuilder)this.getBuilder()).removeConfigurer(this.getClass());
-        return (B)(this.getBuilder());
-    }
-    ```
+public B disable() {
+    ((HttpSecurityBuilder)this.getBuilder()).removeConfigurer(this.getClass());
+    return (B)(this.getBuilder());
+}
+```
 {% endraw %}
 
 4. `CsrfConfigurer` 는 `AbstractHttpConfigurer` 를 상속받았으니 부모 클래스에서 메서드 참조
 
     {% raw %}
 ```java
-    http.csrf(AbstractHttpConfigurer::disable);
-    ```
+http.csrf(AbstractHttpConfigurer::disable);
+```
 {% endraw %}
 
 

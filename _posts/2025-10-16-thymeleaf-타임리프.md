@@ -74,12 +74,12 @@ excerpt_separator: ""
 | @{ … }  | URL 링크 표현식                                  | th:href=”@{/css/bootstrap.min.css}”                                          |
 | | … |   | 리터럴(백틱) 대체                                  | th:text=”|Hi ${user.name}!|”                                                 |
 | ${ … }  | 변수                                          | th:text=${user.name}                                                         |
-| th:each | 반복 출력                                       | <tr th:each=”item: ${items}”>
-    <td th:text=”${item.price}”>100</td>
-</tr> |
-| *{ … }  | 선택 변수                                       | <tr th:object=”${items}”>
-    <td th:text=”*{price}”>100</td>
-</tr>          |
+| th:each | 반복 출력                                       | &lt;tr th:each=”item: ${items}”>
+    &lt;td th:text=”${item.price}”>100&lt;/td>
+&lt;/tr> |
+| *{ … }  | 선택 변수                                       | &lt;tr th:object=”${items}”>
+    &lt;td th:text=”*{price}”>100&lt;/td>
+&lt;/tr>          |
 | #{ … }  | 메시지, properties 같은 외부 자원에서 코드에 해당하는 문자열 get | th:text=”#{member.register}”                                                 |
 
 

@@ -19,8 +19,8 @@ excerpt_separator: ""
 
         {% raw %}
 ```java
-        String numberString = "123";
-        int number = Integer.parseInt(numberString); // 문자열을 int로 변환
-        ```
+String numberString = "123";
+int number = Integer.parseInt(numberString); // 문자열을 int로 변환
+```
 {% endraw %}
 

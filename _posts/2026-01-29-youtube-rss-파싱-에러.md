@@ -231,4 +231,4 @@ private final Cache<String, List<YoutubeDTO>> youtubeCache = Caffeine.newBuilder
 
 1. 데이터를 가져오기 전 캐싱된 값이 있는지 확인
 2. 캐시에 데이터가 없으면 fetchAndParseYoutubeRss 호출
-3. 이후 60분간의 요청에는 메모리에 저장된 List<YoutubeDTO> 를 즉시 반환
+3. 이후 60분간의 요청에는 메모리에 저장된 List&lt;YoutubeDTO> 를 즉시 반환

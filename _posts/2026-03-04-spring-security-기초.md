@@ -15,14 +15,14 @@ excerpt_separator: ""
 
     {% raw %}
 ```java
-    @Controller
-    public class IndexController {
-    	@GetMapping("/admin")
-    	public String admin() {
-    	    return "admin";
-    	}
-    }
-    ```
+@Controller
+public class IndexController {
+	@GetMapping("/admin")
+	public String admin() {
+	    return "admin";
+	}
+}
+```
 {% endraw %}
 
     - 리턴값 admin 을 html 파일명으로 인식
@@ -31,14 +31,14 @@ excerpt_separator: ""
 
     {% raw %}
 ```java
-    @RestController
-    public class IndexController {
-    	@GetMapping("/admin")
-    	public String admin() {
-    	    return "admin";
-    	}
-    }
-    ```
+@RestController
+public class IndexController {
+	@GetMapping("/admin")
+	public String admin() {
+	    return "admin";
+	}
+}
+```
 {% endraw %}
 
     - 리턴값 admin 을 순수 데이터로 취급
@@ -47,14 +47,14 @@ excerpt_separator: ""
 
     {% raw %}
 ```java
-    @Controller
-    public class IndexController {
-    	@GetMapping("/admin")
-    	public @ResponseBody String admin() {
-    	    return "admin";
-    	}
-    }
-    ```
+@Controller
+public class IndexController {
+	@GetMapping("/admin")
+	public @ResponseBody String admin() {
+	    return "admin";
+	}
+}
+```
 {% endraw %}
 
     - 리턴값 admin 을 순수 데이터로 취급
@@ -65,8 +65,8 @@ excerpt_separator: ""
 
     {% raw %}
 ```bash
-    The bean 'delegatingApplicationListener', defined in class path resource [com/cos/security1/config/SecurityConfig.class], could not be registered. A bean with that name has already been defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class] and overriding is disabled.
-    ```
+The bean 'delegatingApplicationListener', defined in class path resource [com/cos/security1/config/SecurityConfig.class], could not be registered. A bean with that name has already been defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class] and overriding is disabled.
+```
 {% endraw %}
 
 2. **원인**
@@ -86,25 +86,25 @@ excerpt_separator: ""
 
     {% raw %}
 ```java
-    @Configuration
-    @EnableWebSecurity
-    public class SecurityConfig {
-    
-        @Bean
-        protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-            http.csrf(AbstractHttpConfigurer::disable)
-                    .authorizeHttpRequests(authorize -> authorize
-                            .requestMatchers("/user/**").authenticated()
-                            .requestMatchers("/manager/**").hasAnyRole("MANAGER", "ADMIN")
-                            .requestMatchers("/admin/**").hasRole("ADMIN")
-                            .anyRequest().permitAll()
-                    );
-    
-            http.formLogin(form -> form.loginPage("/login"));
-            return http.build();
-        }
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/user/**").authenticated()
+                        .requestMatchers("/manager/**").hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().permitAll()
+                );
+
+        http.formLogin(form -> form.loginPage("/login"));
+        return http.build();
     }
-    ```
+}
+```
 {% endraw %}
 
 
@@ -132,62 +132,62 @@ excerpt_separator: ""
 
     {% raw %}
 ```java
-    @Configuration
-    @EnableWebSecurity
-    // 스프링 시큐리티 필터(SecurityConfig)가 스프링 필터체인에 등록이 됨
-    @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
-    // Secured 어노테이션 활성화, PreAuthorize, PostAuthorize 어노테이션 활성화
-    public class SecurityConfig {
-    
-        // 해당 메서드의 리턴되는 오브젝트를 IoC로 등록해준다
-        @Bean
-        public BCryptPasswordEncoder encodePwd() {
-            return new BCryptPasswordEncoder();
-        }
-    
-        @Bean
-        protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-            http.csrf(AbstractHttpConfigurer::disable)
-                    .authorizeHttpRequests(authorize -> authorize
-                            .requestMatchers("/user/**").authenticated()
-                            .requestMatchers("/manager/**").hasAnyRole("MANAGER", "ADMIN")
-                            .requestMatchers("/admin/**").hasRole("ADMIN")
-                            .anyRequest().permitAll()
-                    );
-    
-            // 권한이 없는 페이지 접근 시 로그인 페이지로 이동하도록 설정
-            http.formLogin(form ->
-                    form.loginPage("/loginForm")
-                    .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/")
-            );
-            return http.build();
-        }
+@Configuration
+@EnableWebSecurity
+// 스프링 시큐리티 필터(SecurityConfig)가 스프링 필터체인에 등록이 됨
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
+// Secured 어노테이션 활성화, PreAuthorize, PostAuthorize 어노테이션 활성화
+public class SecurityConfig {
+
+    // 해당 메서드의 리턴되는 오브젝트를 IoC로 등록해준다
+    @Bean
+    public BCryptPasswordEncoder encodePwd() {
+        return new BCryptPasswordEncoder();
     }
-    ```
+
+    @Bean
+    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/user/**").authenticated()
+                        .requestMatchers("/manager/**").hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().permitAll()
+                );
+
+        // 권한이 없는 페이지 접근 시 로그인 페이지로 이동하도록 설정
+        http.formLogin(form ->
+                form.loginPage("/loginForm")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/")
+        );
+        return http.build();
+    }
+}
+```
 {% endraw %}
 
 2. **특정 메서드에 권한 한 개**
 
     {% raw %}
 ```java
-    @Secured("ROLE_ADMIN")
-    @GetMapping("/info")
-    public @ResponseBody String info() {
-        return "개인정보";
-    }
-    ```
+@Secured("ROLE_ADMIN")
+@GetMapping("/info")
+public @ResponseBody String info() {
+    return "개인정보";
+}
+```
 {% endraw %}
 
 3. **특정 메서드에 권한 여러 개**
 
     {% raw %}
 ```java
-    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
-    @GetMapping("/data")
-    public @ResponseBody String data() {
-        return "데이터정보";
-    }
-    ```
+@PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
+@GetMapping("/data")
+public @ResponseBody String data() {
+    return "데이터정보";
+}
+```
 {% endraw %}
 

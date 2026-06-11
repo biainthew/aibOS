@@ -263,7 +263,7 @@ const MyComponent = styled.div`
 {% endraw %}
 
 
-🌀 styled.div 뒤에 Tagged 템플릿 리터럴 문법을 통해 스타일을 넣어 주면 해당 스타일이 적용된 div 로 이루어진 리액트 컴포넌트가 생성됨 / 나중에 <MyComponent>Hello</MyComponent> 와 같은 형태로 사용할 수 있음
+🌀 styled.div 뒤에 Tagged 템플릿 리터럴 문법을 통해 스타일을 넣어 주면 해당 스타일이 적용된 div 로 이루어진 리액트 컴포넌트가 생성됨 / 나중에 &lt;MyComponent>Hello&lt;/MyComponent> 와 같은 형태로 사용할 수 있음
 
 
 {% raw %}

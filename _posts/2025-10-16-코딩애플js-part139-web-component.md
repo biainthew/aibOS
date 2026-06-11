@@ -9,7 +9,7 @@ excerpt_separator: ""
 
 
 
-Web Component 라는 문법을 사용하면 html 안에서 <div>들을 하나의 태그로 축약해서 쓰기 가능
+Web Component 라는 문법을 사용하면 html 안에서 &lt;div>들을 하나의 태그로 축약해서 쓰기 가능
 
 
 브라우저 기본 기능 중 하나
@@ -21,10 +21,10 @@ Web Component 라는 문법을 사용하면 html 안에서 <div>들을 하나의
 ### 커스텀 html 태그 만들기
 
 
-예를 들어 <custom-input> 이라고 입력하면 <label><input> 이렇게 두 개의 태그가 안에 출현하게 만들고 싶다면 ?
+예를 들어 &lt;custom-input> 이라고 입력하면 &lt;label>&lt;input> 이렇게 두 개의 태그가 안에 출현하게 만들고 싶다면 ?
 
 
-이제부터 <custom-input> 같은 커스텀 태그를 **컴포넌트**로 칭할것
+이제부터 &lt;custom-input> 같은 커스텀 태그를 **컴포넌트**로 칭할것
 
 
 정해진 문법이라 그냥 이해할 필요는 없고 외우면 됨
@@ -59,7 +59,7 @@ customElements.define("custom-input", 클래스)
 ![Untitled.png](/aibOS/public/images/posts/28e0a7f9-88ffba4e2bd1.png)
 
 
-그럼 브라우저에서 개발자도구로 검사해보면 <custom-input> 이라고 쓸 때마다 <label> <input> 이것들이 남음 이게 바로 Web Component 문법
+그럼 브라우저에서 개발자도구로 검사해보면 &lt;custom-input> 이라고 쓸 때마다 &lt;label> &lt;input> 이것들이 남음 이게 바로 Web Component 문법
 
 
 ### attribute 를 추가하면 각각 다른 내용을 보여줄 수도 있음
@@ -90,13 +90,13 @@ customElements.define("custom-input", 클래스)
 getAttribute(X) 를 쓰면 현재 요소의 X 라고 정의된 attribute를 가져올 수 있음
 
 
-그래서 name attribute 가 있으면 그걸 가져와서 <label> 안에 넣으라고 코드를 짜둠
+그래서 name attribute 가 있으면 그걸 가져와서 &lt;label> 안에 넣으라고 코드를 짜둠
 
 
-그랬더니 <custom-input name="비번"></custom-input> 이렇게 쓰면 "비번을 입력하쇼"
+그랬더니 &lt;custom-input name="비번">&lt;/custom-input> 이렇게 쓰면 "비번을 입력하쇼"
 
 
-<custom-input name="이메일"></custom-input> 이렇게 쓰면 "이메일을 입력하쇼"
+&lt;custom-input name="이메일">&lt;/custom-input> 이렇게 쓰면 "이메일을 입력하쇼"
 
 
 라고 출력됨

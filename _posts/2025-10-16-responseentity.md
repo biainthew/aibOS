@@ -27,25 +27,25 @@ ResponseEntity는 HTTP 응답을 나타내는 Spring Framework의 클래스이�
 ### `ResponseEntity<T>`에서 `<T>`의 의미
 
 
-ResponseEntity는 제네릭 클래스로 <T>는 응답의 본문에 담길 데이터의 타입을 의미한다
+ResponseEntity는 제네릭 클래스로 `<T>`는 응답의 본문에 담길 데이터의 타입을 의미한다
 
 
-**<String> :** 응답의 본문이 문자열 일 때
+**&lt;String> :** 응답의 본문이 문자열 일 때
 
 
-**<User>** : 응답의 본문이 User 객체일 때
+**&lt;User>** : 응답의 본문이 User 객체일 때
 
 
-**<List<User>>** : 응답의 본문이 User 객체의 리스트 일 때
+**&lt;List&lt;User>>** : 응답의 본문이 User 객체의 리스트 일 때
 
 
-**<?>** : 와일드카드, 모든 타입이 올 수 있음
+**&lt;?>** : 와일드카드, 모든 타입이 올 수 있음
 
 
-**<? extends T>** : T의 하위 클래스만 허용
+**&lt;? extends T>** : T의 하위 클래스만 허용
 
 
-**<? super T>** : T의 상위 클래스만 허용
+**&lt;? super T>** : T의 상위 클래스만 허용
 
 
 ### 주요 메서드
@@ -54,10 +54,10 @@ ResponseEntity는 제네릭 클래스로 <T>는 응답의 본문에 담길 데�
 
     {% raw %}
 ```java
-    if (user == null) {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // 404 반환
-    }
-    ```
+if (user == null) {
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // 404 반환
+}
+```
 {% endraw %}
 
 
@@ -67,22 +67,22 @@ ResponseEntity는 제네릭 클래스로 <T>는 응답의 본문에 담길 데�
 
     {% raw %}
 ```java
-    HttpHeaders headers = new HttpHeaders();
-    headers.set("Custom-Header", "Value");
-    return new ResponseEntity<>(user, headers, HttpStatus.OK);
-    ```
+HttpHeaders headers = new HttpHeaders();
+headers.set("Custom-Header", "Value");
+return new ResponseEntity<>(user, headers, HttpStatus.OK);
+```
 {% endraw %}
 
 3. 빌더 패턴 사용
 
     {% raw %}
 ```java
-    return ResponseEntity.ok(user);  // 200 OK와 함께 응답
-    
-    //or
-    
-    return ResponseEntity.status(HttpStatus.CREATED).body(user);  // 201 Created와 함께 응답
-    ```
+return ResponseEntity.ok(user);  // 200 OK와 함께 응답
+
+//or
+
+return ResponseEntity.status(HttpStatus.CREATED).body(user);  // 201 Created와 함께 응답
+```
 {% endraw %}
 
 
