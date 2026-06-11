@@ -130,42 +130,42 @@ public class SecurityConfig {
 
 1. **전역 설정**
 
-    {% raw %}
-```java
-@Configuration
-@EnableWebSecurity
-// 스프링 시큐리티 필터(SecurityConfig)가 스프링 필터체인에 등록이 됨
-@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
-// Secured 어노테이션 활성화, PreAuthorize, PostAuthorize 어노테이션 활성화
-public class SecurityConfig {
-
-    // 해당 메서드의 리턴되는 오브젝트를 IoC로 등록해준다
-    @Bean
-    public BCryptPasswordEncoder encodePwd() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user/**").authenticated()
-                        .requestMatchers("/manager/**").hasAnyRole("MANAGER", "ADMIN")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().permitAll()
-                );
-
-        // 권한이 없는 페이지 접근 시 로그인 페이지로 이동하도록 설정
-        http.formLogin(form ->
-                form.loginPage("/loginForm")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/")
-        );
-        return http.build();
-    }
-}
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   @Configuration
+   @EnableWebSecurity
+   // 스프링 시큐리티 필터(SecurityConfig)가 스프링 필터체인에 등록이 됨
+   @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
+   // Secured 어노테이션 활성화, PreAuthorize, PostAuthorize 어노테이션 활성화
+   public class SecurityConfig {
+   
+       // 해당 메서드의 리턴되는 오브젝트를 IoC로 등록해준다
+       @Bean
+       public BCryptPasswordEncoder encodePwd() {
+           return new BCryptPasswordEncoder();
+       }
+   
+       @Bean
+       protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+           http.csrf(AbstractHttpConfigurer::disable)
+                   .authorizeHttpRequests(authorize -> authorize
+                           .requestMatchers("/user/**").authenticated()
+                           .requestMatchers("/manager/**").hasAnyRole("MANAGER", "ADMIN")
+                           .requestMatchers("/admin/**").hasRole("ADMIN")
+                           .anyRequest().permitAll()
+                   );
+   
+           // 권한이 없는 페이지 접근 시 로그인 페이지로 이동하도록 설정
+           http.formLogin(form ->
+                   form.loginPage("/loginForm")
+                   .loginProcessingUrl("/login")
+                   .defaultSuccessUrl("/")
+           );
+           return http.build();
+       }
+   }
+   ```
+   {% endraw %}
 
 2. **특정 메서드에 권한 한 개**
 
