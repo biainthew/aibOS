@@ -18,7 +18,7 @@ excerpt_separator: ""
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 function createApp(rootComponent: Component, rootProps?: object): App
 ```
@@ -40,7 +40,7 @@ function createApp(rootComponent: Component, rootProps?: object): App
     With inline root component :
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 
@@ -54,7 +54,7 @@ const app = createApp({
     With imported component :
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -83,7 +83,7 @@ const app = createApp({App})
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 interface App{
 	mount(rootContainer: Element | string): ComponentPublicInstance
@@ -122,7 +122,7 @@ interface App{
     ### - Example
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 const app = createApp()
@@ -135,7 +135,7 @@ app.mount('#app')
     Can also mount to an actual DOM element:
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 app.mount(document.body.firstChild)
 ```
@@ -154,7 +154,7 @@ app.mount(document.body.firstChild)
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 interface App {
 	unmount(): void
@@ -175,7 +175,7 @@ interface App {
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 interface App {
 	provide<T>(key: InjectionKey<T> | symbol | string, value: T): this
@@ -196,7 +196,7 @@ interface App {
     ### - Example
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 
@@ -210,7 +210,7 @@ app.provide('message', 'hello')
     Inside a component in the application:
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 export default {
 	inject: ['message'],
@@ -239,7 +239,7 @@ export default {
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 interface App {
 	component(name: string): Component | undefined
@@ -252,7 +252,7 @@ interface App {
     ### - Example
 
 
-    {% raw %}
+{% raw %}
 ```javascript
 import { createApp } from 'vue'
 
@@ -285,7 +285,7 @@ const MyComponent = app.component('my-component')
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 interface App {
 	directive(name: string): Directive | undefined
@@ -298,7 +298,7 @@ interface App {
     ### - Example
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 import { createApp } from 'vue'
 
@@ -334,7 +334,7 @@ const myDirective = app.directive('my-directive')
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 interface App {
 	use(plugin: Plugin, ...options: any[]): this
@@ -367,7 +367,7 @@ interface App {
     ### - Example
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 import { createApp } from 'vue'
 import MyPlugin from './plugins/MyPlugin'
@@ -402,7 +402,7 @@ app.use(MyPlugin)
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 interface App {
 	mixin(mixin: ComponentOptions): this
@@ -423,7 +423,7 @@ interface App {
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 interface App {
 	version: string
@@ -438,7 +438,7 @@ interface App {
     : Performing a version check inside a plugin
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 export default {
 	install(app) {
@@ -464,7 +464,7 @@ export default {
     모든 앱 인스턴스는 그 앱을 위한 환경설정을 포함하는  `config` 객체를 나타냅니다. 그 속성들을 앱에 마운트 하기 전에 수정할 수 있습니다.
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 import { createApp } from 'vue'
 
@@ -487,7 +487,7 @@ console.log(app.config)
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 interface AppConfig {
 errorHandler?: (
@@ -524,13 +524,13 @@ errorHandler?: (
     ### - Examples
 
 
-    {% raw %}
-```typescript
-app.config.errorHandler = (err, instance, info) => {
-	// handle error, e.g. report to a service
-}
-```
-{% endraw %}
+      {% raw %}
+      ```typescript
+      app.config.errorHandler = (err, instance, info) => {
+      	// handle error, e.g. report to a service
+      }
+      ```
+      {% endraw %}
 
 
 ## app.config.warnHandler
@@ -545,7 +545,7 @@ app.config.errorHandler = (err, instance, info) => {
     ### - Type
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 interface AppConfig {
 	warnHandler?: (
@@ -581,7 +581,7 @@ interface AppConfig {
     ### - Examples
 
 
-    {% raw %}
+{% raw %}
 ```typescript
 app.config.warnHandler = (msg, instance,trace) => {
 	// trace is the component hierarchy (계층구조) trace

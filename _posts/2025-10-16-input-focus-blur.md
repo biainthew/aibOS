@@ -69,7 +69,7 @@ excerpt_separator: ""
         }
         function eventKeydown(){
             console.log(event.key) //누른 키 이름을 보여줘
-            
+
         }
     </script>
 ```

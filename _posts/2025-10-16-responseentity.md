@@ -52,38 +52,38 @@ ResponseEntity는 제네릭 클래스로 `<T>`는 응답의 본문에 담길 데
 
 1. 상태 코드 설정
 
-    {% raw %}
-```java
-if (user == null) {
-    return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // 404 반환
-}
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   if (user == null) {
+       return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // 404 반환
+   }
+   ```
+   {% endraw %}
 
 
     상태코드를 명시하지 않으면 `user`가 `null`일 때도 200 OK가 반환될 수 있음
 
 2. 헤더 설정
 
-    {% raw %}
-```java
-HttpHeaders headers = new HttpHeaders();
-headers.set("Custom-Header", "Value");
-return new ResponseEntity<>(user, headers, HttpStatus.OK);
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   HttpHeaders headers = new HttpHeaders();
+   headers.set("Custom-Header", "Value");
+   return new ResponseEntity<>(user, headers, HttpStatus.OK);
+   ```
+   {% endraw %}
 
 3. 빌더 패턴 사용
 
-    {% raw %}
-```java
-return ResponseEntity.ok(user);  // 200 OK와 함께 응답
+   {% raw %}
+   ```java
+   return ResponseEntity.ok(user);  // 200 OK와 함께 응답
 
-//or
+   //or
 
-return ResponseEntity.status(HttpStatus.CREATED).body(user);  // 201 Created와 함께 응답
-```
-{% endraw %}
+   return ResponseEntity.status(HttpStatus.CREATED).body(user);  // 201 Created와 함께 응답
+   ```
+   {% endraw %}
 
 
 ### 왜
@@ -164,7 +164,7 @@ public class BookController {
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
     	// 예시로 임의의 책을 반환
         Book book = new Book(id, "Sample Book", "Sample Author");
-        
+
         // 상태 코드를 지정하여 ResponseEntity를 생성
         return ResponseEntity.status(HttpStatus.OK).body(book);
     }

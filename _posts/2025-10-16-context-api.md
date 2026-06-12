@@ -162,13 +162,13 @@ import { ColorProvider } from './contexts/color';
 
 const App = () => {
     return (
-        
+
 <ColorProvider>
 
             <div>
                 <ColorBox />
             </div>
-        
+
 </ColorProvider>
 
     );
@@ -184,7 +184,7 @@ import { ColorConsumer } from '../contexts/color';
 
 const ColorBox = () => {
     return (
-        
+
 <ColorConsumer>
 
             {(value) => (
@@ -193,12 +193,12 @@ const ColorBox = () => {
                         style={{
                             width: '64px',
                             height: '64px',
-                            
+
 background: value.state.color
 ,
                         }}
                     ></div>
-                    
+
 <div
                         style={{
                             width: '32px',
@@ -209,7 +209,7 @@ background: value.state.color
 
                 </>
             )}
-        
+
 </ColorConsumer>
 
     );

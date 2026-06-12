@@ -19,7 +19,7 @@ excerpt_separator: ""
 ```javascript
 let 프로미스 = new Promise();
 프로미스.then(function(){
-	
+
 }).catch(function(){
 
 });

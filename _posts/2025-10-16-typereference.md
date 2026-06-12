@@ -202,41 +202,41 @@ Java 에서는 제네릭 타입이 컴파일 시 제거(소거) 되기 때문에
 
 1. 메서드 정의
 
-    {% raw %}
-```java
-public void printMessage() {
-	System.out.println("Hello, World!");
-}
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   public void printMessage() {
+   	System.out.println("Hello, World!");
+   }
+   ```
+   {% endraw %}
 
 2. 생성자 정의
 
-    {% raw %}
-```java
-public class Person {
-	String name;
-	
-	// 생성자 (클래스 이름과 동일)
-	public Person(String name) {
-		this.name = name;
-	}
-}
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   public class Person {
+   	String name;
+
+   	// 생성자 (클래스 이름과 동일)
+   	public Person(String name) {
+   		this.name = name;
+   	}
+   }
+   ```
+   {% endraw %}
 
 3. 익명 클래스
 
-    {% raw %}
-```java
-Runnable task = new Runnable() {
-	@Override
-	public void run() {
-		System.out.println("Thread is running...")
-	}
-}
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   Runnable task = new Runnable() {
+   	@Override
+   	public void run() {
+   		System.out.println("Thread is running...")
+   	}
+   }
+   ```
+   {% endraw %}
 
  - `new Runnable() {}` => 인터페이스 `Runnable`을 익명 클래스로 구현
  - `{}` 안에 `run()` 메서드를 정의하여 실행 내용을 작성

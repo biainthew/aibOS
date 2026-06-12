@@ -124,13 +124,13 @@ const store = configureStore(rootReducer, applyMiddleware(thunk));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    
+
 <Provider store={store}>
 
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    
+
 </Provider>
 
   </React.StrictMode>
@@ -234,7 +234,7 @@ const App = () => {
       <Routes>
         <Route path="/red" element={<RedPage />} />
         <Route path="/blue" element={<BluePage />} />
-        
+
 <Route path="/users/*" element={<UsersPage />} />
 
       </Routes>
@@ -262,7 +262,7 @@ const Menu = () => {
       <li>
         <Link to="/blue">Blue</Link>
       </li>
-      
+
 <li>
         <Link to="/users">Users</Link>
       </li>

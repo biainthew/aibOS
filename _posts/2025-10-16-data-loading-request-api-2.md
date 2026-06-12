@@ -137,7 +137,7 @@ const serverRender = async (req, res, next) => {
 
   const context = {};
   const store = createStore(rootReducer, applyMiddleware(thunk));
-  
+
 const preloadContext = {
     done: false,
     promises: [],
@@ -145,7 +145,7 @@ const preloadContext = {
 
 
   const jsx = (
-    
+
 <PreloadContext.Provider value={preloadContext}>
 
       <Provider store={store}>
@@ -153,11 +153,11 @@ const preloadContext = {
           <App />
         </StaticRouter>
       </Provider>
-    
+
 </PreloadContext.Provider>
 
   );
-  
+
 ReactDOMServer.renderToStaticMarkup(jsx); // renderToStaticMarkup 으로 한번 렌더링
   try {
     await Promise.all(preloadContext.promises); //모든 프로미스를 기다림
@@ -266,7 +266,7 @@ const serverRender = async (req, res, next) => {
   preloadContext.done = true;
 
   const root = ReactDOMServer.renderToString(jsx); // 렌더링을 하고
-  
+
 const stateString = JSON.stringify(store.getState()).replace(/</g, "\\u003c");
   const stateScript = `<script>__PRELOADED_STATE__=${stateString}</script>`; //리덕스 초기상태를 스크립트로 주입
 
@@ -305,7 +305,7 @@ import rootReducer from "./modules";
 
 const store = createStore(
   rootReducer,
-  
+
 window.__PRELOADED_STATE__,
 
   applyMiddleware(thunk)
@@ -440,7 +440,7 @@ function users(state = initialState, action) {
         loading: { ...state.loading, users: false },
         error: { ...state.error, users: action.payload },
       };
-   
+
  case GET_USER:
       return {
         ...state,

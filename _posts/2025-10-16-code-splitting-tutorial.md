@@ -90,7 +90,7 @@ import "./App.css";
 import notify from "./notify";
 
 function App() {
-  
+
 const onClick = () => {
     notify();
   };
@@ -121,7 +121,7 @@ import notify from "./notify";
 
 function App() {
   const onClick = () => {
-    
+
 import("./notify").then((result) => result.default());
 
   };

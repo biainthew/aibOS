@@ -20,14 +20,14 @@ excerpt_separator: ""
 public class Example {
 	public static void main(String[] args) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
-		
+
 		// JSON 문자열
 		String json = "{\"name\":\"Alice\", \"age\":30}";
-		
+
 		// JSON -> Java 객체 (Map)
 		Map<String, Object> resultMap = objectMapper.readValue(json, Map.class);
 		System.out.println(resultMap); // 출력 : {name=Alice, age=30}
-		
+
 		// JSON -> 특정 DTO 객체로 변환
 		Person person = objectMapper.convertValue(resultMap, Person.class);
 		System.out.println(person.getName()); // 출력 : Alice
@@ -37,20 +37,20 @@ public class Example {
 class Person {
 	private String name;
 	private int age;
-	
+
 	// Getter, Setter
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public int getAge() {
 		return age;
 	}
-	
+
 	public void setAge(int age) {
 		this.age = age;
 	}

@@ -27,7 +27,7 @@ let result = arr.filter((value, index, self) => {
     console.log(value); // 현재 요소
     console.log(index); // 현재 요소의 인덱스
     console.log(self);  // 원본 배열 (arr)
-    
+
     return value > 3;   // value가 3보다 큰 경우에만 필터링
 });
 
@@ -103,25 +103,25 @@ findIndex로 첫 번째 인덱스를 찾고 filter()는 현재 요소의 인덱�
 
 1. 배열에 짝수가 하나라도 있는지 확인
 
-    {% raw %}
-```javascript
-const numbers = [1, 2, 3, 4, 5];
+   {% raw %}
+   ```javascript
+   const numbers = [1, 2, 3, 4, 5];
 
-const hasEven = numbers.some(num => num % 2 === 0);
+   const hasEven = numbers.some(num => num % 2 === 0);
 
-console.log(hasEven); // true (배열에 짝수가 하나라도 있음)
-```
-{% endraw %}
+   console.log(hasEven); // true (배열에 짝수가 하나라도 있음)
+   ```
+   {% endraw %}
 
 2. 배열에 특정 값이 있는지 확인
 
-    {% raw %}
-```javascript
-const items = ['apple', 'banana', 'orange'];
+   {% raw %}
+   ```javascript
+   const items = ['apple', 'banana', 'orange'];
 
-const hasBanana = items.some(item => item === 'banana');
+   const hasBanana = items.some(item => item === 'banana');
 
-console.log(hasBanana); // true ('banana'가 배열에 있음)
-```
-{% endraw %}
+   console.log(hasBanana); // true ('banana'가 배열에 있음)
+   ```
+   {% endraw %}
 

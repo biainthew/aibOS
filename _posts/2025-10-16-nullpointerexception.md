@@ -19,31 +19,31 @@ null 값을 참조하려 할 때 발생하는 런타임 에러
 
 1. 객체가 초기화되지 않았을 때
 
-    {% raw %}
-```java
-String str = null;
-int length = str.length(); // NullPointerException 발생
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   String str = null;
+   int length = str.length(); // NullPointerException 발생
+   ```
+   {% endraw %}
 
 2. 배열을 선언했지만 초기화하지 않은 경우
 
-    {% raw %}
-```java
-int[] numbers = null;
-System.out.println(numbers.length); // NullPointerException 발생
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   int[] numbers = null;
+   System.out.println(numbers.length); // NullPointerException 발생
+   ```
+   {% endraw %}
 
 3. 컬렉션에서 null 요소를 참조하려고 할 때
 
-    {% raw %}
-```java
-List<String> list = new ArrayList<>();
-list.add(null);
-System.out.println(list.get(0).length()); // NullPointerException 발생
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   List<String> list = new ArrayList<>();
+   list.add(null);
+   System.out.println(list.get(0).length()); // NullPointerException 발생
+   ```
+   {% endraw %}
 
 
     > 💡 **컬렉션** ❓  
@@ -57,24 +57,24 @@ System.out.println(list.get(0).length()); // NullPointerException 발생
 
 4. 메서드의 매개변수로 null이 전달되었을 때
 
-    {% raw %}
-```java
-public void printLength(String str) {
-    System.out.println(str.length()); // NullPointerException 발생 가능
-}
+   {% raw %}
+   ```java
+   public void printLength(String str) {
+       System.out.println(str.length()); // NullPointerException 발생 가능
+   }
 
-printLength(null); // null을 전달하면 발생
-```
-{% endraw %}
+   printLength(null); // null을 전달하면 발생
+   ```
+   {% endraw %}
 
 5. 자동 언박싱 시 null 참조
 
-    {% raw %}
-```java
-Integer num = null;
-int value = num; // NullPointerException 발생
-```
-{% endraw %}
+   {% raw %}
+   ```java
+   Integer num = null;
+   int value = num; // NullPointerException 발생
+   ```
+   {% endraw %}
 
 
 ### 방지하는 방법

@@ -36,7 +36,7 @@ function autoSlide(){
         move(next, '100%' , 0);
         pageNext.addClass('on')
     },2000)
-    
+
 }
 function move(tg , start , end){ //target, start, end
     tg.css('left',start).stop().animate({'left':end},500); //left 로 start 만큼 움직이고 left 로 end 만큼 animate

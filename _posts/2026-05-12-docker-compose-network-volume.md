@@ -57,7 +57,7 @@ networks:
 {% raw %}
 ```yaml
 services:
- 
+
   db:
     image: postgres:17-alpine
     environment:

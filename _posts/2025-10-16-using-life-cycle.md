@@ -116,7 +116,7 @@ class App extends Component {
                 <button onClick={this.handleClick}>랜덤색상</button>
                 <LifeCycleSample color={this.state.color}/>
             </div>
-            
+
         );
     }
 }
@@ -262,7 +262,7 @@ class App extends Component {
                     <LifeCycleSample color={this.state.color}/>
                 </ErrorBoundary>
             </div>
-            
+
         );
     }
 }

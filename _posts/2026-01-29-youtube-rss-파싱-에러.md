@@ -84,10 +84,10 @@ public List<YoutubeDTO> selectYoutubeVideos(String rssUrl, int limit) {
 
     try {
         URL feedUrl = new URL(rssUrl);
-        
+
         // 1. 직접 연결 객체 생성
         HttpURLConnection connection = (HttpURLConnection) feedUrl.openConnection();
-        
+
         // 2. User-Agent 헤더 설정
         connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
 
@@ -109,7 +109,7 @@ public List<YoutubeDTO> selectYoutubeVideos(String rssUrl, int limit) {
                         .thumbnail(thumbnail)
                         .build());
             });
-            
+
     } catch (FileNotFoundException e) {
         log.error("유튜브 채널을 찾을 수 없거나 접근이 차단되었습니다. URL: {}", rssUrl);
         throw new BusinessException(ErrorCode.NOT_FOUND, "유튜브 채널을 찾을 수 없습니다.");
@@ -158,7 +158,7 @@ private final Integer youtubeCacheExpirationMinutes = 60; // 유튜브 캐시만
 private final Cache<String, List<YoutubeDTO>> youtubeCache = Caffeine.newBuilder()
         .expireAfterWrite(youtubeCacheExpirationMinutes, TimeUnit.MINUTES)
         .build();
-        
+
 @Override
     public List<YoutubeDTO> selectYoutubeVideos(String rssUrl, int limit) {
         // Check if the data is already in the cache

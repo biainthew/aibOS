@@ -19,7 +19,7 @@ let data = {
 	even : [],
 	setter함수(...numbers){
 		numbers.forEach((a)=>{
-			
+
 		})
 	},
 	getter함수(){

@@ -61,14 +61,18 @@ function wrapCodeBlocks(text) {
         const block = lines.slice(i, j + 1);
 
         // 직전 리스트 항목의 콘텐츠 오프셋 계산 (없으면 최상위 → 빈 문자열)
+        // 단, 여는 펜스가 원래 들여써져 있을 때만(=리스트 항목 안에 의도된 코드블록) 오프셋을 적용한다.
+        // 여는 펜스가 col 0 이면 리스트 뒤에 오더라도 최상위 코드블록이므로 리스트에 종속시키지 않는다.
         let offset = "";
-        for (let k = i - 1; k >= 0; k--) {
-            const t = lines[k];
-            if (t.trim() === "") continue;            // 빈 줄 건너뜀
-            const m = t.match(markerRe);
-            if (m) { offset = " ".repeat((m[1] + m[2] + m[3]).length); break; }
-            if (/^[ \t]+\S/.test(t)) continue;         // 들여쓴 연속 콘텐츠 → 계속 위로
-            break;                                     // col 0 의 비-마커 콘텐츠 → 리스트 밖
+        if (/^[ \t]+/.test(block[0])) {
+            for (let k = i - 1; k >= 0; k--) {
+                const t = lines[k];
+                if (t.trim() === "") continue;            // 빈 줄 건너뜀
+                const m = t.match(markerRe);
+                if (m) { offset = " ".repeat((m[1] + m[2] + m[3]).length); break; }
+                if (/^[ \t]+\S/.test(t)) continue;         // 들여쓴 연속 콘텐츠 → 계속 위로
+                break;                                     // col 0 의 비-마커 콘텐츠 → 리스트 밖
+            }
         }
 
         // 내용 줄들의 공통 선행 공백(베이스)을 구해 제거 후 offset 부여 (상대 들여쓰기 보존)

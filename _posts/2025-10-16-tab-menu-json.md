@@ -87,7 +87,7 @@ excerpt_separator: ""
                                 </li>
                                 <li>
                                     <div class="notice-page-number">
-                                        
+
                                     </div>
                                 </li>
                                 <li>

@@ -42,11 +42,11 @@ $(this)를 console 에 찍어보니 window 가 나왔다
 {% raw %}
 ```javascript
 animateSpan.mouseout(function(){
-    
+
 let _this = $(this)
 
     setTimeout(function(){
-        
+
 _this
 .removeClass('animated bounce')
     },1000)

@@ -71,7 +71,7 @@ public class MyClass {
 
     public void doSomething() {
         logger.debug("디버그 메시지: 작업 시작");
-        
+
         try {
             // 예제 코드: 0으로 나누기 (예외 발생)
             int result = 10 / 0;

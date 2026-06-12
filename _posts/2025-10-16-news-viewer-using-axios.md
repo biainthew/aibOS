@@ -365,7 +365,7 @@ const Category = styled.div`
     &:hover {
         color: #495057;
     }
-    
+
 ${(props) =>
         props.active &&
         css`
@@ -389,7 +389,7 @@ const Categories = (
             {categories.map((c) => (
                 <Category
                     key={c.name}
-                    
+
 active={category === c.name}
                     onClick={() => onSelect(c.name)}
 
@@ -439,7 +439,7 @@ const NewsList = (
         const fetchData = async () => {
             setLoading(true);
             try {
-                
+
 const query = category === 'all' ? '' : `&category=${category}`;
 
                 const response = await axios.get(
@@ -602,7 +602,7 @@ const Categories = ({ onSelect, category }) => {
             {categories.map((c) => (
                 <Category
                     key={c.name}
-                    
+
 className={({ isAcive }) =>
                         isAcive ? 'active' : undefined
                     }
