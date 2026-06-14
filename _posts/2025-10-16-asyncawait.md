@@ -34,13 +34,13 @@ async/await 을 사용하면 비동기 코드를 더 직관적으로 작성할 �
     위 코드는 내부적으로 아래처럼 동작함
 
 
-{% raw %}
-```javascript
-function myFunction() {
-    return Promise.resolve("Hello, Async!");
-}
-```
-{% endraw %}
+   {% raw %}
+   ```javascript
+   function myFunction() {
+       return Promise.resolve("Hello, Async!");
+   }
+   ```
+   {% endraw %}
 
 2. await 키워드는 비동기 함수(Promise) 가 완료될 때까지 기다렸다가 결과를 반환 / 반드시 async 함수 내부에서만 사용 가능
 

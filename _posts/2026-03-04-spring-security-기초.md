@@ -25,8 +25,8 @@ excerpt_separator: ""
    ```
    {% endraw %}
 
- - 리턴값 admin 을 html 파일명으로 인식
- - 뷰 리졸버가 html 파일을 찾음
+    - 리턴값 admin 을 html 파일명으로 인식
+    - 뷰 리졸버가 html 파일을 찾음
 2. **@RestController**
 
    {% raw %}
@@ -41,8 +41,8 @@ excerpt_separator: ""
    ```
    {% endraw %}
 
- - 리턴값 admin 을 순수 데이터로 취급
- - 메세지 컨버터가 데이터를 응답 본문에 넣음
+    - 리턴값 admin 을 순수 데이터로 취급
+    - 메세지 컨버터가 데이터를 응답 본문에 넣음
 3. **@Controller + @ResponseBody**
 
    {% raw %}
@@ -57,7 +57,7 @@ excerpt_separator: ""
    ```
    {% endraw %}
 
- - 리턴값 admin 을 순수 데이터로 취급
+    - 리턴값 admin 을 순수 데이터로 취급
 
 ### **The bean 'delegatingApplicationListener' 에러**
 

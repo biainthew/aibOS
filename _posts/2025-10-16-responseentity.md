@@ -27,7 +27,7 @@ ResponseEntity는 HTTP 응답을 나타내는 Spring Framework의 클래스이�
 ### `ResponseEntity<T>`에서 `<T>`의 의미
 
 
-ResponseEntity는 제네릭 클래스로 `<T>`는 응답의 본문에 담길 데이터의 타입을 의미한다
+ResponseEntity는 제네릭 클래스로 &lt;T>는 응답의 본문에 담길 데이터의 타입을 의미한다
 
 
 **&lt;String> :** 응답의 본문이 문자열 일 때
